@@ -11,7 +11,19 @@
 |
 */
 
-Route::get('/', function()
+/**
+ * Handles all pages
+ * @link /*
+ */
+Route::controller('/', 'HomeController');
+
+/**
+ * Handles player panel routes
+ *
+ */
+Route::group(array(
+	'prefix'	=>	'panel'
+	'before'	=>	'auth'), function()
 {
-	return View::make('hello');
+	//
 });
