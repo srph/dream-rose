@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddVotePointColumn extends Migration {
+class AddColumnsToAccountstable extends Migration {
 
 	/**
 	 * Run the migrations.

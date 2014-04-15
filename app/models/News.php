@@ -14,7 +14,12 @@ class News extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array();
+	protected $fillable = array(
+		'user_id',
+		'cover',
+		'title',
+		'content'
+	);
 
 	/**
 	 * Checks whether the model uses timestamps

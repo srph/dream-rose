@@ -14,14 +14,19 @@ class Slide extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array();
+	protected $fillable = array(
+		'user_id',
+		'title',
+		'cover',
+		'content'
+	);
 
 	/**
 	 * Checks whether the model uses timestamps
 	 *
 	 * @var boolean
 	 */
-	public $timestamps = false;
+	public $timestamps = true;
 
 	/**
 	 * Valide provided input
