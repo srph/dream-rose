@@ -1,8 +1,8 @@
-<?php namespace Dream\Hasher\MD5;
+<?php namespace Dream\Hasher;
 
 use Illuminate\Hashing\HasherInterface;
 
-class MD5Hasher implements HasherInterface {
+class MD5 implements HasherInterface {
 
 	/**
 	 * Hash the given value

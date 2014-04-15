@@ -1,8 +1,8 @@
-<?php namespace Dream\Hasher\MD5;
+<?php namespace Dream\Hasher;
 
 use Illuminate\Support\ServiceProvider;
 
-class MD5ServiceProvider extends ServiceProvider {
+class HasherServiceProvider extends ServiceProvider {
 
 	/**
 	 * Register the service provider
@@ -13,7 +13,7 @@ class MD5ServiceProvider extends ServiceProvider {
 	{
 		$this->app['hash'] = $this->app->share(function()
 		{
-			return new MD5Hasher;
+			return new MD5;
 		});
 	}
 

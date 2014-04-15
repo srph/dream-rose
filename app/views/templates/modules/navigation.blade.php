@@ -12,13 +12,13 @@
 
 	<div class="collapse navbar-collapse" id="navigation">
 		<ul class="nav navbar-nav">
-			<li class="active"> <a href="{{ URL::to('/') }}"> Home </a> </li>
-			<li class="active"> <a href="{{ URL::to('/') }}"> Register </a> </li>
-			<li class="active"> <a href="{{ URL::to('/') }}"> Downloads </a> </li>
-			<li class="active"> <a href="{{ URL::to('/') }}"> Game Info </a> </li>
-			<li class="active"> <a href="{{ URL::to('/') }}"> Support </a> </li>
-			<li class="active"> <a href="{{ URL::to('/') }}"> Forums </a> </li>
-			<li class="active"> <a href="{{ URL::to('/') }}"> Rankings </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Home </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Register </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Downloads </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Game Info </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Support </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Forums </a> </li>
+			<li> <a href="{{ URL::to('/') }}"> Rankings </a> </li>
 		</ul>
 	</div>
 </nav>

@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('test', function()
+{
+	return Hash::make('pogi');
+});
+
 /**
  * Handles all pages
  * @link /*
@@ -19,11 +24,15 @@ Route::controller('/', 'HomeController');
 
 /**
  * Handles player panel routes
- *
  */
 Route::group(array(
-	'prefix'	=>	'panel'
-	'before'	=>	'auth'), function()
+	'prefix'	=>	'panel',
+	'before'	=>	'auth'
+), function()
 {
-	//
+	/**
+	 *
+	 * @link panel/user
+	 */
+	Route::resource('user', 'UserController');
 });
