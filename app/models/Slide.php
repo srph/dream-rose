@@ -23,6 +23,23 @@ class Slide extends Eloquent {
 	 */
 	public $timestamps = false;
 
+	/**
+	 * Valide provided input
+	 *
+	 * @param 	array 		$input
+	 * @return 	Validator
+	 */
+	public function validate($input)
+	{
+		$rules = array(
+			'image'		=>	'required|mime:png,jpeg,jpg,gif',
+			'caption'	=>	'min:150',
+			'link'		=>	'url'
+		);
+
+		return Validator::make($input, $rules);
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| ORM
@@ -36,6 +53,6 @@ class Slide extends Eloquent {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('user');
+		return $this->belongsTo('User');
 	}
 }

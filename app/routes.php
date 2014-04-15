@@ -13,9 +13,27 @@
 
 Route::get('test', function()
 {
-	// return Hash::make('pogi');
-	return new Link;
+	return User::find(1);
 });
+
+/**
+ * Fancy auth link
+ * @link login/
+ */
+Route::post('login', 'AuthController@postLogin');
+
+/**
+ * Fancy deauth link
+ * @link login/
+ */
+Route::get('logout', 'AuthController@getLogout');
+
+/**
+ * Fancy register link
+ * @link register/
+ */
+Route::get('register', 'UserAPIController@getRegister');
+Route::post('register', 'UserAPIController@postRegister');
 
 /**
  * Handles all pages
@@ -23,9 +41,13 @@ Route::get('test', function()
  */
 Route::controller('/', 'HomeController');
 
-/**
- * Handles player panel routes
- */
+
+/*
+|--------------------------------------------------------------------------
+| Player Panel Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::group(array(
 	'prefix'	=>	'panel',
 	'before'	=>	'auth'
@@ -33,7 +55,38 @@ Route::group(array(
 {
 	/**
 	 *
-	 * @link panel/user
+	 * @link panel/user/*
 	 */
 	Route::resource('user', 'UserController');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Panel Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(array(
+	'prefix'	=>	'admin',
+	'before'	=>	'gm'
+), function()
+{
+	/**
+	 * Slide RESTful
+	 * @link admin/slide/*
+	 */
+	Route::resource('slide', 'SlideController');
+
+	/**
+	 * News RESTful
+	 * @link admin/news/*
+	 */
+	Route::resource('news', 'NewsController');
+
+	/**
+	 * Vote Links RESTful
+	 * @link admin/vote-link/*
+	 */
+	Route::resource('vote-link', 'VoteLinkController');
 });

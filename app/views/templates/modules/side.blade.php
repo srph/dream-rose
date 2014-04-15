@@ -3,7 +3,14 @@
 		Login
 	</div>
 	<div class="panel-body">
-		<form method="POST">
+		<div id="login-err" class="alert alert-danger hide">
+			<p> Incorrect username / password </p>
+		</div>
+		<form method="POST" id="login-form">
+
+			{{-- Token --}}
+			{{ Form::token() }}
+
 			<div class="form-group">
 				<input type="text" class="form-control" name="username" placeholder="yourname@">
 			</div>
@@ -13,7 +20,14 @@
 			</div>
 
 			<div class="form-group">
-				<button type="submit" class="btn btn-success btn-block">
+				<label>
+					<input type="checkbox" name="remember">
+					Remember Me
+				</label>
+			</div>
+
+			<div class="form-group">
+				<button type="button" id="login-btn" class="btn btn-success btn-block">
 					<i class="glyphicon glyphicon-ok"></i>
 					Login
 				</button>
@@ -33,3 +47,50 @@
 		<img src="http://placehold.it/230x150" alt="..." class="img-rounded img-responsive">
 	</div>
 </div>
+
+{{-- Login --}}
+<script>
+	// (function() {
+		/* Login Function */
+		var url = '{{ url('login')}}',
+			err = $('#login-err'),
+			token = $('input[name=_token]');
+
+		function login() {
+			var username = $('input[name=username]'),
+				password = $('input[name=password]'),
+				remember = $('input[name=remember]'),
+				data = {
+					'_token': token.val(),
+					'username': username.val(),
+					'password': password.val(),
+					'remember': remember.val()
+				};
+
+			err.hide();
+
+			$.post(url, data).success(function(data) {
+				if(data.status) {
+					window.location.reload();
+				} else {
+					err.show();
+				}
+			});
+
+			console.log('Oy');
+		}
+
+		var btn = $('#login-btn'),
+			form = $('#login-form');
+
+		btn.on('click', function(e) {
+			e.preventDefault();
+			login();
+		});
+
+		form.on('submit', function(e) {
+			e.preventDefault();
+			login();
+		})
+	// })();
+</script>

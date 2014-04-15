@@ -10,8 +10,8 @@ class AuthController extends BaseController {
 	public function __construct()
 	{
 		// Filter
-		$this->beforeFilter('csrf', array('on' => 'post'));
-		$this->beforeFilter('auth', array('only' => 'getLogout'));
+		$this->beforeFilter('csrf', array('on' => array('post')));
+		$this->beforeFilter('auth', array('only' => array('getLogout')));
 	}
 
 	/**
@@ -35,7 +35,7 @@ class AuthController extends BaseController {
 			return Response::json(array('status' => true));
 		}
 
-		return Response::json(array('status' => false))
+		return Response::json(array('status' => false));
 	}
 
 	/**

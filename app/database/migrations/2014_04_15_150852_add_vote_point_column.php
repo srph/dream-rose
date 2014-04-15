@@ -12,9 +12,10 @@ class AddVotePointColumn extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function(Blueprint $table)
+		Schema::table('userinfo', function(Blueprint $table)
 		{
-			$table->integer('vote_points');
+			$table->integer('id');
+			$table->integer('vote_points')->default(0);
 		});
 	}
 
@@ -25,7 +26,11 @@ class AddVotePointColumn extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::table('userinfo', function(Blueprint $table)
+		{
+			$table->dropColumn('id');
+			$table->dropColumn('vote_points');
+		});
 	}
 
 }

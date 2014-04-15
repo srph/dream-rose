@@ -35,7 +35,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) return Redirect::intended('/');
 });
 
 
@@ -77,4 +77,19 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+/*
+|--------------------------------------------------------------------------
+| GM Filter
+|--------------------------------------------------------------------------
+|
+| This filter checks whether the user is a GM of certain level
+|
+*/
+
+Route::filter('gm', function()
+{
+	$level = 256;
+	if(Auth::user()->right < $level) return Redirect::to('/');
 });

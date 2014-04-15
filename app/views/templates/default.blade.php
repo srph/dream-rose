@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
 	{{ HTML::style('vendor/bootstrap-dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/style.css') }}
+	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
+	{{ HTML::script('vendor/bootstrap-dist/js/bootstrap.min.js') }}
 	@yield('styles')
 </head>
 
@@ -36,8 +38,6 @@
 		</div>
 	</div>
 
-	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
-	{{ HTML::script('vendor/bootstrap-dist/js/bootstrap.min.js') }}
 	@yield('scripts')
 </body>
 </html>
