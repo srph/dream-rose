@@ -19,4 +19,24 @@ class HomeController extends BaseController {
 	{
 		return View::make('pages/home.index');
 	}
+
+	public function getDownloads()
+	{
+		return View::make('pages/home.downloads');
+	}
+
+	public function getInfo()
+	{
+		return View::make('pages/home.info');
+	}
+
+	public function getClanRanking()
+	{
+		return View::make('pages/home/ranking.clan');
+	}
+
+	public function getPlayerRanking()
+	{
+		return View::make('pages/home/ranking.user');
+	}
 }

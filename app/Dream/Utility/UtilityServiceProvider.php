@@ -1,7 +1,7 @@
 <?php namespace Dream\Utility;
 
 use Illuminate\Support\ServiceProvider;
-use Dream\Utility\HTML;
+use Dream\Utility\HTML\Link;
 
 class UtilityServiceProvider extends ServiceProvider {
 

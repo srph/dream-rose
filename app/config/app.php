@@ -107,7 +107,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Dream\Hasher\HasherServiceProvider',
-		'Dream\Utility\UtilityServiceProvider'
+		'Dream\Utility\UtilityServiceProvider',
 
 	),
 

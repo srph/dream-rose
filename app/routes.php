@@ -13,7 +13,8 @@
 
 Route::get('test', function()
 {
-	return Hash::make('pogi');
+	// return Hash::make('pogi');
+	return new Link;
 });
 
 /**
