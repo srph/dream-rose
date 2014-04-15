@@ -1,0 +1,19 @@
+{
+  "name": "htdocs",
+  "version": "0.0.0",
+  "authors": [
+    "srph <seraphipod@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-dist": "*",
+    "jquery": "~2.1.0"
+  }
+}
