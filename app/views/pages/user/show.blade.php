@@ -13,24 +13,17 @@
 		</p>
 	</div>
 
-	<!-- @if(!empty($success)) -->
+	@if(Session::has('user-update-success'))
 		<div class="alert alert-success">
 			<p> You have successfully updated your account! </p>
 		</div>
-	<!-- @endif -->
-
-	<!-- @if(!empty($error)) -->
-		<div class="alert alert-danger">
-			<p> {{ $error }} </p>
-		</div>
-	<!-- @endif -->
-
-	{{ $errors }}
+	@endif
 
 	{{ Form::open(array('url' => 'panel/user/update', 'method' => 'post')) }}
 
 		<input type="hidden" name="username" value ="{{{ $user->username }}}">
-		<input type="hidden" name="email" value ="{{{ $user->email }}}">
+		<input type="hidden" name="email" value ="{{{ $user->Email }}}">
+		<input type="hidden" name="mname" value ="{{{ $user->MotherLName }}}">
 		
 
 		<div class="row">
@@ -56,6 +49,12 @@
 				<div class="form-group">
 					<label> Old Password </label>
 					<input class="form-control" name="old_password" type="password">
+					@if(Session::has('user-update-error'))
+						<p></p>
+						<div class="alert alert-danger">
+							<p> {{ Session::get('user-update-error') }} </p>
+						</div>
+					@endif
 				</div>
 			</div>
 
@@ -63,6 +62,12 @@
 				<div class="form-group">
 					<label> New Password </label>
 					<input class="form-control" name="password" type="password">
+					@if($errors->has('password'))
+						<p></p>
+						<div class="alert alert-danger">
+							<p> {{ $errors->first('password') }} </p>
+						</div>
+					@endif
 				</div>
 			</div>
 		</div>

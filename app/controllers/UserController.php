@@ -36,16 +36,17 @@ class UserController extends \BaseController {
 		$validation = $user->validate($input, $user->id);
 
 		if($validation->passes()) {
-			if($user->changePassword($old, $new)) return Redirect::back()->with('success', 'placeholder');
+			if($user->changePassword($old, $new)) return Redirect::back()->with('user-update-success', 'placeholder');
 
 			$error = 'Old password was incorrect';
 		}
 
+		if(is_null($old) || empty($old)) $error = 'Old password is required.';
 		// Check if an error message already exists
-		if(empty($error)) $error = 'An error has occured';
+		if(empty($error)) $error = null;
 
 		return Redirect::to('panel/account-overview')
-			->with('error', $error)
+			->with('user-update-error', $error)
 			->withErrors($validation);
 	}
 

@@ -126,16 +126,16 @@ class User extends Base implements UserInterface, RemindableInterface {
 	{
 		// Rules
 		$username 	= 'required|between:4,32|unique';
-		$password 	= 'required|between:4,48|confirmed';
+		$password 	= 'required|between:4,48';
 		$email		= 'required|email|unique';
 		$mname 		= 'required';
 
 		// Unique rules
-		// if(!is_null($id)) {
-		// 	$unique  	 = ',userinfo,id,' . $id;
-		// 	$username 	.= $unique;
-		// 	$email		.= $unique;
-		// }
+		if(!is_null($id)) {
+			$unique  	 = ':userinfo,id,' . $id;
+			$username 	.= $unique;
+			$email		.= $unique;
+		}
 
 		$rules = array(
 			'username'	=>	$username,
@@ -144,6 +144,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 			'mname'		=>	$mname
 		);
 
+		Config::set('database.default', 'seven_ora'); // Set config
 		return Validator::make($input, $rules);
 	}
 
