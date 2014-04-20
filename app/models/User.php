@@ -24,7 +24,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('MD5PassWord');
+	protected $hidden = array('MD5PassWord', 'password');
 
 	/**
 	 * Fields guarded by the model
@@ -155,7 +155,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	 */
 	public function getUsernameAttribute()
 	{
-		$this->attributes['username'] = $this->Account;
+		return $this->Account;
 	}
 
 	/**
@@ -166,7 +166,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	 */
 	public function getPasswordAttribute()
 	{
-		$this->attributes['password'] = $this->MD5PassWord;
+		return $this->MD5PassWord;
 	}
 
 

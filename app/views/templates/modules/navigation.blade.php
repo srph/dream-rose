@@ -13,7 +13,7 @@
 	<div class="collapse navbar-collapse" id="navigation">
 		<ul class="nav navbar-nav">
 			<li> <a href="{{ URL::to('/') }}"> Home </a> </li>
-			<li> <a href="{{ URL::to('register') }}"> Register </a> </li>
+			@if(Auth::guest()) <li> <a href="{{ URL::to('register') }}"> Register </a> </li> @endif
 			<li> <a href="{{ URL::to('downloads') }}"> Downloads </a> </li>
 			<li> <a href="{{ URL::to('info') }}"> Game Info </a> </li>
 			<li> <a href="{{ URL::to('/') }}"> Support </a> </li>

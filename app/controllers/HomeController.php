@@ -17,26 +17,46 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('pages/home.index');
+		$view = View::make('pages/home.index');
+
+		return (Auth::guest())
+			? $view
+			: $view->with('user', Auth::user());
 	}
 
 	public function getDownloads()
 	{
-		return View::make('pages/home.downloads');
+		$view = View::make('pages/home.downloads');
+
+		return (Auth::guest())
+			? $view
+			: $view->with('user', Auth::user());
 	}
 
 	public function getInfo()
 	{
-		return View::make('pages/home.info');
+		$view = View::make('pages/home.info');
+
+		return (Auth::guest())
+			? $view
+			: $view->with('user', Auth::user());
 	}
 
 	public function getClanRanking()
 	{
-		return View::make('pages/home/ranking.clan');
+		$view = View::make('pages/home/ranking.clan');
+
+		return (Auth::guest())
+			? $view
+			: $view->with('user', Auth::user());
 	}
 
 	public function getPlayerRanking()
 	{
-		return View::make('pages/home/ranking.user');
+		$view = View::make('pages/home/ranking.user');
+
+		return (Auth::guest())
+			? $view
+			: $view->with('user', Auth::user());
 	}
 }

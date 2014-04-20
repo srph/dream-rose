@@ -16,7 +16,7 @@
 				</div>
 
 				<div class="form-group">
-					<input type="text" class="form-control" name="username" placeholder="*****">
+					<input type="password" class="form-control" name="password" placeholder="*****">
 				</div>
 
 				<div class="form-group">
@@ -36,13 +36,48 @@
 		</div>
 	</div>
 @else
-	<div class="panel panel-default">
-		<div class="panel-heading"> Panel </div>
+	@if(!empty($user))
+		<div class="panel panel-default">
+			<div class="panel-heading"> Welcome, {{ $user->username }}! </div>
 
-		<div class="panel-body">
-			Oy
+			<ul class="list-group">
+				<li class="list-group-item">
+					<small> <i class="glyphicon glyphicon-lock"></i> </small>
+					<a href="{{ URL::to('panel/account-overview') }}">
+						Account Overview
+					</a>
+				</li>
+
+				<li class="list-group-item">
+					<small> <i class="glyphicon glyphicon-list"></i> </small>
+					<a href="#">
+						Characters
+					</a>
+				</li>
+
+				<li class="list-group-item">
+					<small> <i class="glyphicon glyphicon-gift"></i> </small>
+					<a href="#">
+						Mall
+					</a>
+				</li>
+
+				<li class="list-group-item">
+					<small> <i class="glyphicon glyphicon-star"></i> </small>
+					<a href="#">
+						Vote 4 Points
+					</a>
+				</li>
+				
+				<li class="list-group-item">
+					<small> <i class="glyphicon glyphicon-remove"></i> </small>
+					<a href="{{ URL::to('logout') }}">
+						Logout
+					</a>
+				</li>
+			</ul>
 		</div>
-	</div>
+	@endif
 @endif
 
 <div class="panel panel-default">
@@ -68,22 +103,24 @@
 		function login() {
 			var username = $('input[name=username]'),
 				password = $('input[name=password]'),
-				remember = $('input[name=remember]'),
+				remember = ($('input[name=remember]').is(':checked')) ? true : false,
 				data = {
 					'_token': token.val(),
 					'username': username.val(),
 					'password': password.val(),
-					'remember': remember.val()
+					'remember': remember
 				};
 
-				console.log(remember.val());
+				// console.log(remember.val());
 
 			err.hide();
 
 			$.post(url, data).success(function(data) {
+				console.log(data);
 				if(data.status) {
 					window.location.reload();
 				} else {
+					console.log('wat');
 					err.removeClass('hide');
 				}
 			});

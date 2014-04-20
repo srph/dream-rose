@@ -28,7 +28,7 @@ class AuthController extends BaseController {
 		$remember = Input::get('remember');
 
 		$data = array(
-			'username'	=>	$username,
+			'Account'	=>	$username,
 			'password'	=>	$password
 		);
 

@@ -7,6 +7,8 @@ class UserAPIController extends BaseController {
 	public function __construct(User $user)
 	{
 		$this->user = $user;
+		$this->beforeFilter('csrf', array('on' => array('post')));
+		$this->beforeFilter('guest');
 	}
 
 	/**
@@ -16,7 +18,11 @@ class UserAPIController extends BaseController {
 	 */
 	public function getRegister()
 	{
-		return View::make('pages/user.create');
+		$view = View::make('pages/user.create');
+
+		return (Auth::guest())
+			? $view
+			: $view->with('user', Auth::user());
 	}
 
 	/**
