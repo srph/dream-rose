@@ -1,13 +1,13 @@
 <?php
 
-class News extends Eloquent {
+class VotePoint extends Eloquent {
 
 	/**
 	 * Table used by the model
 	 *
 	 * @var string
 	 */
-	protected $table = 'news';
+	protected $table = 'vote_points';
 
 	/**
 	 * Fields guarded by the model
@@ -23,9 +23,7 @@ class News extends Eloquent {
 	 */
 	protected $fillable = array(
 		'user_id',
-		'cover',
-		'title',
-		'content'
+		'count'
 	);
 
 	/**
@@ -33,7 +31,7 @@ class News extends Eloquent {
 	 *
 	 * @var boolean
 	 */
-	public $timestamps = true;
+	public $timestamps = false;
 
 	/*
 	|--------------------------------------------------------------------------

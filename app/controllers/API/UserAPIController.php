@@ -30,15 +30,22 @@ class UserAPIController extends BaseController {
 		$input = Input::all();
 
 		$user = $this->user;
-		// if($user->validate()) {
-		$user->username 	= Input::get('username');
-		$user->email 		= Input::get('email');
-		$user->password 	= Input::get('password');
-		$user->firstname 	= Input::get('first_name');
-		$user->lastname 	= Input::get('last_name');
+		// Validate
+		$validation = $user->validate($input);
+		if($validation->passes()) {
+			$user->Account 		= Input::get('username');
+			$user->Email 		= Input::get('email');
+			$user->MD5PassWord 	= Hash::make(Input::get('password'));
+			$user->FirstName 	= Input::get('fname');
+			$user->LastName 	= Input::get('lname');
+			$user->MotherLName 	= Input::get('mname');
 
-		if($user->save()) {
-			return Response::json(array('status' => true));
+			// Create his vote point
+			$vp = new VotePoint;
+
+			if($user->save() && $user->votePoints()->save($vp)) {
+				return Response::json(array('status' => true));
+			}
 		}
 
 		return Response::json(array('status' => false));

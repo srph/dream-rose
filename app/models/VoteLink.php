@@ -10,6 +10,13 @@ class VoteLink extends Eloquent {
 	protected $table = 'vote_links';
 
 	/**
+	 * Fields guarded by the model
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id');
+
+	/**
 	 * Fields fillable by the model
 	 *
 	 * @var array

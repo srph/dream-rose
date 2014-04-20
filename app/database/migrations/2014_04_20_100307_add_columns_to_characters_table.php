@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsToAccountstable extends Migration {
+class AddColumnsToCharactersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class AddColumnsToAccountstable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::connection('seven_ora')->table('userinfo', function(Blueprint $table)
+		Schema::connection('sho')->table('tblgs_avatar', function(Blueprint $table)
 		{
 			$table->integer('id');
-			$table->string('remember_token');
+			$table->integer('user_id');
 		});
 	}
 
@@ -26,10 +26,10 @@ class AddColumnsToAccountstable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::connection('seven_ora')->table('userinfo', function(Blueprint $table)
+		Schema::connection('sho')->table('tblgs_avatar', function(Blueprint $table)
 		{
 			$table->dropColumn('id');
-			$table->dropColumn('remember_token');
+			$table->dropColumn('user_id');
 		});
 	}
 

@@ -1,13 +1,20 @@
 <?php
 
-class Character extends Eloquent {
+class Character extends Base {
+
+	/**
+	 * Connection used by the model
+	 *
+	 * @var string
+	 */
+	protected $connection = 'sho';
 
 	/**
 	 * Table used by the model
 	 *
 	 * @var string
 	 */
-	protected $table = 'characters';
+	protected $table = 'tblgs_avatar';
 
 	/**
 	 * Fields fillable by the model

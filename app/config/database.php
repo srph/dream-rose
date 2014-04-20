@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'database',
+			'database'  => 'dream',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
@@ -76,11 +76,54 @@ return array(
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
+			'host'     => 'VPS21437\SQLEXPRESS',
 			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
 			'prefix'   => '',
+		),
+
+		/*
+		|--------------------------------------------------------------------------
+		| Custom SQL Connections
+		|--------------------------------------------------------------------------
+		|
+		| This is where custom connections for our multiple databases used
+		| by the game server files are inserted.
+		|
+		*/
+
+		'seven_ora' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'seven_ora',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'sho' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'sho',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'sho_log' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'sho_log',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
 		),
 
 	),

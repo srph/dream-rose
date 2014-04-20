@@ -11,6 +11,7 @@ class AuthController extends BaseController {
 	{
 		// Filter
 		$this->beforeFilter('csrf', array('on' => array('post')));
+		$this->beforeFilter('guest', array('only' => array('postLogin')));
 		$this->beforeFilter('auth', array('only' => array('getLogout')));
 	}
 

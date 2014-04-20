@@ -10,6 +10,13 @@ class Slide extends Eloquent {
 	protected $table = 'slides';
 
 	/**
+	 * Fields guarded by the model
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('id');
+
+	/**
 	 * Fields fillable by the model
 	 *
 	 * @var array

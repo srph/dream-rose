@@ -1,40 +1,49 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		Login
-	</div>
-	<div class="panel-body">
-		<div id="login-err" class="alert alert-danger hide">
-			<p> Incorrect username / password </p>
+@if(Auth::guest())
+	<div class="panel panel-default">
+		<div class="panel-heading">	Login </div>
+
+		<div class="panel-body">
+			<div id="login-err" class="alert alert-danger hide">
+				<p> Incorrect username / password </p>
+			</div>
+			<form method="POST" id="login-form">
+
+				{{-- Token --}}
+				{{ Form::token() }}
+
+				<div class="form-group">
+					<input type="text" class="form-control" name="username" placeholder="yourname@">
+				</div>
+
+				<div class="form-group">
+					<input type="text" class="form-control" name="username" placeholder="*****">
+				</div>
+
+				<div class="form-group">
+					<label>
+						<input type="checkbox" name="remember">
+						Remember Me
+					</label>
+				</div>
+
+				<div class="form-group">
+					<button type="button" id="login-btn" class="btn btn-success btn-block">
+						<i class="glyphicon glyphicon-ok"></i>
+						Login
+					</button>
+				</div>
+			</form>
 		</div>
-		<form method="POST" id="login-form">
-
-			{{-- Token --}}
-			{{ Form::token() }}
-
-			<div class="form-group">
-				<input type="text" class="form-control" name="username" placeholder="yourname@">
-			</div>
-
-			<div class="form-group">
-				<input type="text" class="form-control" name="username" placeholder="*****">
-			</div>
-
-			<div class="form-group">
-				<label>
-					<input type="checkbox" name="remember">
-					Remember Me
-				</label>
-			</div>
-
-			<div class="form-group">
-				<button type="button" id="login-btn" class="btn btn-success btn-block">
-					<i class="glyphicon glyphicon-ok"></i>
-					Login
-				</button>
-			</div>
-		</form>
 	</div>
-</div>
+@else
+	<div class="panel panel-default">
+		<div class="panel-heading"> Panel </div>
+
+		<div class="panel-body">
+			Oy
+		</div>
+	</div>
+@endif
 
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -67,17 +76,17 @@
 					'remember': remember.val()
 				};
 
+				console.log(remember.val());
+
 			err.hide();
 
 			$.post(url, data).success(function(data) {
 				if(data.status) {
 					window.location.reload();
 				} else {
-					err.show();
+					err.removeClass('hide');
 				}
 			});
-
-			console.log('Oy');
 		}
 
 		var btn = $('#login-btn'),
