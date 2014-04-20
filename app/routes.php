@@ -79,16 +79,16 @@ Route::get('test', function()
 	// 	return 'okay';
 	// }
 	// return Hash::make('pass');
-	$data = array(
-		'Account'		=>	'test',
-		'password'		=>	'pass'
-	);
+	// $data = array(
+	// 	'Account'		=>	'test',
+	// 	'password'		=>	'pass'
+	// );
 
-	if(Auth::attempt($data)) {
-		return 'Okay!';
-	} else {
-		return 'No';
-	}
+	// if(Auth::attempt($data)) {
+	// 	return 'Okay!';
+	// } else {
+	// 	return 'No';
+	// }
 	// return Auth::user();
 
 	// $user = User::find(1);
@@ -98,6 +98,11 @@ Route::get('test', function()
 	// $user->votePoint->count = 5;
 	// $user->push();
 	// return 'My acc is: ' . $user->Account . 'and my VP is: ' . $user->votePoint->count;
+	$user = User::find(4);
+	$vp = new VotePoint;
+	if($user->votePoint()->save($vp)) {
+		return 'okay';
+	}
 });
 
 /**
