@@ -17,8 +17,7 @@ class UserAPIController extends BaseController {
 	{
 		$this->user = $user;
 		$this->beforeFilter('csrf', array('on' => array('post')));
-		$this->beforeFilter('guest', array('except' => array('put')));
-		$this->beforeFilter('auth', array('except' => 'getRegister', 'postRegister'));
+		$this->beforeFilter('guest');
 	}
 
 	/**
@@ -46,6 +45,7 @@ class UserAPIController extends BaseController {
 		$input = Input::all();
 
 		$user = $this->user;
+
 		// Validate
 		$validation = $user->validate($input);
 		if($validation->passes()) {
@@ -60,11 +60,13 @@ class UserAPIController extends BaseController {
 			$vp = new VotePoint;
 
 			if($user->save() && $user->votePoints()->save($vp)) {
-				return Response::json(array('status' => true));
+				return View::make('pages/user.create-success');
 			}
 		}
 
-		return Response::json(array('status' => false));
+		return Redirect::to('register')
+			->withErrors($validation)
+			->withInput();
 	}
 	
 }

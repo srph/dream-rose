@@ -125,14 +125,14 @@ class User extends Base implements UserInterface, RemindableInterface {
 	public function validate(array $input = array(), $id = null)
 	{
 		// Rules
-		$username 	= 'required|between:4,32|unique';
+		$username 	= 'required|between:4,32|unique:userinfo,Account';
 		$password 	= 'required|between:4,48';
-		$email		= 'required|email|unique';
+		$email		= 'required|email|unique:userinfo,Email';
 		$mname 		= 'required';
 
 		// Unique rules
 		if(!is_null($id)) {
-			$unique  	 = ':userinfo,id,' . $id;
+			$unique  	 = ',' . $id;
 			$username 	.= $unique;
 			$email		.= $unique;
 		}

@@ -4,7 +4,7 @@
 	<h1> Create an Account </h1>
 	<hr>
 
-	<form>
+	{{ Form::open(array('url' => 'register', 'method' => 'POST')) }}
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
@@ -51,5 +51,5 @@
 			<i class="glyphicon glyphicon-ok"></i>
 			Create Account!
 		</button>
-	</form>
+	{{ Form::close() }}
 @stop

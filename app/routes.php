@@ -22,6 +22,12 @@ Route::group(array('prefix'	=> 'panel'), function()
 
 	/**
 	 *
+	 * @link panel/vote/*
+	 */
+	Route::controller('vote', 'VoteAPIController');
+
+	/**
+	 *
 	 * @link panel/user/*
 	 */
 	Route::controller('user', 'UserController');

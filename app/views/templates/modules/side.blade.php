@@ -50,7 +50,7 @@
 
 				<li class="list-group-item">
 					<small> <i class="glyphicon glyphicon-list"></i> </small>
-					<a href="#">
+					<a href="{{ URL::to('panel/your-characters') }}">
 						Characters
 					</a>
 				</li>
@@ -64,7 +64,7 @@
 
 				<li class="list-group-item">
 					<small> <i class="glyphicon glyphicon-star"></i> </small>
-					<a href="#">
+					<a href="{{ URL::to('panel/vote') }}">
 						Vote 4 Points
 					</a>
 				</li>
