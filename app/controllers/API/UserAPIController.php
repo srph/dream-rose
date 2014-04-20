@@ -2,13 +2,23 @@
 
 class UserAPIController extends BaseController {
 
+	/**
+	 *
+	 * @var User
+	 */
 	protected $user;
 
+	/**
+	 * Apply filter and inject dependencies
+	 *
+	 *
+	 */
 	public function __construct(User $user)
 	{
 		$this->user = $user;
 		$this->beforeFilter('csrf', array('on' => array('post')));
-		$this->beforeFilter('guest');
+		$this->beforeFilter('guest', array('except' => array('put')));
+		$this->beforeFilter('auth', array('except' => 'getRegister', 'postRegister'));
 	}
 
 	/**

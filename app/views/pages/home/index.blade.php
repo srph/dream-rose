@@ -1,5 +1,7 @@
 @extends('templates.default')
 
+@section('title') - Home @stop
+
 @section('content')
 	<h1> Lipsum Titstel </h1>
 	<hr>

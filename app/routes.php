@@ -17,22 +17,20 @@
 |--------------------------------------------------------------------------
 */
 
-Route::group(array(
-	'prefix'	=>	'panel',
-	'before'	=>	'auth'
-), function()
+Route::group(array('prefix'	=> 'panel'), function()
 {
+
+	/**
+	 *
+	 * @link panel/user/*
+	 */
+	Route::controller('user', 'UserController');
 
 	/**
 	 *
 	 * @link panel/*
 	 */
 	Route::controller('/', 'PanelController');
-	/**
-	 *
-	 * @link panel/user/*
-	 */
-	Route::resource('user', 'UserController');
 });
 
 

@@ -126,16 +126,16 @@ class User extends Base implements UserInterface, RemindableInterface {
 	{
 		// Rules
 		$username 	= 'required|between:4,32|unique';
-		$password 	= 'required|between:4,48';
+		$password 	= 'required|between:4,48|confirmed';
 		$email		= 'required|email|unique';
 		$mname 		= 'required';
 
 		// Unique rules
-		if(!is_null($id)) {
-			$unique  	 = 'userinfo,id,' . $id;
-			$username 	.= $unique;
-			$email		.= $unique;
-		}
+		// if(!is_null($id)) {
+		// 	$unique  	 = ',userinfo,id,' . $id;
+		// 	$username 	.= $unique;
+		// 	$email		.= $unique;
+		// }
 
 		$rules = array(
 			'username'	=>	$username,
@@ -145,6 +145,24 @@ class User extends Base implements UserInterface, RemindableInterface {
 		);
 
 		return Validator::make($input, $rules);
+	}
+
+	/**
+	 * Change password of the user
+	 *
+	 * @param 	string 	$old
+	 * @param 	string 	$new
+	 * @return 	boolean
+	 */
+	public function changePassword($old, $new)
+	{
+		if(Hash::check($old, $this->MD5PassWord)) {
+			$this->MD5PassWord = Hash::make($new);
+
+			if($this->save()) return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -167,6 +185,16 @@ class User extends Base implements UserInterface, RemindableInterface {
 	public function getPasswordAttribute()
 	{
 		return $this->MD5PassWord;
+	}
+
+	/**
+	 * A shortcut to the user's vote point count
+	 *
+	 * @return 	void
+	 */
+	public function getVpAttribute()
+	{
+		return $this->votePoint->count;
 	}
 
 

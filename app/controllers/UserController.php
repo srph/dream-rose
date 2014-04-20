@@ -16,87 +16,37 @@ class UserController extends \BaseController {
 	public function __construct(User $user)
 	{
 		$this->user = $user;
+		$this->beforeFilter('csrf', array('on' => array('put, post')));
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Update the authenticated user
 	 *
-	 * @return Response
+	 * @return 	Response
 	 */
-	public function index()
+	public function postUpdate()
 	{
-		//
+		// Input password
+		$input 	= Input::all();
+		$old 	= Input::get('old_password');
+		$new 	= Input::get('password');
+		$user 	= Auth::user();
+
+		// Validate
+		$validation = $user->validate($input, $user->id);
+
+		if($validation->passes()) {
+			if($user->changePassword($old, $new)) return Redirect::back()->with('success', 'placeholder');
+
+			$error = 'Old password was incorrect';
+		}
+
+		// Check if an error message already exists
+		if(empty($error)) $error = 'An error has occured';
+
+		return Redirect::to('panel/account-overview')
+			->with('error', $error)
+			->withErrors($validation);
 	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 
 }

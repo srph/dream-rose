@@ -1,5 +1,7 @@
 @extends('templates.default')
 
+@section('title') - Downloads @stop
+
 @section('content')
 	<h1> Downloads </h1>
 	<hr>
