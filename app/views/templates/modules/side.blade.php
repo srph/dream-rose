@@ -3,7 +3,7 @@
 		<div class="panel-heading">	Login </div>
 
 		<div class="panel-body">
-			<div id="login-err" class="alert alert-danger hide">
+			<div id="login-err" class="alert alert-danger">
 				<p> Incorrect username / password </p>
 			</div>
 			<form method="POST" id="login-form">
@@ -100,7 +100,11 @@
 			err = $('#login-err'),
 			token = $('input[name=_token]');
 
+		err.hide();
+
 		function login() {
+			if(err.is(':visible')) err.slideUp(1000);
+
 			var username = $('input[name=username]'),
 				password = $('input[name=password]'),
 				remember = ($('input[name=remember]').is(':checked')) ? true : false,
@@ -111,17 +115,11 @@
 					'remember': remember
 				};
 
-				// console.log(remember.val());
-
-			err.hide();
-
 			$.post(url, data).success(function(data) {
-				console.log(data);
 				if(data.status) {
 					window.location.reload();
 				} else {
-					console.log('wat');
-					err.removeClass('hide');
+					err.slideDown(1000);
 				}
 			});
 		}

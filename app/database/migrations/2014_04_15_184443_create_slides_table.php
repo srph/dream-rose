@@ -16,7 +16,7 @@ class CreateSlidesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->string('link');
+			$table->string('link')->nullable();
 			$table->string('image');
 			$table->string('caption')->nullable();
 			$table->timestamps();

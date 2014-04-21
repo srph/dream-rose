@@ -9,9 +9,9 @@ class UserController extends \BaseController {
 	protected $user;
 
 	/**
+	 * Apply filter and inject dependencies
 	 *
-	 *
-	 *
+	 * @param 	User 	$user
 	 */
 	public function __construct(User $user)
 	{

@@ -72,37 +72,7 @@ Route::group(array(
 
 Route::get('test', function()
 {
-	// $user = User::find(1);
-	// $user->Account = 'Okay';
-	// $vp = new VotePoint;
-	// if($user->save() && $user->votePoint()->save($vp)) {
-	// 	return 'okay';
-	// }
-	// return Hash::make('pass');
-	// $data = array(
-	// 	'Account'		=>	'test',
-	// 	'password'		=>	'pass'
-	// );
-
-	// if(Auth::attempt($data)) {
-	// 	return 'Okay!';
-	// } else {
-	// 	return 'No';
-	// }
-	// return Auth::user();
-
-	// $user = User::find(1);
-	// Auth::login($user);
-	// echo Auth::user()->Account;
-	// Auth::logout();
-	// $user->votePoint->count = 5;
-	// $user->push();
-	// return 'My acc is: ' . $user->Account . 'and my VP is: ' . $user->votePoint->count;
-	$user = User::find(4);
-	$vp = new VotePoint;
-	if($user->votePoint()->save($vp)) {
-		return 'okay';
-	}
+	return Str::random('6');
 });
 
 /**

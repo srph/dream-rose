@@ -11,12 +11,14 @@ class SlideController extends \BaseController {
 	/**
 	 * Apply filter and inject dependencies
 	 *
+	 * @param 	Slide 	$slide
 	 */
 	public function __construct(Slide $slide)
 	{
 		$this->slide = $slide;
 		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
 		$this->beforeFilter('auth');
+		$this->beforeFilter('gm');
 	}
 
 	/**
@@ -61,14 +63,14 @@ class SlideController extends \BaseController {
 		// Validate
 		$validation = $slide->validate($input);
 		if($validation->passes()) {
+			$file = Input::file('image');
 			$user = Auth::user();
-			// $slide->image 		= // Upload
-			$slide->caption 	= Input::get('caption');
-			$slide->link 		= Input::get('link');
 
-			if($user->slides()->save()) {
-				return Response::json(array('status' => true));
-			}
+			$slide->image 	= $slide->upload($file);
+			$slide->caption = Input::get('caption');
+			$slide->link 	= Input::get('link');
+
+			if( $user->slides()->save() ) return Response::json( array( 'status' => true ) );
 		}
 
 		// Contain errors

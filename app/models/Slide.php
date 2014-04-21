@@ -23,9 +23,9 @@ class Slide extends Eloquent {
 	 */
 	protected $fillable = array(
 		'user_id',
-		'title',
-		'cover',
-		'content'
+		'link',
+		'image',
+		'caption'
 	);
 
 	/**
@@ -41,7 +41,7 @@ class Slide extends Eloquent {
 	 * @param 	array 		$input
 	 * @return 	Validator
 	 */
-	public function validate($input)
+	public static function validate($input)
 	{
 		$rules = array(
 			'image'		=>	'required|mime:png,jpeg,jpg,gif',
@@ -50,6 +50,30 @@ class Slide extends Eloquent {
 		);
 
 		return Validator::make($input, $rules);
+	}
+
+	/**
+	 * Upload the slide image
+	 *
+	 * @param 	file 	$file
+	 * @return 	string
+	 */
+	public static function upload($file)
+	{
+		$path = Config::get('dream.paths.slides');
+		$filename = $file->getClientOriginalName();
+
+		Image::make( $file->getRealPath() )
+			->resize('1150', '180')
+			->save("public/{$path}/{$filename}");
+
+		return $filename;
+	}
+
+	public function getImageURL()
+	{
+		$path = Config::get('dream.paths.slides');
+		return url("{$path}/{$this->image}");
 	}
 
 	/*
