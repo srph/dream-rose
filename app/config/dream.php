@@ -26,9 +26,9 @@ return array(
 
 		'rates'	=>	array(
 
-			'drop'	=> '30',
-			'exp'	=> '30',
-			'item' 	=> '30',
+			'drop'	=> 30,
+			'exp'	=> 30,
+			'item' 	=> 30,
 
 		),
 
@@ -36,9 +36,9 @@ return array(
 
 		'ports'	=> array(
 
-			'char'   => '80',
-			'login'  => '80',
-			'world'  => '90',
+			'char'   => 80,
+			'login'  => 80,
+			'world'  => 90,
 		),
 	),
 
