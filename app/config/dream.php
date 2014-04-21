@@ -33,6 +33,13 @@ return array(
 		),
 
 		'ip'	=>	'127.0.0.1',
+
+		'ports'	=> array(
+
+			'char'   => '80',
+			'login'  => '80',
+			'world'  => '90',
+		),
 	),
 
 	/*

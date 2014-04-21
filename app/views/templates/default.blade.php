@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title> Dream Rose @yield('title') </title>
+	<title> {{ Config::get('dream.name') }} @yield('title') </title>
 	<meta charset="utf-8">
 	{{ HTML::style('vendor/bootstrap-dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/style.css') }}
@@ -38,6 +38,7 @@
 		</div>
 	</div>
 
+	{{ HTML::script('assets/scripts/main.js') }}
 	@yield('scripts')
 </body>
 </html>

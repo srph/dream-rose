@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 		</button>
 
-		<a href="{{ URL::to('/') }}" class="navbar-brand">Dream Rose</a>
+		<a href="{{ URL::to('/') }}" class="navbar-brand"> {{ Config::get('dream.name') }} </a>
 	</div>
 
 	<div class="collapse navbar-collapse" id="navigation">
@@ -25,6 +25,10 @@
 					<li> <a href="{{ URL::to('/player-ranking') }}"> Player Ranking </a> </li>
 				</ul>
 			</li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			@include('templates/modules.status')
 		</ul>
 	</div>
 </nav>
