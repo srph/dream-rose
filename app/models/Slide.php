@@ -61,7 +61,7 @@ class Slide extends Eloquent {
 	public static function upload($file)
 	{
 		$path = Config::get('dream.paths.slides');
-		$filename = $file->getClientOriginalName();
+		$filename = Str::random(8);
 
 		Image::make( $file->getRealPath() )
 			->resize('1150', '180')
