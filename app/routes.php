@@ -67,7 +67,7 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	return Cache::get('server.ports');
+	//
 });
 
 /**

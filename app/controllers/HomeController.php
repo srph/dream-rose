@@ -40,13 +40,7 @@ class HomeController extends BaseController {
 			->take($offset)
 			->get();
 
-		$view = View::make('pages/home.index')
-			->with('slides', $slides);
-
-		if( Auth::guest() ) return $view;
-
-		return $view->with('user', Auth::user());
-			
+		return View::make('pages/home.index')->with('slides', $slides);			
 	}
 
 
@@ -57,11 +51,7 @@ class HomeController extends BaseController {
 	 */
 	public function getDownloads()
 	{
-		$view = View::make('pages/home.downloads');
-
-		return (Auth::guest())
-			? $view
-			: $view->with('user', Auth::user());
+		return View::make('pages/home.downloads');
 	}
 
 
@@ -72,11 +62,7 @@ class HomeController extends BaseController {
 	 */
 	public function getInfo()
 	{
-		$view = View::make('pages/home.info');
-
-		return (Auth::guest())
-			? $view
-			: $view->with('user', Auth::user());
+		return View::make('pages/home.info');
 	}
 
 
@@ -89,11 +75,8 @@ class HomeController extends BaseController {
 	public function getNews($id)
 	{
 		$news = $this->news->find($id);
-		$view = View::make('pages/news.show')->with('news', $news);
 
-		return ( Auth::guest() )
-			? $view
-			: $view->with('user', Auth::user() );
+		return View::make('pages/news.show')->with('news', $news);
 	}
 
 
@@ -104,11 +87,7 @@ class HomeController extends BaseController {
 	 */
 	public function getClanRanking()
 	{
-		$view = View::make('pages/home/ranking.clan');
-
-		return (Auth::guest())
-			? $view
-			: $view->with('user', Auth::user());
+		return View::make('pages/home/ranking.clan');
 	}
 
 
@@ -119,11 +98,7 @@ class HomeController extends BaseController {
 	 */
 	public function getPlayerRanking()
 	{
-		$view = View::make('pages/home/ranking.user');
-
-		return (Auth::guest())
-			? $view
-			: $view->with('user', Auth::user());
+		return View::make('pages/home/ranking.user');
 	}
 
 }

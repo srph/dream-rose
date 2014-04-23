@@ -1,0 +1,36 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.navbar > .navbar-header > .navbar-brand,
+.navbar li {
+	font-size: 14px;
+	font-family: 'Montserrat', 'Open Sans', serif, sans-serif;
+	text-transform: uppercase;
+}
+
+.navbar li > ul > li {
+	font-size: 12px;
+}
+
+.navbar-inverse {
+	border-radius: 4px 4px 0 0;
+	border: 0;
+	/*height: 60px;*/
+}
+
+.navbar-nav ul {
+	height: 60px;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > li:hover > a[href] {
+	background-color: #F44040;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.off {
+	color: #F44040;
+}

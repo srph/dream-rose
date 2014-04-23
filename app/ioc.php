@@ -31,5 +31,5 @@ $app->before(function()
 
 	View::share('server', Cache::get('server.ports') );
 
-	if( Auth::check() ) View::share('auth', $auth);
+	if( Auth::check() ) View::share('auth', Auth::user() );
 });
