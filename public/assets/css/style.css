@@ -25,3 +25,11 @@ body {
 .footer .text-muted {
 	color: gray;
 }
+
+.off {
+	color: #FF0000;
+}
+
+.on {
+	color: #33CC33;
+}

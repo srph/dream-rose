@@ -1,0 +1,1 @@
+<p class="text-muted"> {{ Config::get('dream.footer.message') }} </p>

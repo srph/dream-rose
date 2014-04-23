@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+use Dream\Utility\Http\Port;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,9 +61,13 @@ Route::group(array(
 	Route::resource('vote-link', 'VoteLinkController');
 });
 
+/**
+ * 
+ * @link test
+ */
 Route::get('test', function()
 {
-	return Str::random('6');
+	return Cache::get('server.ports');
 });
 
 /**

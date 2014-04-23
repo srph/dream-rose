@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	{{ HTML::style('vendor/bootstrap-dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/style.css') }}
+	{{ HTML::style('assets/css/dream.css') }}
 	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
 	{{ HTML::script('vendor/bootstrap-dist/js/bootstrap.min.js') }}
 	@yield('styles')
@@ -34,10 +35,14 @@
 		</div>
 
 		<div class="footer">
-			<p class="text-muted"> &copy; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget elit porttitor </p>
+			@include('templates/modules.footer')
 		</div>
 	</div>
 
+	<script type="text/javascript">
+		var baseURL = "{{ url('login') }}",
+			auth = '{{ Auth::check() }}';
+	</script>
 	{{ HTML::script('assets/scripts/main.js') }}
 	@yield('scripts')
 </body>

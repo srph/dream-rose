@@ -32,14 +32,16 @@ return array(
 
 		),
 
-		'ip'	=>	'127.0.0.1',
+		'address' => 'dream-rose.com',
 
 		'ports'	=> array(
 
-			'char'   => 80,
-			'login'  => 80,
-			'world'  => 90,
+			'char'   => 29000,
+			'login'  => 29100,
+			'world'  => 29200,
+			
 		),
+
 	),
 
 	/*
@@ -67,6 +69,12 @@ return array(
 	|
 	*/
 
+	'footer' => array(
+
+		'message' => '&copy; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget elit porttitor'
+
+	),
+
 	'slides' => array(
 
 		'sizes' => array(
@@ -88,6 +96,22 @@ return array(
 			'height' => '90'
 
 		),
+
+	),
+
+	/*
+	|--------------------------------------------------------------------------
+	| Caching Lifetime
+	|--------------------------------------------------------------------------
+	|
+	| Length of cache lifecycle before expiration. This increases loading time,
+	| however correct current data may arrive at a later time
+	|
+	*/
+
+	'caching' => array(
+
+		'ports' => 10
 
 	),
 
