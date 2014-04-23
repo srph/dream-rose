@@ -3,9 +3,12 @@
 
 .navbar > .navbar-header > .navbar-brand,
 .navbar li {
-	font-size: 14px;
 	font-family: 'Montserrat', 'Open Sans', serif, sans-serif;
 	text-transform: uppercase;
+}
+
+.navbar > .navbar-header {
+	font-size: 12px;
 }
 
 .navbar li > ul > li {
