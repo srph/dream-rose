@@ -91,5 +91,5 @@ Route::filter('csrf', function()
 Route::filter('gm', function()
 {
 	$level = 256;
-	if(Auth::user()->right < $level) return Redirect::to('/');
+	if(Auth::user()->Right < $level) return Redirect::to('/');
 });

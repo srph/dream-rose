@@ -29,11 +29,42 @@ class News extends Eloquent {
 	);
 
 	/**
-	 * Checks whether the model uses timestamps
+	 * Upload the slide image
 	 *
-	 * @var boolean
+	 * @param 	file 	$file
+	 * @return 	string
 	 */
-	public $timestamps = true;
+	public static function upload($file)
+	{
+		$config = Config::get('dream.paths.news');
+		$default = Config::get('dreams.news.sizes');
+		$filename = Str::random(8);
+		$path = public_path() . "{$config}/{$filename}";
+
+		// Pass the provided file to create an instance of Image
+		$image = Image::make( $file->getRealPath() );
+
+		// If the image is either smaller or bigger, simply resize.
+		if( ( $image->width < $width || $image->height < $height ) ||
+			( $image->width > $width || $image->height > $height) ) {
+			$image->resize($default['width'], $default['height']);
+		}
+
+		$image->save($path);
+
+		return $filename;
+	}
+
+	/**
+	 * Returns the appropriate URL of the image
+	 *
+	 * @return 	string
+	 */
+	public function getImageURL()
+	{
+		$path = Config::get('dream.paths.slides');
+		return url("{$path}/{$this->image}");
+	}
 
 	/*
 	|--------------------------------------------------------------------------

@@ -14,8 +14,8 @@ class AddColumnsToCharactersTable extends Migration {
 	{
 		Schema::connection('sho')->table('tblgs_avatar', function(Blueprint $table)
 		{
-			$table->integer('id');
-			$table->integer('user_id');
+			$table->integer('id')->nullable();
+			$table->integer('user_id')->nullable();
 		});
 	}
 

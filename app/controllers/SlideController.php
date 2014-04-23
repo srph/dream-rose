@@ -17,7 +17,6 @@ class SlideController extends \BaseController {
 	{
 		$this->slide = $slide;
 		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
-		$this->beforeFilter('auth');
 		$this->beforeFilter('gm');
 	}
 
@@ -127,6 +126,7 @@ class SlideController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		// Refactor
 		// Grab all inputs
 		$input = Input::all();
 		$slide = $this->slide
@@ -170,12 +170,13 @@ class SlideController extends \BaseController {
 	{
 		$slide = $this->slide->find($id);
 
-		if($slide->delete()) {
+		if( $slide->delete() ) {
+			Session::flash('slide-deleted-success', '');
 			return Response::json(array('status' => true));
 		}
 		
+		Session::flash('slide-deleted-failed', '');
 		return Response::json(array('status' => false));
 	}
-
 
 }

@@ -14,8 +14,8 @@ class AddColumnsToAccountstable extends Migration {
 	{
 		Schema::connection('seven_ora')->table('userinfo', function(Blueprint $table)
 		{
-			$table->integer('id');
-			$table->string('remember_token');
+			$table->integer('id')->nullable();
+			$table->string('remember_token')->nullable();
 		});
 	}
 

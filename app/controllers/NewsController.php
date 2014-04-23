@@ -3,13 +3,40 @@
 class NewsController extends \BaseController {
 
 	/**
+	 *
+	 * @var News
+	 */
+	protected $news;
+
+
+	/**
+	 * Apply filter and inject dependencies
+	 *
+	 * @param 	News 	$news
+	 */
+	public function __construct(News $news)
+	{
+		$this->news = $news;
+		$this->beforeFilter('csrf', array('on' => array('post', 'put')));
+		$this->beforeFilter('gm', array('except' => array('show')));
+	}
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		//
+		$news = $this->news
+			->orderBy('id', 'desc')
+			->paginate();
+
+		$user = Auth::user();
+
+		return View::make('pags/news.index')
+			->with('user', $user)
+			->with('news', $news);
 	}
 
 
@@ -20,7 +47,7 @@ class NewsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('pages/news.create')->with('user', Auth::user());
 	}
 
 
@@ -31,7 +58,27 @@ class NewsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+
+		$validation = $this->news->validate($input);
+		if( $validation->passes() ) {
+
+			$news = $this->news;
+			$news->title 	= Input::get('title');
+			$news->cover 	= Input::file('cover');
+			$news->content 	= Input::get('content');
+
+			if( $news->save() ) {
+				$url = 'admin/news';
+				$session = 'news-store-success';
+				return Redirect::to($url)->with($session, '');
+			}
+
+		}
+
+		return Redirect::back()
+			->withErrors($validation)
+			->withInput();
 	}
 
 
@@ -55,7 +102,12 @@ class NewsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$news = $this->news->find($id);
+		$user = Auth::user();
+
+		return View::make('pages/news.edit')
+			->with('user', $user)
+			->with('news', $news);
 	}
 
 
@@ -67,7 +119,14 @@ class NewsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		// Refactor
+		$input = Input::all();
+		$news = $this->news->find($id);
+
+		$validation = $this->news->validate($input);
+		if( $validation->passes() ) {
+			$this->validation->update($input);
+		}
 	}
 
 
@@ -79,8 +138,14 @@ class NewsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+		$news = $this->news->find($id);
+		if( $news->delete() ) {
+			Session::flash('news-deleted-success', '');
+			return Response::json(array('status' => true));
+		}
 
+		Session::flash('news-deleted-error', '');
+		return Response::json(array('status' => false));
+	}
 
 }

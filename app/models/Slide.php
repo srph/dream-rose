@@ -60,16 +60,34 @@ class Slide extends Eloquent {
 	 */
 	public static function upload($file)
 	{
-		$path = Config::get('dream.paths.slides');
+		$config = Config::get('dream.paths.slides');
+		$default = Config::get('dreams.slides.sizes');
 		$filename = Str::random(8);
+		$path = public_path() . "{$config}/{$filename}";
 
-		Image::make( $file->getRealPath() )
-			->resize('1150', '180')
-			->save("public/{$path}/{$filename}");
+		// Pass the provided file to create an instance of Image
+		$image = Image::make( $file->getRealPath() );
+
+		// If the image is smaller than the set sizes, resize
+		if($image->width < $width || $image->height < $height) {
+			$image->resize($default['width'], $default['height']);
+		}
+
+		// If the image is bigger than the set sizes, crop
+		if($image->width > $width || $image->height > $height) {
+			$image->crop($default['width'], $default['height'], 0, 0);
+		}
+
+		$image->save($path);
 
 		return $filename;
 	}
 
+	/**
+	 * Returns the URL of the image
+	 *
+	 * @return 	string
+	 */
 	public function getImageURL()
 	{
 		$path = Config::get('dream.paths.slides');
@@ -91,4 +109,5 @@ class Slide extends Eloquent {
 	{
 		return $this->belongsTo('User');
 	}
+
 }

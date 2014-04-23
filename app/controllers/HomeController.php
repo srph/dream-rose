@@ -2,19 +2,6 @@
 
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
-
 	/**
 	 *
 	 * @var Slide
@@ -22,13 +9,21 @@ class HomeController extends BaseController {
 	protected $slide;
 
 	/**
+	 *
+	 * @var News
+	 */
+	protected $news;
+
+	/**
 	 * Apply filter and inject dependencies
 	 *
 	 * @param 	Slide 	$slide
+	 * @param 	News 	$news
 	 */
-	public function __construct(Slide $slide)
+	public function __construct(Slide $slide, News $news)
 	{
 		$this->slide = $slide;
+		$this->news = $news;
 	}
 
 	/**
@@ -38,13 +33,15 @@ class HomeController extends BaseController {
 	 */
 	public function getIndex()
 	{
+		$offset = Config::get('dream.slide.offset');
+
 		$slides = $this->slide
 			->orderBy('created_at', 'desc')
-			->take(5)
+			->take($offset)
 			->get();
 
 		$view = View::make('pages/home.index')
-			->with('slides', $slides);;
+			->with('slides', $slides);
 
 		if( Auth::guest() ) return $view;
 
@@ -84,6 +81,23 @@ class HomeController extends BaseController {
 
 
 	/**
+	 * Show requested news
+	 *
+	 * @param 	int 	$id
+	 * @return 	Response
+	 */
+	public function getNews($id)
+	{
+		$news = $this->news->find($id);
+		$view = View::make('pages/news.show')->with('news', $news);
+
+		return ( Auth::guest() )
+			? $view
+			: $view->with('user', Auth::user() );
+	}
+
+
+	/**
 	 * Clan Ranking
 	 *
 	 * @return 	Response
@@ -111,6 +125,5 @@ class HomeController extends BaseController {
 			? $view
 			: $view->with('user', Auth::user());
 	}
-
 
 }

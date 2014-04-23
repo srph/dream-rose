@@ -12,11 +12,13 @@ class SlideSeeder extends Seeder {
 		$db = DB::table('slides');
 		$db->delete();
 
+		$image = 'pdrbiN.gif';
+
 		$data = array(
 			array(
 				'id'		=> 1,
 				'user_id'	=> 1,
-				'image'		=> 'pdrbiN.gif',
+				'image'		=> $image,
 				'link'		=> 'http://facebook.com',
 				'caption'	=> 'Lipsum pogi po talaga ako',
 				'created_at'=> date('Y-m-d')
@@ -25,9 +27,9 @@ class SlideSeeder extends Seeder {
 			array(
 				'id'		=> 2,
 				'user_id'	=> 1,
-				'link'		=> null,
-				'image'		=> 'pdrbiN.gif',
-				'caption'	=> null,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> '',
 				'created_at'=> date('Y-m-d')
 			),
 		);
