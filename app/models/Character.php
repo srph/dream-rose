@@ -21,7 +21,7 @@ class Character extends Base {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array();
+	protected $guarded = array('*');
 
 	/**
 	 * Checks whether the model uses timestamps
