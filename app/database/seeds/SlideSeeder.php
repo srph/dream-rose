@@ -21,7 +21,8 @@ class SlideSeeder extends Seeder {
 				'image'		=> $image,
 				'link'		=> 'http://facebook.com',
 				'caption'	=> 'Lipsum pogi po talaga ako',
-				'created_at'=> date('Y-m-d')
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
 			),
 
 			array(
@@ -30,7 +31,8 @@ class SlideSeeder extends Seeder {
 				'image'		=> $image,
 				'link'		=> '',
 				'caption'	=> '',
-				'created_at'=> date('Y-m-d')
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
 			),
 		);
 

@@ -4,26 +4,48 @@
 	<h1> Create an Account </h1>
 	<hr>
 
+	<div class="alert alert-warning">
+		<p> Fields with the red asterisk (<span class="off">*</span>) are required </p>
+	</div>
+
 	{{ Form::open(array('url' => 'register', 'method' => 'POST')) }}
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label> Username </label>
+					<label> Username <span class="off"> * </span> </label>
 					<input type="text" class="form-control" name="username">
+					@if( $errors->has('username') )
+						<p> </p>
+						<div class="alert alert-danger">
+							<p> {{ $errors->first('username') }} </p>
+						</div>
+					@endif
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group">
-					<label> Email </label>
+					<label> Email <span class="off"> * </span> </label>
 					<input type="email" class="form-control" name="email">
+					@if( $errors->has('email') )
+						<p> </p>
+						<div class="alert alert-danger">
+							<p> {{ $errors->first('email') }} </p>
+						</div>
+					@endif
 				</div>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label> Password </label>
+			<label> Password <span class="off"> * </span> </label>
 			<input type="password" class="form-control" name="password">
+			@if( $errors->has('password') )
+				<p> </p>
+				<div class="alert alert-danger">
+					<p> {{ $errors->first('password') }} </p>
+				</div>
+			@endif
 		</div>
 
 		<div class="row">
@@ -43,8 +65,14 @@
 		</div>
 
 		<div class="form-group">
-			<label> Mother's Name (Security Question) </label>
+			<label> Mother's Last Name (Security Question) <span class="off"> * </span> </label>
 			<input type="password" class="form-control" name="mname">
+			@if( $errors->has('mname') )
+				<p> </p>
+				<div class="alert alert-danger">
+					<p> {{ $errors->first('mname') }} </p>
+				</div>
+			@endif
 		</div>
 
 		<button type="submit" class="btn btn-success">

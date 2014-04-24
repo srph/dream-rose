@@ -57,6 +57,7 @@ class UserAPIController extends BaseController {
 			$user->FirstName 	= Input::get('fname');
 			$user->LastName 	= Input::get('lname');
 			$user->MotherLName 	= Input::get('mname');
+			$user->Right 		= 1;
 
 			if($user->save()) {
 				$user 	= User::where('Account', $username)->first();

@@ -3,16 +3,21 @@
 @section('title') - Home @stop
 
 @section('content')
-	<h1> Lipsum Titstel </h1>
+	<h4> News </h4>
 	<hr>
+	<div class="row">
+		@foreach($news as $article)
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<img src="{{ $article->getImageURL() }}" width="{{ Config::get('dream.news.sizes.width') }}" height="{{ Config::get('dream.news.sizes.height') }}">
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget elit porttitor, venenatis eros eget, auctor elit. Ut consequat auctor velit eu porta. Nulla laoreet, purus viverra tincidunt facilisis, est nunc faucibus nibh, tincidunt feugiat arcu nisi nec ligula. Pellentesque pretium in lacus non condimentum. Etiam elementum lacinia nulla. Sed ut placerat massa, ac sollicitudin dui. Praesent venenatis neque ut velit sollicitudin, nec rutrum massa luctus. Cras in egestas lacus, vel egestas ligula. Sed porttitor lorem fermentum, volutpat odio et, dignissim nisl.</p>
+					<div class="caption">
+						<h5> <strong> {{ $article->title }} </strong> </h5>
 
-	<p>Sed nunc tortor, faucibus non dictum ut, ornare at justo. Nullam vel neque rutrum, imperdiet dolor varius, sodales orci. Maecenas ullamcorper interdum posuere. Vestibulum tempus urna orci, vitae vehicula tortor eleifend a. Donec quis odio nec urna facilisis ultricies ac et mauris. Donec nec enim vel nisi venenatis fermentum dictum malesuada turpis. Maecenas volutpat pretium neque, vel facilisis lorem pulvinar non. Quisque a ultricies odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In feugiat et est quis vulputate. Nunc eget vulputate sapien. Ut condimentum, nunc et feugiat cursus, leo mi sollicitudin dolor, mattis euismod est massa nec orci. Duis nec blandit felis, ac facilisis libero. Phasellus imperdiet elit tellus, et tincidunt risus suscipit in. Cras ultricies elit ante, dictum aliquam velit congue nec.</p>
-
-	<p>Maecenas interdum tellus id nunc consectetur malesuada. Etiam a erat tortor. In in magna eu urna gravida posuere ac ac augue. Aliquam facilisis ultricies sagittis. In hac habitasse platea dictumst. Quisque porttitor dignissim ullamcorper. Sed laoreet dui at adipiscing tempus. Integer ac iaculis est, a euismod leo. Etiam consectetur sit amet leo ac pellentesque. Suspendisse vel luctus tortor, vitae iaculis quam. Fusce et ullamcorper diam. Suspendisse condimentum, nunc in tempus fringilla, diam nisl mattis lectus, at condimentum risus lacus vitae ipsum. Cras at lacus scelerisque, porttitor nunc ut, sodales ipsum. Phasellus varius facilisis nisi, vitae mollis diam bibendum eu. Sed blandit consequat libero, et eleifend est dapibus at.</p>
-
-	<p>Fusce ullamcorper nibh non mauris tincidunt egestas. Pellentesque hendrerit, elit nec gravida rutrum, nisi lorem bibendum turpis, in posuere ante sem et ante. Mauris molestie consectetur elit, eu accumsan ipsum adipiscing in. Donec ultricies eget nisl sed gravida. Phasellus eu porta eros. Aenean nec ipsum nec lorem tincidunt convallis a id nunc. Quisque tristique, velit in tincidunt pulvinar, velit dolor posuere orci, eget convallis magna augue vitae risus. Aenean at nisi at felis condimentum viverra. Morbi ultricies lacus sit amet magna pulvinar, et laoreet odio pretium. Cras ac feugiat orci, nec commodo sapien.</p>
-
-	<p>Nulla sagittis ante magna, faucibus venenatis mi auctor in. Pellentesque non sagittis mi. Sed et lectus eu ligula iaculis pharetra quis in justo. Morbi quis elit sit amet justo malesuada consequat. Integer consequat aliquet nulla. Cras ipsum massa, hendrerit et condimentum eget, blandit a lorem. Aenean quis feugiat orci, at tempus augue. Donec rutrum arcu velit, faucibus fermentum justo commodo sed. Quisque commodo suscipit aliquam. Ut dapibus vel sem sed placerat. Vestibulum lectus purus, pulvinar nec ipsum ac, commodo fringilla mauris. Nam fringilla euismod molestie. Mauris tempus diam vel pretium lacinia. Quisque imperdiet pretium nunc at consectetur. Vestibulum fringilla accumsan dui, blandit tempor justo condimentum nec.</p>
+						<p> {{ $article->content }} </p>
+					</div>
+				</div>
+			</div>
+		@endforeach
+	</div>
 @stop

@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class HomeController extends BaseController {
 
 	/**
@@ -33,14 +35,59 @@ class HomeController extends BaseController {
 	 */
 	public function getIndex()
 	{
-		$offset = Config::get('dream.slide.offset');
+		$offset = Config::get('dream.slide.offset');		
 
-		$slides = $this->slide
-			->orderBy('created_at', 'desc')
-			->take($offset)
-			->get();
+		if( !Cache::has('slides')) {
+			$slides = $this->slide
+				->orderBy('created_at', 'desc')
+				->take($offset)
+				->get();
 
-		return View::make('pages/home.index')->with('slides', $slides);			
+			$minutes = Config::get('dream.caching.slides');
+			$expiration = Carbon::now()->addMinutes($minutes);
+			Cache::add('slides', $slides, $expiration);
+		}
+
+		$minutes = Config::get('dream.caching.slides');
+		$expiration = Carbon::now()->addMinutes($minutes);
+
+		if( !Cache::has('news') ) {
+			$news = $this->news
+				->getByType('news')
+				->take(3)
+				->get();
+
+			Cache::add('news', $news, $expiration);
+		}
+
+		if( !Cache::has('updates') )  {
+			$updates = $this->news
+				->getByType('updates')
+				->take(5)
+				->get();
+
+			Cache::add('updates', $updates, $expiration);
+		}
+
+		if( !Cache::has('events') ) {
+			$events = $this->news
+				->getByType('events')
+				->take(5)
+				->get();
+
+			Cache::add('events', $events, $expiration);
+		}
+
+		$slides 	= Cache::get('slides');
+		$news 		= Cache::get('news');
+		$updates 	= Cache::get('updates');
+		$events 	= Cache::get('events');
+
+		return View::make('pages/home.index')
+			->with('slides', $slides)
+			->with('news', $news)
+			->with('updates', $updates)
+			->with('events', $events, $expiration);
 	}
 
 

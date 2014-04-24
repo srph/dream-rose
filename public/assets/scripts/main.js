@@ -36,7 +36,7 @@
 		var btn = $('#login-btn'),
 			form = $('#login-form');
 
-		form.on('click', function(e) {
+		btn.on('click', function(e) {
 			e.preventDefault();
 			login();
 		});

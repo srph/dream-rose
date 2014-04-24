@@ -8,8 +8,8 @@
 
 	<div class="alert alert-info">
 		<p>
-			You have <strong>{{ $user->vp }}</strong> <em>vote points</em>, and
-			<strong>{{ count($user->characters) }}</strong> <em>character(s)</em>.
+			You have <strong>{{ $auth->vp }}</strong> <em>vote points</em>, and
+			<strong>{{ count($auth->characters) }}</strong> <em>character(s)</em>.
 		</p>
 	</div>
 
@@ -21,9 +21,9 @@
 
 	{{ Form::open(array('url' => 'panel/user/update', 'method' => 'post')) }}
 
-		<input type="hidden" name="username" value ="{{{ $user->username }}}">
-		<input type="hidden" name="email" value ="{{{ $user->Email }}}">
-		<input type="hidden" name="mname" value ="{{{ $user->MotherLName }}}">
+		<input type="hidden" name="username" value ="{{{ $auth->username }}}">
+		<input type="hidden" name="email" value ="{{{ $auth->Email }}}">
+		<input type="hidden" name="mname" value ="{{{ $auth->MotherLName }}}">
 		
 
 		<div class="row">
@@ -31,14 +31,14 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label> Username </label>
-					<input disabled="disabled" class="form-control" type="text" value="{{{ $user->username }}}">
+					<input disabled="disabled" class="form-control" type="text" value="{{{ $auth->username }}}">
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div class="form-group">
 					<label> Email </label>
-					<input disabled="disabled" class="form-control" type="email" value="{{{ $user->Email }}}">
+					<input disabled="disabled" class="form-control" type="email" value="{{{ $auth->Email }}}">
 				</div>
 			</div>
 

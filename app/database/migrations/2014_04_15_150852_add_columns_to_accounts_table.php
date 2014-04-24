@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsToAccountstable extends Migration {
+class AddColumnsToAccountsTable extends Migration {
 
 	/**
 	 * Run the migrations.

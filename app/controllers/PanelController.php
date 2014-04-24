@@ -25,11 +25,7 @@ class PanelController extends BaseController {
 	 */
 	public function getAccountOverview()
 	{
-		$user = Auth::user();
-		$user->load('votepoint');
-
-		return View::make('pages/user.show')
-			->with('user', $user);
+		return View::make('pages/user.show');
 	}
 
 	/**
@@ -39,11 +35,7 @@ class PanelController extends BaseController {
 	 */
 	public function getYourCharacters()
 	{
-		$user = Auth::user();
-		$user->load('characters');
-
-		return View::make('pages/panel.character')
-			->with('user', $user);
+		return View::make('pages/panel.character');
 	}
 	
 }

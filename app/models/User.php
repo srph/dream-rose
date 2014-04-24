@@ -125,7 +125,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	public function validate(array $input = array(), $id = null)
 	{
 		// Rules
-		$username 	= 'required|between:4,32|unique:userinfo,Account';
+		$username 	= 'required|alpha_num|between:4,32|unique:userinfo,Account';
 		$password 	= 'required|between:4,48';
 		$email		= 'required|email|unique:userinfo,Email';
 		$mname 		= 'required';
@@ -144,8 +144,10 @@ class User extends Base implements UserInterface, RemindableInterface {
 			'mname'		=>	$mname
 		);
 
+		$messages = array('mname.required' => "The security question field is required");
+
 		Config::set('database.default', 'seven_ora'); // Set config
-		return Validator::make($input, $rules);
+		return Validator::make($input, $rules, $messages);
 	}
 
 	/**

@@ -92,8 +92,8 @@ return array(
 
 		'sizes' => array(
 
-			'width' => '150',
-			'height' => '90'
+			'width' => '238',
+			'height' => '100'
 
 		),
 
@@ -111,7 +111,9 @@ return array(
 
 	'caching' => array(
 
-		'ports' => 10
+		'ports'  => 10,
+		'slides' => 10,
+		'news'   => 10,
 
 	),
 

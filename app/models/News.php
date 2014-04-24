@@ -56,6 +56,39 @@ class News extends Eloquent {
 	}
 
 	/**
+	 * Get news by provided type
+	 *
+	 * @param 	string 	$query
+	 * @return 	News
+	 */
+	public static function getByType($query)
+	{
+		switch( strtolower($query) ) {
+			case 'news':
+				$type = 1;
+				break;
+
+			case 'updates':
+				$type = 2;
+				break;
+
+			case 'events':
+				$type = 3;
+				break;
+
+			default:
+				return;
+		}
+
+		$news = self::whereHas('type', function($query) use ($type)
+		{
+			$query->where('type_id', '=', $type);
+		});
+
+		return $news;
+	}
+
+	/**
 	 * Returns the appropriate URL of the image
 	 *
 	 * @return 	string
@@ -63,7 +96,7 @@ class News extends Eloquent {
 	public function getImageURL()
 	{
 		$path = Config::get('dream.paths.slides');
-		return url("{$path}/{$this->image}");
+		return url("{$path}/{$this->cover}");
 	}
 
 	/*
@@ -81,4 +114,15 @@ class News extends Eloquent {
 	{
 		return $this->belongsTo('user');
 	}
+
+	/**
+	 * ORM with the [News Type] table
+	 *
+	 * @return 	NewsType
+	 */
+	public function type()
+	{
+		return $this->belongsTo('NewsType', 'type_id');
+	}
+
 }
