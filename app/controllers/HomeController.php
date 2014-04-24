@@ -35,6 +35,7 @@ class HomeController extends BaseController {
 	 */
 	public function getIndex()
 	{
+		Cache::forget('updates');
 		$offset = Config::get('dream.slide.offset');		
 
 		if( !Cache::has('slides')) {

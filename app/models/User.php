@@ -169,6 +169,18 @@ class User extends Base implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Checks if the user is a GM
+	 *
+	 * @return 	boolean
+	 */
+	public function isGM()
+	{
+		return ( $this->Right > 1 )
+			? true
+			: false;
+	}
+
+	/**
 	 * Since our server files does not use the typical
 	 * field names, this sets our username to whatever is being used
 	 *

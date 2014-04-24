@@ -4,6 +4,10 @@
 	@endif
 @else
 	@include('templates/modules/side.panel')
+	
+	@if( Auth::user()->isGM() )
+		@include('templates/modules/side.admin')
+	@endif
 @endif
 
 @include('templates/modules/side.vote')

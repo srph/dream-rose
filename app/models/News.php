@@ -89,13 +89,36 @@ class News extends Eloquent {
 	}
 
 	/**
+	 * Returns a summary of the content along with
+	 * a mark up
+	 *
+	 * @return 	string
+	 */
+	public function getSummaryAttribute()
+	{
+		$content 	= $this->content;
+		$limit 		= 162;
+
+		if( strlen($content) > $limit ) {
+			$content 	= substr($content, 0, 162);
+			$link 		= URL::to('news/' . $this->id);
+			$markup 	= sprintf("<a href='%s'><strong>Read More</strong></a>", $link);
+			$summary 	= sprintf("%s... %s", $content, $markup);
+
+			return $summary;
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Returns the appropriate URL of the image
 	 *
 	 * @return 	string
 	 */
 	public function getImageURL()
 	{
-		$path = Config::get('dream.paths.slides');
+		$path = Config::get('dream.paths.news');
 		return url("{$path}/{$this->cover}");
 	}
 

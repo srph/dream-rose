@@ -20,7 +20,8 @@ class UserSeeder extends Seeder {
 				'Account'		=>	'test',
 				'Email'			=>	'test@test.com',
 				'MotherLName'	=>	'test',
-				'MD5PassWord'	=>	$pass
+				'MD5PassWord'	=>	$pass,
+				'Right'			=>	768
 			)
 		);
 

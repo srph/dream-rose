@@ -84,6 +84,17 @@ class NewsSeeder extends Seeder {
 				'created_at'=> date('Y-m-d'),
 				'updated_at'=> date('Y-m-d')
 			),
+
+			array(
+				'id'		=> 7,
+				'user_id'	=> 1,
+				'type_id'	=> 2,
+				'cover'		=> $image,
+				'title'		=> $faker->sentence(3),
+				'content'	=> $faker->paragraph(9),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
 		);
 
 		$db->insert($data);
