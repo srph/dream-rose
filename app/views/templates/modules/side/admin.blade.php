@@ -1,34 +1,26 @@
 <div class="panel panel-default">
-	<div class="panel-heading"> Admin Panel </div>
+	<div class="panel-heading"> Welcome, {{ $auth->username }}! </div>
 
-	<ul class="list-group">
-		<li class="list-group-item">
-			<small> <i class="glyphicon glyphicon-user"></i> </small>
-			<a href="{{ URL::to('panel/account-overview') }}">
-				Manage Users
-			</a>
-		</li>
-
-		<li class="list-group-item">
-			<small> <i class="glyphicon glyphicon-pencil"></i> </small>
-			<a href="{{ URL::to('panel/your-characters') }}">
-				Manage Announcements
-			</a>
-		</li>
-
-		<li class="list-group-item">
-			<small> <i class="glyphicon glyphicon-pushpin"></i> </small>
-			<a href="#">
-				Manage Slides
-			</a>
-		</li>
-
-		<li class="list-group-item">
+	<div class="list-group">
+		<a href="{{ URL::to('panel/account-overview') }}" class="list-group-item @if( Request::is('admin/dashboard') ) active @endif">
+			<small> <i class="glyphicon glyphicon-lock"></i> </small>
+			Dashboard
+		</a>
+		
+		<a href="{{ URL::to('panel/your-characters') }}" class="list-group-item @if( Request::is('admin/news') ) active @endif">
+			<small> <i class="glyphicon glyphicon-list"></i> </small>
+			Manage News
+		</a>			
+		
+		<a href="{{ URL::to('admin/slides') }}" class="list-group-item @if( Request::is('admin/slides') ) active @endif">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>
-			<a href="{{ URL::to('panel/vote') }}">
-				Manage Mall
-			</a>
-		</li>
-	</ul>
+			Manage Slides
+		</a>
+		
+		<a href="{{ URL::to('panel/vote') }}" class="list-group-item @if( Request::is('admin/mall') ) active @endif">
+			<small> <i class="glyphicon glyphicon-star"></i> </small>
+			Manage Mall
+		</a>
+	</div>
 	
 </div>

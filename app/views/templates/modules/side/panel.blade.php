@@ -1,41 +1,31 @@
 <div class="panel panel-default">
 	<div class="panel-heading"> Welcome, {{ $auth->username }}! </div>
 
-	<ul class="list-group">
-		<li class="list-group-item">
+	<div class="list-group">
+		<a href="{{ URL::to('panel/account-overview') }}" class="list-group-item @if( Request::is('panel/account-overview') ) active @endif">
 			<small> <i class="glyphicon glyphicon-lock"></i> </small>
-			<a href="{{ URL::to('panel/account-overview') }}">
-				Account Overview
-			</a>
-		</li>
-
-		<li class="list-group-item">
+			Account Overview
+		</a>
+		
+		<a href="{{ URL::to('panel/your-characters') }}" class="list-group-item @if( Request::is('panel/your-characters') ) active @endif">
 			<small> <i class="glyphicon glyphicon-list"></i> </small>
-			<a href="{{ URL::to('panel/your-characters') }}">
-				Characters
-			</a>
-		</li>
-
-		<li class="list-group-item">
+			Characters
+		</a>			
+		
+		<a href="#" class="list-group-item">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>
-			<a href="#">
-				Mall
-			</a>
-		</li>
-
-		<li class="list-group-item">
+			Mall
+		</a>
+		
+		<a href="{{ URL::to('panel/vote') }}" class="list-group-item @if( Request::is('panel/vote') ) active @endif">
 			<small> <i class="glyphicon glyphicon-star"></i> </small>
-			<a href="{{ URL::to('panel/vote') }}">
-				Vote 4 Points
-			</a>
-		</li>
-				
-		<li class="list-group-item">
+			Vote 4 Points
+		</a>				
+		
+		<a href="{{ URL::to('logout') }}" class="list-group-item @if( Request::is('') ) active @endif">
 			<small> <i class="glyphicon glyphicon-remove"></i> </small>
-			<a href="{{ URL::to('logout') }}">
-				Logout
-			</a>
-		</li>
-	</ul>
+			Logout
+		</a>
+	</div>
 	
 </div>
