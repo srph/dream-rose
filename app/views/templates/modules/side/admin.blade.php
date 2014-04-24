@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-	<div class="panel-heading"> Welcome, {{ $auth->username }}! </div>
+	<div class="panel-heading"> Management </div>
 
 	<div class="list-group">
 		<a href="{{ URL::to('panel/account-overview') }}" class="list-group-item @if( Request::is('admin/dashboard') ) active @endif">

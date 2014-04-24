@@ -86,6 +86,22 @@ class Character extends Base {
 	}
 
 	/**
+	 * Rank the characters according to provided details
+	 *
+	 * @param 	integer 	$offset
+	 * @param 	string 		$field
+	 * @return 	Character
+	 */
+	public function byTop($offset = 10, $field = null)
+	{
+		$characters = new static();
+
+		if ( !is_null($field) ) $characters->orderBy($field, 'desc');
+
+		return $characters->take($offset);
+	}
+
+	/**
 	 * A shortcut to access the name of the character
 	 *
 	 * @return 	string

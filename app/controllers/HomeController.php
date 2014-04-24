@@ -22,10 +22,16 @@ class HomeController extends BaseController {
 	 * @param 	Slide 	$slide
 	 * @param 	News 	$news
 	 */
-	public function __construct(Slide $slide, News $news)
+	public function __construct(Slide $slide,
+		News $news,
+		Character $character,
+		Clan $clan
+	)
 	{
 		$this->slide = $slide;
 		$this->news = $news;
+		$this->character = $character;
+		$this->clan = $clan;
 	}
 
 	/**
@@ -135,7 +141,16 @@ class HomeController extends BaseController {
 	 */
 	public function getClanRanking()
 	{
-		return View::make('pages/home/ranking.clan');
+		if( !Cache::has('clan.ranking') ) {
+			$clan 		= $this->clan->byTop(10, 'intLEVEL')->get();
+			$expiration = Carbon::now()->addMinutes(10);
+			Cache::add('clan.ranking', $clan, $expiration);
+		}
+
+		$clan = Cache::get('clan.ranking');
+
+		return View::make('pages/home/ranking.clan')
+			->with('clan', $clan);
 	}
 
 
@@ -146,7 +161,16 @@ class HomeController extends BaseController {
 	 */
 	public function getPlayerRanking()
 	{
-		return View::make('pages/home/ranking.user');
+		if( !Cache::has('characters.ranking') ) {
+			$characters = $this->character->byTop(10, 'btLEVEL')->get();
+			$expiration = Carbon::now()->addMinutes(10);
+			Cache::add('characters.ranking', $characters, $expiration);
+		}
+
+		$characters = Cache::get('characters.ranking');
+
+		return View::make('pages/home/ranking.character')
+			->with('characters', $characters);
 	}
 
 }

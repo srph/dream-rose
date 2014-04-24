@@ -8,7 +8,7 @@
 	<div class="row">
 		@foreach($news as $article)
 			<div class="col-md-4">
-				<div class="thumbnail" style="height: 250px;">
+				<div class="thumbnail" style="height: 275px;">
 					<img src="{{ $article->getImageURL() }}" width="238" height="162">
 
 					<div class="caption">

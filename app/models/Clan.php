@@ -14,7 +14,7 @@ class Clan extends Base {
 	 *
 	 * @var string
 	 */
-	protected $table = 'tblgs_clan';
+	protected $table = 'tblws_clan';
 
 	/**
 	 * Fields fillable by the model
@@ -29,6 +29,22 @@ class Clan extends Base {
 	 * @var boolean
 	 */
 	public $timestamps = false;
+
+	/**
+	 * Rank the characters according to provided details
+	 *
+	 * @param 	integer 	$offset
+	 * @param 	string 		$field
+	 * @return 	Character
+	 */
+	public function byTop($offset = 10, $field = null)
+	{
+		$characters = new static();
+
+		if ( !is_null($field) ) $characters->orderBy($field, 'desc');
+
+		return $characters->take($offset);
+	}
 
 	/*
 	|--------------------------------------------------------------------------
