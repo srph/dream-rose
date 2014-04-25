@@ -62,7 +62,8 @@ class HomeController extends BaseController {
 			$news = $this->news
 				->getByType('news')
 				->take(3)
-				->get();
+				->get()
+				->load('user');
 
 			Cache::add('news', $news, $expiration);
 		}
@@ -71,7 +72,8 @@ class HomeController extends BaseController {
 			$updates = $this->news
 				->getByType('updates')
 				->take(5)
-				->get();
+				->get()
+				->load('user');
 
 			Cache::add('updates', $updates, $expiration);
 		}
@@ -80,7 +82,8 @@ class HomeController extends BaseController {
 			$events = $this->news
 				->getByType('events')
 				->take(5)
-				->get();
+				->get()
+				->load('user');
 
 			Cache::add('events', $events, $expiration);
 		}

@@ -2,6 +2,15 @@
 
 use Dream\Utility\Http\Port;
 
+// Temporary
+// Event Listeneer
+// Because I'm a pussy for TDD
+// or even logs
+Event::listen('illuminate.query', function($query)
+{
+	var_dump($query);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Player Panel Routes

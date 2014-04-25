@@ -29,13 +29,11 @@ class NewsController extends \BaseController {
 	public function index()
 	{
 		$news = $this->news
+			->with('user')
 			->orderBy('id', 'desc')
-			->paginate();
+			->paginate(10);
 
-		$user = Auth::user();
-
-		return View::make('pags/news.index')
-			->with('user', $user)
+		return View::make('pages/news.index')
 			->with('news', $news);
 	}
 
@@ -47,7 +45,7 @@ class NewsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pages/news.create')->with('user', Auth::user());
+		return View::make('pages/news.create');
 	}
 
 
@@ -103,11 +101,8 @@ class NewsController extends \BaseController {
 	public function edit($id)
 	{
 		$news = $this->news->find($id);
-		$user = Auth::user();
 
-		return View::make('pages/news.edit')
-			->with('user', $user)
-			->with('news', $news);
+		return View::make('pages/news.edit')->with('news', $news);
 	}
 
 

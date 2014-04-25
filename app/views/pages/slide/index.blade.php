@@ -8,19 +8,13 @@
 
 	@if( Session::has('slide-deleted-success') )
 		<div class="alert alert-success">
-			<p> The slide has been successfully deleted! </p>
+			<p> The <strong>slide</strong> has been successfully <strong>deleted</strong>! </p>
 		</div>
 	@endif
 
 	@if( Session::has('slide-stored-success') )
 		<div class="alert alert-success">
-			<p> The slide has been successfully posted! </p>
-		</div>
-	@endif
-
-	@if( Session::has('slide-updated-success') )
-		<div class="alert alert-success">
-			<p> The slide has been successfully updated! </p>
+			<p> The <strong>slide</strong> has been successfully <strong>posted</strong>! </p>
 		</div>
 	@endif
 

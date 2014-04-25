@@ -7,7 +7,7 @@
 			Dashboard
 		</a>
 		
-		<a href="{{ URL::to('panel/news') }}" class="list-group-item @if( Request::is('admin/news') ) active @endif">
+		<a href="{{ URL::to('admin/news') }}" class="list-group-item @if( Request::is('admin/news') ) active @endif">
 			<small> <i class="glyphicon glyphicon-list"></i> </small>
 			Manage News
 		</a>			
@@ -16,6 +16,12 @@
 			class="list-group-item @if( Request::is('admin/slide') ) active @endif">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>
 			Manage Slides
+		</a>
+
+		<a href="{{ URL::to('admin/vote-links') }}"
+			class="list-group-item @if( Request::is('admin/vote-links') ) active @endif">
+			<small> <i class="glyphicon glyphicon-gift"></i> </small>
+			Manage Vote Links
 		</a>
 		
 		<a href="{{ URL::to('panel/vote') }}" class="list-group-item @if( Request::is('admin/mall') ) active @endif">

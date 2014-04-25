@@ -9,11 +9,17 @@
 	<div class="row">
 		<div class="col-md-8">
 
+			@if( Session::has('slide-updated-success') )
+				<div class="alert alert-success">
+					<p> The <strong>slide</strong> has been successfully <strong>updated</strong>! </p>
+				</div>
+			@endif
+
 			{{ Form::open(array('files' => true, 'url' => 'admin/slide/' . $slide->id, 'method' => 'PUT')) }}
 
 				<div class="form-group">
 					<label> Current Slide Image </label>
-					<img src="{{ $slide->getImageURL() }}" width="500px">
+					<img src="{{ $slide->getImageURL() }}" width="520px">
 				</div>
 
 				<div class="form-group">

@@ -1,0 +1,7 @@
+- PHP >= 5.3
+	- mCrypt
+	- SSH
+	- php_fileinfo
+- Redis >= 2.4.*
+- MsSQL (May work with MySQL) Native Client 12
+- Composer

@@ -28,6 +28,7 @@ class SlideController extends \BaseController {
 	public function index()
 	{
 		$slides = $this->slide
+			->with('user')
 			->orderBy('id', 'desc')
 			->paginate(10);
 
@@ -134,7 +135,7 @@ class SlideController extends \BaseController {
 			}
 
 			if( $slide->save() ) {
-				return Redirect::to('admin/slide')
+				return Redirect::back()
 					->with('slide-updated-success', '');
 			}
 		}

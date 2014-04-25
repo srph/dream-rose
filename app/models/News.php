@@ -88,6 +88,7 @@ class News extends Eloquent {
 		return $news;
 	}
 
+
 	/**
 	 * Returns a summary of the content along with
 	 * a mark up
@@ -110,6 +111,39 @@ class News extends Eloquent {
 
 		return $content;
 	}
+
+
+	/**
+	 * Returns a summary of the content along with
+	 * a mark up
+	 *
+	 * @return 	string
+	 */
+	public function getShorterSummaryAttribute()
+	{
+		$content 	= $this->content;
+		$limit 		= 52;
+
+		return ( strlen($content) > $limit )
+			? substr($content, 0, 52) . '...'
+			: $content;
+	}
+	
+
+
+	/**
+	 * Get a formatted string of publish date
+	 *
+	 * @return 	string
+	 */
+	public function getDatePublishedAttribute()
+	{
+		$timestamp 	= strtotime($this->created_at);
+		$format 	= date('F d, Y', $timestamp);
+
+		return $format;
+	}
+
 
 	/**
 	 * Returns the appropriate URL of the image
