@@ -1,5 +1,7 @@
 <?php
 
+use Faker\Factory as Faker;
+
 class SlideSeeder extends Seeder {
 
 	/**
@@ -11,6 +13,8 @@ class SlideSeeder extends Seeder {
 	{
 		$db = DB::table('slides');
 		$db->delete();
+
+		$faker = Faker::create();
 
 		$image = 'pdrbiN.gif';
 
@@ -30,7 +34,97 @@ class SlideSeeder extends Seeder {
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
-				'caption'	=> '',
+				'caption'	=> $faker->paragraph(1),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 3,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(1),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 4,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(1),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 5,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(1),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 6,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(6),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 7,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(6),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 8,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(6),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 9,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(3),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 10,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(6),
+				'created_at'=> date('Y-m-d'),
+				'updated_at'=> date('Y-m-d')
+			),
+
+			array(
+				'id'		=> 11,
+				'user_id'	=> 1,
+				'image'		=> $image,
+				'link'		=> '',
+				'caption'	=> $faker->paragraph(6),
 				'created_at'=> date('Y-m-d'),
 				'updated_at'=> date('Y-m-d')
 			),

@@ -29,11 +29,10 @@ class SlideController extends \BaseController {
 	{
 		$slides = $this->slide
 			->orderBy('id', 'desc')
-			->all()
-			->load('user');
+			->paginate(10);
 
 		return View::make('pages/slide.index')
-			->with('slides', $slide);
+			->with('slides', $slides);
 	}
 
 
@@ -61,7 +60,7 @@ class SlideController extends \BaseController {
 
 		// Validate
 		$validation = $slide->validate($input);
-		if($validation->passes()) {
+		if( $validation->passes() ) {
 			$file = Input::file('image');
 			$user = Auth::user();
 
@@ -69,23 +68,15 @@ class SlideController extends \BaseController {
 			$slide->caption = Input::get('caption');
 			$slide->link 	= Input::get('link');
 
-			if( $user->slides()->save() ) return Response::json( array( 'status' => true ) );
+			if( $user->slides()->save() ) {
+				return Redirect::to('admin/slide')
+					->with('slide-store-success', '');
+			}
 		}
 
-		// Contain errors
-		$error = $validation->messages();
-
-		// Store errors to a bag
-		$bag = array(
-			'image'		=>	$error->first('image'),
-			'caption'	=>	$error->first('caption'),
-			'link'		=>	$error->first('link')
-		);
-
-		return Response::json(array(
-			'status'	=>	true,
-			'errors'	=>	$bag
-		));
+		return Redirect::back()
+			->withErrors($validation)
+			->withInput();
 	}
 
 
@@ -129,10 +120,10 @@ class SlideController extends \BaseController {
 		// Refactor
 		// Grab all inputs
 		$input = Input::all();
-		$slide = $this->slide
+		$slide = $this->slide;
 
 		$validation = $slide->validate($input);
-		if($validation->passes()) {
+		if( 	$validation->passes() ) {
 			$slide = $slide->find($id);
 			// $slide->image 		= Upload
 			$slide->caption 	= Input::get('caption');
@@ -175,7 +166,6 @@ class SlideController extends \BaseController {
 			return Response::json(array('status' => true));
 		}
 		
-		Session::flash('slide-deleted-failed', '');
 		return Response::json(array('status' => false));
 	}
 

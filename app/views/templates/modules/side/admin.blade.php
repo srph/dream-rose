@@ -7,12 +7,13 @@
 			Dashboard
 		</a>
 		
-		<a href="{{ URL::to('panel/your-characters') }}" class="list-group-item @if( Request::is('admin/news') ) active @endif">
+		<a href="{{ URL::to('panel/news') }}" class="list-group-item @if( Request::is('admin/news') ) active @endif">
 			<small> <i class="glyphicon glyphicon-list"></i> </small>
 			Manage News
 		</a>			
 		
-		<a href="{{ URL::to('admin/slides') }}" class="list-group-item @if( Request::is('admin/slides') ) active @endif">
+		<a href="{{ URL::to('admin/slide') }}"
+			class="list-group-item @if( Request::is('admin/slide') ) active @endif">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>
 			Manage Slides
 		</a>

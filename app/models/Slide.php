@@ -45,7 +45,7 @@ class Slide extends Eloquent {
 	{
 		$rules = array(
 			'image'		=>	'required|mime:png,jpeg,jpg,gif',
-			'caption'	=>	'min:150',
+			'caption'	=>	'max:200',
 			'link'		=>	'url'
 		);
 
@@ -92,6 +92,18 @@ class Slide extends Eloquent {
 	{
 		$path = Config::get('dream.paths.slides');
 		return url("{$path}/{$this->image}");
+	}
+
+	/**
+	 * Summarizes the caption
+	 *
+	 * @return 	string
+	 */
+	public function getSummaryAttribute()
+	{
+		return ( strlen( $this->caption ) > 52 )
+			? substr( $this->caption, 0, 52 ) . '...'
+			: $this->caption;
 	}
 
 	/*
