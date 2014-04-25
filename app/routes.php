@@ -67,7 +67,7 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	return Character::orderBy('btLEVEL', 'desc')->get();
+	return Config::get('dream.slides.sizes.width');
 });
 
 /**

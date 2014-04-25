@@ -59,18 +59,18 @@ class SlideController extends \BaseController {
 		$slide = $this->slide;
 
 		// Validate
-		$validation = $slide->validate($input);
+		$validation = $slide->validForCreation($input);
 		if( $validation->passes() ) {
 			$file = Input::file('image');
 			$user = Auth::user();
 
-			$slide->image 	= $slide->upload($file);
+			$slide->image = $slide->upload($file);
 			$slide->caption = Input::get('caption');
 			$slide->link 	= Input::get('link');
 
-			if( $user->slides()->save() ) {
+			if( $user->slides()->save($slide) ) {
 				return Redirect::to('admin/slide')
-					->with('slide-store-success', '');
+					->with('slide-stored-success', '');
 			}
 		}
 
@@ -120,34 +120,27 @@ class SlideController extends \BaseController {
 		// Refactor
 		// Grab all inputs
 		$input = Input::all();
-		$slide = $this->slide;
 
-		$validation = $slide->validate($input);
-		if( 	$validation->passes() ) {
-			$slide = $slide->find($id);
-			// $slide->image 		= Upload
-			$slide->caption 	= Input::get('caption');
-			$slide->link 		= Input::get('link');
+		$validation = $this->slide->validForUpdate($input);
+		if( $validation->passes() ) {
+			$slide 	= $this->slide->find($id);
+			$file 	= Input::file('image');
 
-			if($slide->save()) {
-				return Response::json(array('status' => true));
+			$slide->caption = Input::get('caption');
+			$slide->link 	= Input::get('link');
+
+			if( Input::hasFile('image') ) {
+				$slide->image = $this->slide->upload($file);
+			}
+
+			if( $slide->save() ) {
+				return Redirect::to('admin/slide')
+					->with('slide-updated-success', '');
 			}
 		}
 
-		// Contain errors
-		$error = $validation->messages();
-
-		// Store errors to a bag
-		$bag = array(
-			'image'		=>	$error->first('image'),
-			'caption'	=>	$error->first('caption'),
-			'link'		=>	$error->first('link')
-		);
-
-		return Response::json(array(
-			'status'	=>	false,
-			'errors'	=>	$bag
-		));
+		return Redirect::back()
+			->withErrors($validation);
 	}
 
 

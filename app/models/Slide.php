@@ -41,13 +41,31 @@ class Slide extends Eloquent {
 	 * @param 	array 		$input
 	 * @return 	Validator
 	 */
-	public static function validate($input)
+	public static function validForCreation($input)
 	{
 		$rules = array(
-			'image'		=>	'required|mime:png,jpeg,jpg,gif',
-			'caption'	=>	'max:200',
+			'image'		=>	'required|mimes:png,jpeg,jpg,gif',
+			'caption'	=>	'max:60',
 			'link'		=>	'url'
 		);
+
+		return Validator::make($input, $rules);
+	}
+
+	/**
+	 * Valide provided input
+	 *
+	 * @param 	array 		$input
+	 * @return 	Validator
+	 */
+	public static function validForUpdate($input)
+	{
+		$rules = array(
+			'caption'	=>	'max:60',
+			'link'		=>	'url'
+		);
+
+		if( $input['image'] ) $rules['image'] = 'required|mimes:png,jpeg,jpg,gif';
 
 		return Validator::make($input, $rules);
 	}
@@ -60,17 +78,20 @@ class Slide extends Eloquent {
 	 */
 	public static function upload($file)
 	{
-		$config = Config::get('dream.paths.slides');
-		$default = Config::get('dreams.slides.sizes');
-		$filename = Str::random(8);
-		$path = public_path() . "{$config}/{$filename}";
+		$config 	= Config::get('dream.paths.slides');
+		$default 	= Config::get('dream.slides.sizes');
+		$extension 	= $file->getClientOriginalExtension();
+		$filename 	= Str::random(8) . '.' . $extension;
+		$path 		= public_path() . "/{$config}/{$filename}";
+		$width 		= $default['width'];
+		$height 	= $default['height'];
 
 		// Pass the provided file to create an instance of Image
 		$image = Image::make( $file->getRealPath() );
 
 		// If the image is smaller than the set sizes, resize
 		if($image->width < $width || $image->height < $height) {
-			$image->resize($default['width'], $default['height']);
+			$image->resize($default['width'], $default['height'], false, true);
 		}
 
 		// If the image is bigger than the set sizes, crop

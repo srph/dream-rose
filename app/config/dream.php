@@ -80,7 +80,7 @@ return array(
 		'sizes' => array(
 
 			'width'  => 1150,			
-			'height' => 60
+			'height' => 180
 
 		),
 

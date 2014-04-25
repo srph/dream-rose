@@ -18,6 +18,12 @@
 		</div>
 	@endif
 
+	@if( Session::has('slide-updated-success') )
+		<div class="alert alert-success">
+			<p> The slide has been successfully updated! </p>
+		</div>
+	@endif
+
 	<div class="form-group">
 		<a href="{{ URL::to('admin/slide/create') }}" class="btn btn-primary">
 			<i class="glyphicon glyphicon-pushpin"></i>
@@ -31,6 +37,7 @@
 				<tr>
 					<td> # </td>
 					<td> Caption </td>
+					<td> Link </td>
 					<td> Posted By </td>
 					<td> Action </td>
 				</tr>
@@ -41,6 +48,13 @@
 					<tr>
 						<td> {{ $slide->id }} </td>
 						<td> {{ $slide->summary }} </td>
+						<td>
+							@if( $slide->link )
+								<a href="{{ $slide->link }}">
+									<i class="glyphicon glyphicon-share-alt"></i>
+								</a>
+							@endif
+						</td>
 						<td> {{ $slide->user->username }} </td>
 						<td>
 							<a href="{{ URL::to('admin/slide/' . $slide->id . '/edit') }}">
