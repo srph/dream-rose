@@ -6,10 +6,10 @@ use Dream\Utility\Http\Port;
 // Event Listeneer
 // Because I'm a pussy for TDD
 // or even logs
-Event::listen('illuminate.query', function($query)
-{
-	var_dump($query);
-});
+// Event::listen('illuminate.query', function($query)
+// {
+// 	var_dump($query);
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ Route::group(array(
 	 * Vote Links RESTful
 	 * @link admin/vote-link/*
 	 */
-	Route::resource('vote-link', 'VoteLinkController');
+	Route::resource('vote-links', 'VoteLinkController');
 });
 
 /**
@@ -76,7 +76,7 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	return Config::get('dream.slides.sizes.width');
+	//
 });
 
 /**

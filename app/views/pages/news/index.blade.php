@@ -31,6 +31,7 @@
 				<tr>
 					<td> # </td>
 					<td> Title </td>
+					<td> Type </td>
 					<td> Date Published </td>
 					<td> Published By </td>
 					<td> Action </td>
@@ -42,6 +43,7 @@
 					<tr>
 						<td> {{ $article->id }} </td>
 						<td> {{ $article->title }} </td>
+						<td> {{ $article->type->name }} </td>
 						<td> {{ $article->datePublished }} </td>
 						<td> {{ $article->user->username }} </td>
 						<td>

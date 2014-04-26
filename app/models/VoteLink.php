@@ -21,7 +21,7 @@ class VoteLink extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array();
+	protected $fillable = array('title', 'image', 'link');
 
 	/**
 	 * Checks whether the model uses timestamps

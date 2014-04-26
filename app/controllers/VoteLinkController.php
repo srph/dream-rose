@@ -1,6 +1,22 @@
 <?php
 
-class VoteController extends \BaseController {
+class VoteLinkController extends \BaseController {
+
+	/**
+	 *
+	 * @var VoteLink
+	 */
+	protected $vote;
+
+
+	/**
+	 *
+	 * @param 	Vote 	$vote
+	 */
+	public function __construct(VoteLink $vote)
+	{
+		$this->vote = $vote;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +25,12 @@ class VoteController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$votes = $this->vote
+			->orderBy('id', 'desc')
+			->paginate(5);
+
+		return View::make('pages/vote.index')
+			->with('votes', $votes);
 	}
 
 
@@ -20,7 +41,7 @@ class VoteController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('pages/vote.create');
 	}
 
 
@@ -31,7 +52,26 @@ class VoteController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// Grab input
+		$input = Input::all();
+
+		$validation = $this->vote->validateForCreation($input);
+		if( $validation->passes() ) {
+			$file = Input::file('image');
+			$vote = $this->vote;
+			$vote->image 	= $this->vote->upload($file);
+			$vote->link 	= Input::get('link');
+			$vote->title 	= Input::get('title');
+
+			if( $vote->save() ) {
+				return Redirect::to('admin/vote-links')
+					->with('vote-link-created-success', '');
+			}
+		}
+
+		return Redirect::back()
+			->withInput()
+			->withErrors($validation);
 	}
 
 
@@ -55,7 +95,15 @@ class VoteController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$vote = $this->vote->find($id);
+
+		if( empty($id) || count($id) <= 1 ) {
+			return Redirect::to('admin/vote-links')
+				->with('vote-link-nonexistent', '');
+		}
+
+		return View::make('pages/vote.edit')
+			->with('vote', $vote);
 	}
 
 
@@ -67,7 +115,37 @@ class VoteController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$vote = $this->vote->find($id);
+
+		if( empty($vote) || count($vote) <= 0 ) {
+			return Redirect::to('admin/vote-links')
+				->with('vote-link-nonexistent', '');
+		}
+		// Grab input
+		$input = Input::all();
+
+		// Validate
+		$validation = $this->vote->validateForUpdate($input);
+
+		if( $validation->passes() ) {
+			$vote = $this->vote;
+			
+			if( Input::hasFile('image') ) {
+				$file = Input::file('image');
+				$this->vote->upload($file);
+			}
+
+			$vote->title 	= Input::get('title');
+			$vote->link 	= Input::get('link');
+
+			if( $vote->save() ) {
+				return Redirect::back()
+					->with('vote-link-update-success', '');
+			}
+		}
+
+		return Redirect::back()
+			->with('vote-link-update-error', '');
 	}
 
 
@@ -79,7 +157,20 @@ class VoteController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$vote = $this->vote->find($id);
+
+		if( empty($vote) || count($vote) <= 0 ) {
+			return Redirect::to('admin/vote-links')
+				->with('vote-link-nonexistent', '');
+		}
+
+		if( $vote->delete() ) {
+			return Redirect::back()
+				->with('vote-link-delete-success', '');
+		}
+
+		return Redirect::back()
+			->with('vote-link-delete-error', '');
 	}
 
 
