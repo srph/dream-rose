@@ -17,7 +17,7 @@
 						<p> {{ $article->summary }} </p>
 					</div>
 
-					<small> by {{ $article->user }} </small>
+					<small> by {{ $article->user->username }} </small>
 				</div>
 			</div>
 		@endforeach

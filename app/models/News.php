@@ -36,10 +36,13 @@ class News extends Eloquent {
 	 */
 	public static function upload($file)
 	{
-		$config = Config::get('dream.paths.news');
-		$default = Config::get('dreams.news.sizes');
-		$filename = Str::random(8);
-		$path = public_path() . "{$config}/{$filename}";
+		$config 	= Config::get('dream.paths.news');
+		$default 	= Config::get('dream.news.sizes');
+		$extension 	= $file->getClientOriginalExtension();
+		$filename 	= Str::random(8) . '.' . $extension;
+		$path 		= public_path() . "/{$config}/{$filename}";
+		$width 		= $default['width'];
+		$height 	= $default['height'];
 
 		// Pass the provided file to create an instance of Image
 		$image = Image::make( $file->getRealPath() );
@@ -154,6 +157,56 @@ class News extends Eloquent {
 	{
 		$path = Config::get('dream.paths.news');
 		return url("{$path}/{$this->cover}");
+	}
+
+	/**
+	 * Since lepture editor uses pre, let's replace it. Shall we?
+	 *
+	 * @return 	string
+	 */
+	public static function replacePre($content)
+	{
+		$content = preg_replace('/pre>/g', 'p>', $content);
+		return $content;
+	}
+
+
+	/**
+	 * Validate input for creation
+	 *
+	 * @param 	array 	$input
+	 * @return 	Validator
+	 */
+	public static function validForCreation(array $input)
+	{
+		$rules = array(
+			'cover'		=> 'required|mimes:jpg,png,gif',
+			'title'		=> 'required|between:4,48',
+			'content'	=> 'required',
+			'type'		=> 'required|in:1,2,3'
+		);
+
+		return Validator::make($input, $rules);
+	}
+
+
+	/**
+	 * Validate input for update
+	 *
+	 * @param 	array 	$input
+	 * @return 	Validator
+	 */
+	public static function validForUpdate(array $input)
+	{
+		$rules = array(
+			'title'		=> 'required|between:4,48',
+			'content'	=> 'required',
+			'type'		=> 'required|in:1,2,3'
+		);
+
+		if( $input['cover'] ) $rules['cover'] = 'required|mimes:jpg,png,gif';
+
+		return Validator::make($input, $rules);
 	}
 
 	/*

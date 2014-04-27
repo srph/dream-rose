@@ -58,15 +58,18 @@ class NewsController extends \BaseController {
 	{
 		$input = Input::all();
 
-		$validation = $this->news->validate($input);
+		$validation = $this->news->validForCreation($input);
 		if( $validation->passes() ) {
+			$user 	= Auth::user();
+			$image	= Input::file('cover');
 
-			$news = $this->news;
+			$news 			= $this->news;
 			$news->title 	= Input::get('title');
-			$news->cover 	= Input::file('cover');
+			$news->cover 	= $this->news->upload($image);
 			$news->content 	= Input::get('content');
+			$news->type_id 	= Input::get('type');
 
-			if( $news->save() ) {
+			if( $user->news()->save($news) ) {
 				$url = 'admin/news';
 				$session = 'news-store-success';
 				return Redirect::to($url)->with($session, '');
@@ -74,9 +77,9 @@ class NewsController extends \BaseController {
 
 		}
 
-		return Redirect::back()
-			->withErrors($validation)
-			->withInput();
+		return Redirect::to('admin/news/create')
+			->withInput()
+			->withErrors($validation);
 	}
 
 
@@ -114,14 +117,30 @@ class NewsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		// Refactor
-		$input = Input::all();
-		$news = $this->news->find($id);
+		$news 	= $this->news->find($id);
+		$input 	= Input::all();
 
-		$validation = $this->news->validate($input);
+		$validation = $this->news->validForUpdate($input);
 		if( $validation->passes() ) {
-			$this->validation->update($input);
+			$user 	= Auth::user();
+
+			$news->title 	= Input::get('title');
+			if( Input::hasFile('cover') ) {
+				$image			= Input::file('cover');
+				$news->cover 	= $this->news->upload($image);
+			}
+			$news->content 	= Input::get('content');
+			$news->type_id 	= Input::get('type');
+
+			if( $news->save() ) {
+				return Redirect::back()->with('news-updated-success', '');
+			}
+
 		}
+
+		return Redirect::back()
+			->withInput()
+			->withErrors($validation);
 	}
 
 
@@ -134,6 +153,7 @@ class NewsController extends \BaseController {
 	public function destroy($id)
 	{
 		$news = $this->news->find($id);
+		
 		if( $news->delete() ) {
 			Session::flash('news-deleted-success', '');
 			return Response::json(array('status' => true));

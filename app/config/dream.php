@@ -93,8 +93,8 @@ return array(
 
 		'sizes' => array(
 
-			'width' => '238',
-			'height' => '100'
+			'width' => '387',
+			'height' => '162'
 
 		),
 
