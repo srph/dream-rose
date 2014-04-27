@@ -16,39 +16,89 @@ class VoteLog extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array();
+	protected $fillable = array('user_id', 'vote_link_id', 'ip');
 
 	/**
 	 * Checks whether the model uses timestamps
 	 *
 	 * @var boolean
 	 */
-	public $timestamps = false;
+	public $timestamps = true;
 
 
-	public function validate()
+	/**
+	 * Verifies if the vote is valid
+	 *
+	 * @param 	integer 	$id
+	 * @param 	string 	 	$ip
+	 * @return 	boolean
+	 */
+	public static function validate(User $user, $id, $ip)
 	{
-		$user = Auth::user();
-		if($this->)
+		$user->load('logs');
+		// First, it looks for whether the user has logs.
+		// Then, it checks if the ip of the current request matches
+		// the latest log.
+		// Otherwise, it will automatically return true.
+		if( $user->logs->count() ) {
+
+			$ipWithUserExists = $user->logs()
+				->where('ip', $ip)
+				->get()
+				->count();
+
+			if( $ipWithUserExists ) {
+
+				$log = $user->logs()					
+					->where('vote_link_id', $id)
+					->where('ip', $ip)
+					->orderBy('id', 'desc')
+					->first();
+
+				if( !empty($log) ) return $log->intervalValid();
+
+			} else {
+
+				$log = $user->logs()
+					->where('vote_link_id', $id)
+					->orderBy('id', 'desc')
+					->first();
+
+				if ( !empty($log) ) return $log->intervalValid();
+
+			}
+		} else {
+
+			$log = self::where('ip', $ip)
+				->where('vote_link_id', $id)
+				->orderBy('id', 'desc')
+				->first();
+
+			if( !empty($log) ) return $log->intervalValid();
+		}
+
+		return true;
 	}
 
 
-	protected function validateInterval()
+	/**
+	 *
+	 *
+	 *
+	 */
+	public function intervalValid()
 	{
 		$config 		= Config::get('dream.links');
-		$ipRestriction 	= $config['restriction'];
 		$interval 		= $config['interval'];
+		$db 			= strtotime( $this->created_at );
 		$now 			= Carbon::now();
-		$requirement 	= strtotime($interval);
+		$logged 		= Carbon::createFromTimestamp( $db );
 
-		$timestamp = array(
-			'now'		=>	strtotime( $now ),
-			'ahead'		=>	strtotime( $now->addHours( $interval ) )
-		);
-
-		if ( $ahead - $now === $requirement ) {
-
+		if ( $logged->diffInHours($now) >= 12 ) {
+			return true;
 		}
+
+		return false;
 	}
 
 	/*
@@ -66,4 +116,5 @@ class VoteLog extends Eloquent {
 	{
 		return $this->belongsTo('user');
 	}
+
 }

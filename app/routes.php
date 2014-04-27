@@ -76,11 +76,39 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	$ahead 	= strtotime(Carbon\Carbon::now()->addHours(12));
-	$now 	= strtotime(Carbon\Carbon::now() );
-	// return  $now - $ahead;
+	// $ahead 	= strtotime(Carbon\Carbon::now()->addHours(12));
+	// $now 	= strtotime(Carbon\Carbon::now() );
+	// // return  $now - $ahead;
 
-	return strtotime("12 hours") - $now;
+	// return strtotime("12 hours") - $now;
+	// $news = User::first()
+	// 	->news()
+	// 	->where('id', 20)
+	// 	->get()
+	// 	->count();
+	// if ( ! $news )
+	// 	return 'pota';
+	// else
+	// 	return $news;
+	// $ip = 
+	// User::all();
+	$user = User::first();
+	$id = VoteLink::first()->id;
+	$ip = Request::getClientIp();
+	return '\'' . VoteLog::validate($user, $id, $ip) . '\'';
+
+	$log = $user->logs()
+		->where('ip', $ip)
+		->where('vote_link_id', $id)
+		->orderBy('id', 'desc')
+		->first();
+		$a = Carbon\Carbon::createFromTimestamp(strtotime($log->created_at));
+		$b = Carbon\Carbon::now();
+
+		// echo $log->intervalValid();
+
+	// return $log;
+
 });
 
 /**

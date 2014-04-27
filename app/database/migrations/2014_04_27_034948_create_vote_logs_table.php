@@ -18,7 +18,7 @@ class CreateVoteLogsTable extends Migration {
 			$table->integer('vote_link_id');
 			$table->integer('user_id');
 			$table->timestamps();
-			$table->blob('ip');
+			$table->string('ip');
 		});
 	}
 

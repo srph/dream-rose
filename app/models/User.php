@@ -259,4 +259,15 @@ class User extends Base implements UserInterface, RemindableInterface {
 		return $this->hasMany('Slide');
 	}
 
+
+	/**
+	 * ORM with the VoteLog model
+	 *
+	 * @return 	VoteLog
+	 */
+	public function logs()
+	{
+		return $this->hasMany('VoteLog');
+	}
+
 }
