@@ -3,9 +3,11 @@
 		Vote 4 Us!
 	</div>
 
-	<div class="panel-body">
-		<img src="http://placehold.it/230x150" alt="..." class="img-rounded img-responsive">
-		<p></p>
-		<img src="http://placehold.it/230x150" alt="..." class="img-rounded img-responsive">
+	<div class="panel-body" style="padding: 0; padding-top: 10px;">
+		@foreach($v4us as $link)
+			<p class="text-center">
+				<img src="{{ $link->getImageURL() }}">
+			</p>
+		@endforeach
 	</div>
 </div>

@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class VoteLog extends Eloquent {
 
 	/**
@@ -22,6 +24,32 @@ class VoteLog extends Eloquent {
 	 * @var boolean
 	 */
 	public $timestamps = false;
+
+
+	public function validate()
+	{
+		$user = Auth::user();
+		if($this->)
+	}
+
+
+	protected function validateInterval()
+	{
+		$config 		= Config::get('dream.links');
+		$ipRestriction 	= $config['restriction'];
+		$interval 		= $config['interval'];
+		$now 			= Carbon::now();
+		$requirement 	= strtotime($interval);
+
+		$timestamp = array(
+			'now'		=>	strtotime( $now ),
+			'ahead'		=>	strtotime( $now->addHours( $interval ) )
+		);
+
+		if ( $ahead - $now === $requirement ) {
+
+		}
+	}
 
 	/*
 	|--------------------------------------------------------------------------

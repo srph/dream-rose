@@ -100,6 +100,14 @@ return array(
 
 	),
 
+	'links' => array(
+
+		'interval' => 12,
+
+		'restriction' => true
+
+	),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Caching Lifetime
@@ -115,6 +123,7 @@ return array(
 		'ports'  => 10,
 		'slides' => 10,
 		'news'   => 10,
+		'links'	 => 10
 
 	),
 

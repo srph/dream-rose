@@ -98,6 +98,7 @@ class VoteLink extends Eloquent {
 		return url("{$path}/{$this->image}");
 	}
 
+	
 	/*
 	|--------------------------------------------------------------------------
 	| ORM

@@ -5,6 +5,7 @@ use Carbon\Carbon;
 
 $app->before(function()
 {
+
 	/* Caching Server Ports */
 	if( ! Cache::has('server.ports') ) {
 		$config = Config::get('dream.info');
@@ -23,12 +24,20 @@ $app->before(function()
 			'world'	=> Port::check($address, $ports['world'])
 		);
 
-		$lifetime = Config::get('dream.caching.ports');
+		$lifetime 	= Config::get('dream.caching.ports');
 		$expiration = Carbon::now()->addMinutes($lifetime);
 		Cache::add('server.ports', $status, $expiration);
-
 	}
 
+	if( ! Cache::has('vote.links') ) {
+		$votes = VoteLink::all();
+
+		$lifetime 	= Config::get('dream.caching.links');
+		$expiration = Carbon::now()->addMinutes($lifetime);
+		Cache::put('vote.links', $votes, $expiration);
+	}
+
+	View::share('v4us', Cache::get('vote.links') );
 	View::share('server', Cache::get('server.ports') );
 
 	if( Auth::check() ) View::share('auth', Auth::user() );

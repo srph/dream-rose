@@ -76,7 +76,11 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	//
+	$ahead 	= strtotime(Carbon\Carbon::now()->addHours(12));
+	$now 	= strtotime(Carbon\Carbon::now() );
+	// return  $now - $ahead;
+
+	return strtotime("12 hours") - $now;
 });
 
 /**

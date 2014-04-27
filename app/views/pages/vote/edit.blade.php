@@ -39,7 +39,7 @@
 
 
 				<div class="form-group">
-					<label> Replace Link Image <span class="off"> * </span> </label>
+					<label> Replace Link Image (optional) </label>
 					<input type="file" name="image">
 
 					<p class="help-block">
