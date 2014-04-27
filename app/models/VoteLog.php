@@ -75,6 +75,7 @@ class VoteLog extends Eloquent {
 				->first();
 
 			if( !empty($log) ) return $log->intervalValid();
+
 		}
 
 		return true;
@@ -82,9 +83,9 @@ class VoteLog extends Eloquent {
 
 
 	/**
+	 * {{}}
 	 *
-	 *
-	 *
+	 * @return 	boolean
 	 */
 	public function intervalValid()
 	{
