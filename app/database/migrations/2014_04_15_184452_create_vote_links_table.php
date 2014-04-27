@@ -17,7 +17,7 @@ class CreateVoteLinksTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->string('image');
-			$table->string('link')
+			$table->string('link');
 		});
 	}
 

@@ -57,7 +57,7 @@ class VoteLinkController extends \BaseController {
 		// Grab input
 		$input = Input::all();
 
-		$validation = $this->vote->validateForCreation($input);
+		$validation = $this->vote->validForCreation($input);
 		if( $validation->passes() ) {
 			$file = Input::file('image');
 			$vote = $this->vote;
@@ -99,7 +99,7 @@ class VoteLinkController extends \BaseController {
 	{
 		$vote = $this->vote->find($id);
 
-		if( empty($id) || count($id) <= 1 ) {
+		if( empty($id) || count($id) <= 0 ) {
 			return Redirect::to('admin/vote-links')
 				->with('vote-link-nonexistent', '');
 		}
@@ -128,14 +128,13 @@ class VoteLinkController extends \BaseController {
 		$input = Input::all();
 
 		// Validate
-		$validation = $this->vote->validateForUpdate($input);
+		$validation = $this->vote->validForUpdate($input);
 
 		if( $validation->passes() ) {
-			$vote = $this->vote;
 			
 			if( Input::hasFile('image') ) {
 				$file = Input::file('image');
-				$this->vote->upload($file);
+				$vote->image = $this->vote->upload($file);
 			}
 
 			$vote->title 	= Input::get('title');
@@ -143,12 +142,12 @@ class VoteLinkController extends \BaseController {
 
 			if( $vote->save() ) {
 				return Redirect::back()
-					->with('vote-link-update-success', '');
+					->with('vote-link-updated-success', '');
 			}
 		}
 
 		return Redirect::back()
-			->with('vote-link-update-error', '');
+			->with('vote-link-updated-error', '');
 	}
 
 
@@ -168,12 +167,12 @@ class VoteLinkController extends \BaseController {
 		}
 
 		if( $vote->delete() ) {
-			return Redirect::back()
-				->with('vote-link-delete-success', '');
+			Session::flash('vote-link-delete-success', '');
+			return Response::json(array('status' => true));
 		}
 
-		return Redirect::back()
-			->with('vote-link-delete-error', '');
+		Session::flash('vote-link-delete-error', '');
+		return Response::json(array('status' => false));
 	}
 
 

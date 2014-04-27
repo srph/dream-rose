@@ -180,7 +180,7 @@ class News extends Eloquent {
 	public static function validForCreation(array $input)
 	{
 		$rules = array(
-			'cover'		=> 'required|mimes:jpg,png,gif',
+			'cover'		=> 'required|mimes:jpg,jpeg,png,gif',
 			'title'		=> 'required|between:4,48',
 			'content'	=> 'required',
 			'type'		=> 'required|in:1,2,3'
@@ -204,7 +204,7 @@ class News extends Eloquent {
 			'type'		=> 'required|in:1,2,3'
 		);
 
-		if( $input['cover'] ) $rules['cover'] = 'required|mimes:jpg,png,gif';
+		if( $input['cover'] ) $rules['cover'] = 'required|mimes:jpg,jpeg,png,gif';
 
 		return Validator::make($input, $rules);
 	}

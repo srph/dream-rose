@@ -80,7 +80,7 @@
 
 			dlt.on('click', function(e) {
 				e.preventDefault();
-				console.log('Clicked');
+				
 				var	response 	= confirm(prompt),
 					self 		= $(this),
 					url 		= '{{ url('admin/news') }}/' + self.data('id'),

@@ -93,5 +93,5 @@ Route::filter('gm', function()
 	if( Auth::guest() ) return Redirect::to('/');
 	
 	$level = 256;
-	if(Auth::user()->Right < $level) return Redirect::to('/');
+	if( Auth::user()->Right < $level) return Redirect::to('/');
 });

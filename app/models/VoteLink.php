@@ -40,7 +40,7 @@ class VoteLink extends Eloquent {
 	public static function validForCreation(array $input)
 	{
 		$rules = array(
-			'image'	=> 'required|mime:png,jpg,gif',
+			'image'	=> 'required|mimes:png,jpg,jpeg,gif',
 			'title'	=> 'required',
 			'link'	=> 'required|url'
 		);
@@ -62,7 +62,7 @@ class VoteLink extends Eloquent {
 			'link'	=> 'required|url'
 		);
 
-		if ( $input['image'] ) $rules['image'] = 'required|mime:png,jpg,gif';
+		if ( $input['image'] ) $rules['image'] = 'required|mimes:png,jpg,gif';
 
 		return Validator::make($input, $rules);
 	}
@@ -71,19 +71,31 @@ class VoteLink extends Eloquent {
 	/**
 	 * Upload image for the vote link
 	 *
-	 * @param 	file 	$image
+	 * @param 	file 	$file
 	 * @return 	boolean
 	 */
-	public static function upload($image)
+	public static function upload($file)
 	{
 		$config 	= Config::get('dream.paths.vote');
 		$extension 	= $file->getClientOriginalExtension();
 		$filename 	= Str::random(8) . '.' . $extension;
 		$path 		= public_path() . "/{$config}/{$filename}";
 
-		Image::make( $image->getRealPath() )->save($path);
+		Image::make( $file->getRealPath() )->save($path);
 
 		return $filename;
+	}
+
+
+	/**
+	 * Returns the image URL of the image
+	 *
+	 * @return 	string
+	 */
+	public function getImageURL()
+	{
+		$path = Config::get('dream.paths.vote');
+		return url("{$path}/{$this->image}");
 	}
 
 	/*

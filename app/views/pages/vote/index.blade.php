@@ -6,13 +6,13 @@
 	<h1> Vote 4 Points </h1>
 	<hr>
 
-	@if( Session::has('news-deleted-success') )
+	@if( Session::has('vote-link-deleted-success') )
 		<div class="alert alert-success">
 			<p> The article was successfully deleted! </p>
 		</div>
 	@endif
 
-	@if( Session::has('news-stored-success') )
+	@if( Session::has('vote-link-stored-success') )
 		<div class="alert alert-success">
 			<p> The article was successfully published! </p>
 		</div>
@@ -32,7 +32,7 @@
 					<td> # </td>
 					<td> Title </td>
 					<td> Link </td>
-					<td> Hits </td>
+					<td> Actions </td>
 				</tr>
 			</thead>
 
@@ -47,7 +47,7 @@
 							</a>
 						</td>
 						<td>
-							<a href="{{ URL::to('admin/news/' . $link->id . '/edit') }}">
+							<a href="{{ URL::to('admin/vote-links/' . $link->id . '/edit') }}">
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
 
@@ -80,10 +80,9 @@
 
 			dlt.on('click', function(e) {
 				e.preventDefault();
-				console.log('Clicked');
 				var	response 	= confirm(prompt),
 					self 		= $(this),
-					url 		= '{{ url('admin/news') }}/' + self.data('id'),
+					url 		= '{{ url('admin/vote-links') }}/' + self.data('id'),
 					data 		= {
 						'_token': _token.val(),
 					}
