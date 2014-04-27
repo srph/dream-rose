@@ -78,13 +78,13 @@
 				<div class="clearfix">
 					<button type="submit" class="btn btn-success" id="vote-btn">
 						<i class="glyphicon glyphicon-pencil"></i>
-						Publish Article
+						Publish News
 					</button>
 
-					<button type="button" class="btn btn-warning pull-right">
+					<a href="{{ URL::to('admin/news') }}" class="btn btn-warning pull-right">
 						<i class="glyphicon glyphicon-remove"></i>
 						Cancel
-					</button>
+					</a>
 				</div>
 
 			{{ Form::close() }}
