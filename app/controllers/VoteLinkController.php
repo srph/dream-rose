@@ -16,6 +16,8 @@ class VoteLinkController extends \BaseController {
 	public function __construct(VoteLink $vote)
 	{
 		$this->vote = $vote;
+		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
+		$this->beforeFilter('gm');
 	}
 
 	/**
@@ -25,12 +27,12 @@ class VoteLinkController extends \BaseController {
 	 */
 	public function index()
 	{
-		$votes = $this->vote
+		$links = $this->vote
 			->orderBy('id', 'desc')
-			->paginate(5);
+			->paginate(10);
 
 		return View::make('pages/vote.index')
-			->with('votes', $votes);
+			->with('links', $links);
 	}
 
 
@@ -121,6 +123,7 @@ class VoteLinkController extends \BaseController {
 			return Redirect::to('admin/vote-links')
 				->with('vote-link-nonexistent', '');
 		}
+
 		// Grab input
 		$input = Input::all();
 

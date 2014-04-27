@@ -18,14 +18,14 @@
 		</div>
 	@endif
 
-	<div class="form-group">
-		<a href="{{ URL::to('admin/news/create') }}" class="btn btn-primary">
-			<i class="glyphicon glyphicon-pencil"></i>
-			Publish New Article
-		</a>
-	</div>
-
 	@if( $news->count() )
+		<div class="form-group">
+			<a href="{{ URL::to('admin/news/create') }}" class="btn btn-primary">
+				<i class="glyphicon glyphicon-pencil"></i>
+				Publish New Article
+			</a>
+		</div>
+		
 		<table class="table table-hover">
 			<thead>
 				<tr>

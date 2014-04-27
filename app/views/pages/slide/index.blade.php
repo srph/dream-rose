@@ -26,6 +26,13 @@
 	</div>
 
 	@if( $slides->count() )
+		<div class="form-group">
+			<a href="{{ URL::to('admin/slide/create') }}" class="btn btn-primary">
+				<i class="glyphicon glyphicon-pushpin"></i>
+				Post New Slide
+			</a>
+		</div>
+		
 		<table class="table table-hover">
 			<thead>
 				<tr>
