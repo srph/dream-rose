@@ -112,6 +112,16 @@ class VoteLink extends Eloquent {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('user');
+		return $this->belongsTo('User', 'id', 'user_id');
+	}
+
+	/**
+	 * ORM with the [VoteLog] table
+	 *
+	 * @return 	VoteLog
+	 */
+	public function logs()
+	{
+		return $this->hasMany('VoteLog', 'id', 'vote_link_id');
 	}
 }

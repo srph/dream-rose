@@ -23,8 +23,10 @@
 
 @section('scripts')
 	<script>
-		setInterval(function() {
-			window.location.href = '{{ $link->link }}';
-		}, 2000);
+		if( {{ $response }} ) {
+			setInterval(function() {
+				window.location.href = '{{ $link->link }}';
+			}, 2000);
+		}
 	</script>
 @stop
