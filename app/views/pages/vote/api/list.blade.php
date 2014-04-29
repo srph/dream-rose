@@ -6,20 +6,27 @@
 	<h4> Vote 4 Points! </h4>
 	<hr>
 
-	@foreach($links as $index => $link)
-		@if( $index % 2 == 0 || $index == 0 )
-			<div class="row text-center">
-		@endif
+	@if( $links->count() )
+		@foreach($links as $index => $link)
+			@if( $index % 2 == 0 || $index == 0 )
+				<div class="row text-center">
+			@endif
 
-		<div class="col-md-4">
-			<a href="{{ URL::to('panel/vote/response/' . $link->id) }}">
-				<img src="{{ $link->getImageURL() }}">
-			</a>
-		</div>
-		
-
-		@if( $index % 2 )
+			<div class="col-md-4">
+				<a href="{{ URL::to('panel/vote/response/' . $link->id) }}">
+					<img src="{{ $link->getImageURL() }}">
+				</a>
 			</div>
-		@endif
-	@endforeach
+			
+
+			@if( $index % 2 )
+				</div>
+			@endif
+		@endforeach
+	@else
+		<div class="alert alert-info">
+			<p> Thank you the support, however vote links are yet to be available. Please do come back again later! </p>
+		</div>
+	@endif
+
 @stop

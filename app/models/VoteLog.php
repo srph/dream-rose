@@ -71,10 +71,10 @@ class VoteLog extends Eloquent {
 	 */
 	public static function intervalValid($log)
 	{
-		$interval = Config::get('dream.links.interval');
-		$log 	= strtotime( $log->created_at );
-		$now 	= Carbon::now();
-		$logged = Carbon::createFromTimestamp( $log );
+		$interval 	= Config::get('dream.links.interval');
+		$log 		= strtotime( $log->created_at );
+		$now 		= Carbon::now();
+		$logged 	= Carbon::createFromTimestamp( $log );
 
 		if ( $logged->diffInHours($now) >= $interval ) {
 			return true;
@@ -99,7 +99,7 @@ class VoteLog extends Eloquent {
 
 		if ( is_null($log) ) return false;
 
-		return $ip;
+		return $log;
 	}
 
 	/**
@@ -156,7 +156,7 @@ class VoteLog extends Eloquent {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'user_id');
+		return $this->belongsTo('User');
 	}
 
 	/**
@@ -166,7 +166,7 @@ class VoteLog extends Eloquent {
 	 */
 	public function links()
 	{
-		return $this->belongsTo('VoteLink', 'vote_link_id');
+		return $this->belongsTo('VoteLink');
 	}
 
 }

@@ -10,4 +10,6 @@
 	@endif
 @endif
 
-@include('templates/modules/side.vote')
+@if( $v4us->count() || Request::is('panel/vote/*') )
+	@include('templates/modules/side.vote')
+@endif
