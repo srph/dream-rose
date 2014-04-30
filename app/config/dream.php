@@ -58,7 +58,7 @@ return array(
 		'slides' => 'uploads/slides',
 		'news'   => 'uploads/news',
 		'vote'   => 'uploads/vote_links',
-		'item'   => 'uploads/item',
+		'item'   => 'uploads/items',
 
 	),
 

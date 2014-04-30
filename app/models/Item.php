@@ -25,6 +25,7 @@ class Item extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = array(
+		'category_id',
 		'name',
 		'description',
 		'dp_price',
@@ -141,6 +142,34 @@ class Item extends Eloquent {
 	public function sendToStorage(User $user)
 	{
 		//
+	}
+
+	/**
+	 * Returns the appropriate URL of its icon
+	 *
+	 * @return 	string
+	 */
+	public function getIconURL()
+	{
+		$config = Config::get('dream.paths.item');
+
+		return public_path() . "/{$config}/{$this->icon}";
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| ORM
+	|--------------------------------------------------------------------------
+	*/
+
+	/**
+	 * ORM with the ItemCategory model
+	 *
+	 * @return 	ItemCategory
+	 */
+	public function category()
+	{
+		return $this->belongsTo('ItemCategory', 'category_id', 'id');
 	}
 
 }

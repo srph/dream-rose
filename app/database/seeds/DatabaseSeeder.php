@@ -13,9 +13,11 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('UserSeeder');
 		$this->call('VPSeeder');
+		$this->call('DPSeeder');
 		$this->call('SlideSeeder');
 		$this->call('NewsSeeder');
 		$this->call('LinkSeeder');
+		$this->call('ItemSeeder');
 	}
 
 }
