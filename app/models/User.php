@@ -212,6 +212,11 @@ class User extends Base implements UserInterface, RemindableInterface {
 		return $this->votePoint->count;
 	}
 
+	public function getDpAttribute()
+	{
+		return $this->donationPoint->count;
+	}
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -240,6 +245,16 @@ class User extends Base implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * ROWM with the DonationPointmodel
+	 *
+	 * @return 	DonationPoint
+	 */
+	public function donationPoint()
+	{
+		return $this->hasOne('DonationPoint');
+	}
+
+	/**
 	 * ORM with the News model
 	 *
 	 * @return 	News
@@ -258,7 +273,6 @@ class User extends Base implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Slide');
 	}
-
 
 	/**
 	 * ORM with the VoteLog model

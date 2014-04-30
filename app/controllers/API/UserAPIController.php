@@ -11,7 +11,7 @@ class UserAPIController extends BaseController {
 	/**
 	 * Apply filter and inject dependencies
 	 *
-	 *
+	 * @param 	User 	$user
 	 */
 	public function __construct(User $user)
 	{
@@ -59,12 +59,15 @@ class UserAPIController extends BaseController {
 			$user->MotherLName 	= Input::get('mname');
 			$user->Right 		= 1;
 
-			if($user->save()) {
+			if( $user->save() ) {
 				$user 	= User::where('Account', $username)->first();
 
-				// Create his vote point
+				// Create his vote point and donation point table
 				$vp 	= new VotePoint;
-				if($user->votePoint()->save($vp)) {
+				$dp  	= new DonationPoint;
+
+				if( $user->votePoint()->save($vp) &&
+					$user->donationPoint()->save($dp) ) {
 					return View::make('pages/user.create-success');
 				}
 			}

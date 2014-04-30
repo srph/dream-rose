@@ -1,13 +1,13 @@
 <?php
 
-class VotePoint extends Eloquent {
+class DonationPoint extends Eloquent {
 
 	/**
 	 * Table used by the model
 	 *
 	 * @var string
 	 */
-	protected $table = 'vote_points';
+	protected $table = 'donation_points';
 
 	/**
 	 * Fields guarded by the model

@@ -1,0 +1,149 @@
+<?php
+
+class ItemController extends \BaseController {
+
+	/**
+	 *
+	 * @var Item
+	 */ 
+	protected $item;
+
+	/**
+	 *
+	 * @param 	Item 	$item
+	 * @return 	bool
+	 */
+	public function __construct(Item $item)
+	{
+		$this->item = $item;
+		$this->beforeFilter('csrf', array('on' => array('post', 'put', 'delete')));
+		$this->beforeFilter('gm', array('except' => array('show')));
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$items = $this->item->all();
+
+		return View::make('pages/item.index')
+			->with('items', $items);
+	}
+
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return View::make('pages/item.create');
+	}
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		// Grab all input
+		$input = Input::all();
+
+		// Validate
+		$validation = $this->item->validateForCreation($input);
+
+		if ( $validation->passes() ) {
+			$item = $this->item;
+			$item->fill($input);
+
+			if  ( $item->save() ) {
+				return Redirect::to('item.index')
+					->with('item-created-success', '');
+			}
+		}
+
+		return Redirect::back()
+			->withErrors()
+			->withInput();
+	}
+
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		$item = $this->item->find($id);
+
+		return View::make('pages/item.edit')
+			->with('item', $item);
+	}
+
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$item = $this->item->find($id);
+		// Grab all input
+		$input = Input::all();
+
+		$validation = $this->item->validateForUpdate($input);
+
+		if ( $validation->passes() ) {
+			$item->fill($input);
+
+			if( $item->save() ) {
+				return Redirect::back()
+					->with('item-updated-success', '');
+			}
+		}
+
+		return Redirect::back()
+			->withErrors()
+			->withInput();
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$item = $this->item->find($id);
+
+		if ( $item->delete() ) return Response::json(array('status' => true));
+
+		return Response::json(array('status' => false));
+	}
+
+
+}

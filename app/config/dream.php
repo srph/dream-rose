@@ -55,9 +55,10 @@ return array(
 
 	'paths' => array(
 
-		'slides'	=> 'uploads/slides',
-		'news'		=> 'uploads/news',
-		'vote'		=> 'uploads/vote_links'
+		'slides' => 'uploads/slides',
+		'news'   => 'uploads/news',
+		'vote'   => 'uploads/vote_links',
+		'item'   => 'uploads/item',
 
 	),
 
