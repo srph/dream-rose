@@ -112,7 +112,7 @@ class Item extends Eloquent {
 	 */
 	public function buyWithVP(User $user)
 	{
-		$vp 		= $user->votePoints;
+		$vp 		= $user->votePoint;
 		$current 	= $vp->count;
 		$deduction 	= $this->vp_price;
 		$deducted 	= $current - $deduction;
@@ -121,7 +121,7 @@ class Item extends Eloquent {
 		if ( $deduction == 0 ) throw new PaymentGatewayInvalidException;
 
 		// Check if the user has sufficient points to buy the item
-		if ( $current > $deduction ) throw new PointsInsufficientException;
+		if ( $current < $deduction ) throw new PointsInsufficientException;
 
 		// Update the user's points
 		$vp->count = $deducted;
@@ -138,7 +138,7 @@ class Item extends Eloquent {
 	 */
 	public function buyWithDP(User $user)
 	{
-		$dp 		= $user->donationPoints;
+		$dp 		= $user->donationPoint;
 		$current 	= $dp->count;
 		$deduction 	= $this->dp_price;
 		$deducted 	= $current - $deduction;
@@ -147,12 +147,43 @@ class Item extends Eloquent {
 		if ( $deduction == 0 ) throw new PaymentGatewayInvalidException;
 
 		// Check if the user has sufficient points to buy the item
-		if ( $current > $deduction ) throw new PointsInsufficientException;
+		if ( $current < $deduction ) throw new PointsInsufficientException;
 
 		$dp->count = $deducted;
 		if ( $dp->save() ) return true;			
 
 		return false;
+	}
+
+	public function transactionPossible($payment)
+	{
+		switch($payment) {
+			case 'vp':
+				if($this->vp_price <= 0)
+					return true;
+
+			case 'dp':
+				if($this->dp_price <= 0)
+					return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 *
+	 * @param 	string 	$payment
+	 * @param 	User 	$user
+	 */
+	public function transact($payment, User $user)
+	{
+		switch($payment) {
+			case 'vp':
+				return $this->buyWithVP($user);
+
+			case 'dp':
+				return $this->buyWithDP($user);
+		}
 	}
 
 	/**
@@ -163,7 +194,7 @@ class Item extends Eloquent {
 	 */
 	public function sendToStorage(User $user)
 	{
-		//
+		return true;
 	}
 
 	/**
