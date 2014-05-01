@@ -12,7 +12,7 @@
 			Characters
 		</a>			
 		
-		<a href="#" class="list-group-item">
+		<a href="{{ URL::to('panel/mall') }}" class="list-group-item">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>
 			Mall
 		</a>

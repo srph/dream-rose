@@ -25,6 +25,7 @@ class ItemController extends \BaseController {
 		$this->category = $category;
 		$this->beforeFilter('csrf', array('on' => array('post', 'put', 'delete')));
 		$this->beforeFilter('gm', array('except' => array('show')));
+		Event::fire('item.categories.cache');
 	}
 
 	/**
@@ -86,27 +87,28 @@ class ItemController extends \BaseController {
 		$input = Input::all();
 
 		// Validate
-		$validation = $this->item->validateForCreation($input);
+		$validation = $this->item->validForCreation($input);
 
 		if ( $validation->passes() ) {
 			$item = $this->item;
 			$icon = Input::file('icon');
+			$category  = $this->category->find( $input['category'] );
 
 			$item->name 		= Input::get('name');
-			$item->vp_price 	= Input::get('vp');
-			$item->dp_price 	= Input::get('dp');
+			$item->vp_price 	= Input::get('vp_price');
+			$item->dp_price 	= Input::get('dp_price');
 			$item->description 	= Input::get('description');
 			$item->icon 		= $this->item->upload($icon);
 			$item->hexa 		= Input::get('hexa');
 
-			if  ( $item->save() ) {
-				return Redirect::to('item.index')
-					->with('item-created-success', '');
+			if  ( $category->items()->save($item) ) {
+				return Redirect::to('admin/item')
+					->with('item-stored-success', '');
 			}
 		}
 
 		return Redirect::back()
-			->withErrors()
+			->withErrors($validation)
 			->withInput();
 	}
 
@@ -132,9 +134,11 @@ class ItemController extends \BaseController {
 	public function edit($id)
 	{
 		$item = $this->item->find($id);
+		$categories = $this->category->all();
 
 		return View::make('pages/item.edit')
-			->with('item', $item);
+			->with('item', $item)
+			->with('categories', $categories);
 	}
 
 
@@ -150,10 +154,19 @@ class ItemController extends \BaseController {
 		// Grab all input
 		$input = Input::all();
 
-		$validation = $this->item->validateForUpdate($input);
+		$validation = $this->item->validForUpdate($input);
 
 		if ( $validation->passes() ) {
-			$item->fill($input);
+			$item->name 		= Input::get('name');
+			$item->category_id 	= Input::get('category');
+			$item->vp_price 	= Input::get('vp_price');
+			$item->dp_price 	= Input::get('dp_price');
+			$item->description 	= Input::get('description');
+			if( Input::hasFile('icon') ) {
+				$icon = Input::file('icon');
+				$item->icon = $this->item->upload($icon);
+			}
+			$item->hexa 		= Input::get('hexa');
 
 			if( $item->save() ) {
 				return Redirect::back()
@@ -162,7 +175,7 @@ class ItemController extends \BaseController {
 		}
 
 		return Redirect::back()
-			->withErrors()
+			->withErrors($validation)
 			->withInput();
 	}
 

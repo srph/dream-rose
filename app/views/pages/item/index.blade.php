@@ -8,13 +8,13 @@
 
 	@if( Session::has('item-deleted-success') )
 		<div class="alert alert-success">
-			<p> The <strong>slide</strong> has been successfully <strong>deleted</strong>! </p>
+			<p> The <strong>item</strong> has been successfully <strong>deleted</strong>! </p>
 		</div>
 	@endif
 
 	@if( Session::has('item-stored-success') )
 		<div class="alert alert-success">
-			<p> The <strong>slide</strong> has been successfully <strong>posted</strong>! </p>
+			<p> The <strong>item</strong> has been successfully <strong>posted</strong>! </p>
 		</div>
 	@endif
 
@@ -54,7 +54,7 @@
 						<td> {{ $item->id }} </td>
 						<td> {{ $item->name }} </td>
 						<td>
-							<a href="{{ URL::to('admin/slide/' . $item->id . '/edit') }}">
+							<a href="{{ URL::to('admin/item/' . $item->id . '/edit') }}">
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
 

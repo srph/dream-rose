@@ -39,7 +39,7 @@ class Item extends Eloquent {
 	 * 
 	 * @var boolean
 	 */
-	public $timestamps = true;
+	public $timestamps = false;
 
 	/**
 	 * Validates input for creation
@@ -54,8 +54,30 @@ class Item extends Eloquent {
 			'dp_price'	=> 'integer',
 			'vp_price' 	=> 'integer',
 			'hexa' 		=> 'required',
-			'icon'		=> 'image'
+			'icon'		=> 'required|image',
+			'category'	=> 'required'
 		);
+
+		return Validator::make($input, $rules);
+	}
+
+	/**
+	 * Validates input for creation
+	 *
+	 * @param 	array 	$input
+	 * @return 	Validator
+	 */
+	public function validForUpdate(array $input)
+	{
+		$rules = array(
+			'name' 		=> 'required',
+			'dp_price'	=> 'integer',
+			'vp_price' 	=> 'integer',
+			'hexa' 		=> 'required',
+			'category'	=> 'required'
+		);
+
+		if( $input['icon'] ) $rules['icon'] = 'required|image';
 
 		return Validator::make($input, $rules);
 	}
@@ -69,13 +91,13 @@ class Item extends Eloquent {
 	public function upload($file)
 	{
 		// Config
-		$config 	= Config::get('paths.item');
+		$config 	= Config::get('dream.paths.item');
 
 		// File name
 		$random 	= Str::random(6);
 		$extension 	= $file->getClientOriginalExtension();
 		$filename 	= "{$random}.{$extension}";
-		$path 		= public_path() . '/{$config}/{$filename}';
+		$path 		= public_path() . "/{$config}/{$filename}";
 
 		Image::make( $file->getRealPath() )->save($path);
 
@@ -153,7 +175,7 @@ class Item extends Eloquent {
 	{
 		$config = Config::get('dream.paths.item');
 
-		return public_path() . "/{$config}/{$this->icon}";
+		return url("{$config}/{$this->icon}");
 	}
 
 	/*

@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration {
 			$table->increments('id');
 			$table->integer('category_id');
 			$table->string('name');
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->integer('vp_price')->default(0);
 			$table->integer('dp_price')->default(0);
 			$table->string('hexa');

@@ -17,10 +17,11 @@
 
 				<div class="form-group">
 					<label> Name <span class="off"> * </span> </label>
-					<input type="text" class="form-control" name="title" value="{{ Input::old('title') }}">
-					@if( $errors->has('title') )
+					<input type="text" class="form-control" name="name" value="{{ Input::old('name') }}">
+					<p> </p>
+					@if( $errors->has('name') )
 						<div class="alert alert-danger">
-							<p> {{ $errors->first('title') }} </p>
+							<p> {{ $errors->first('name') }} </p>
 						</div>
 					@endif
 				</div>
@@ -28,15 +29,15 @@
 
 				<div class="form-group">
 					<label> Category <span class="off"> * </span> </label>
-					<select name="type" class="form-control">
+					<select name="category" class="form-control">
 						@foreach($categories as $category)
 							<option value="{{ $category->id }}"> {{ $category->name }} </option>
 						@endforeach
 					</select>
 
-					@if( $errors->has('type') )
+					@if( $errors->has('category') )
 						<div class="alert alert-danger">
-							<p> {{ $errors->first('type') }} </p>
+							<p> {{ $errors->first('category') }} </p>
 						</div>
 					@endif
 				</div>
@@ -45,14 +46,28 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label> Vote Point Price <span class="off"> * </span> </label>
-							<input type="text" name="vp" class="form-control">
+							<input type="text" name="vp_price" class="form-control" value="{{ Input::old('vp_price') }}">
+							<p class="help-block"> Value will become 0 when left blank. </p>
+							@if( $errors->has('vp_price') )
+								<p> </p>
+								<div class="alert alert-danger">
+									<p> {{ $errors->first('vp_price') }} </p>
+								</div>
+							@endif
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
 							<label> Donation Point Price <span class="off"> * </span> </label>
-							<input type="text" name="dp" class="form-control">
+							<input type="text" name="dp_price" class="form-control" value="{{ Input::old('dp_price') }}">
+							<p class="help-block"> Value will become 0 when left blank. </p>
+							@if( $errors->has('dp_price') )
+								<p> </p>
+								<div class="alert alert-danger">
+									<p> {{ $errors->first('dp_price') }} </p>
+								</div>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -60,32 +75,32 @@
 
 				<div class="form-group">
 					<label> Hexa Value <span class="off"> * </span> </label>
-					<input type="text" name="hexa" class="form-control">
+					<input type="text" name="hexa" class="form-control" value="{{ Input::old('hexa') }}">
 					<p class="help-block"> Hexadecimal value of the item. </p>
-				</div>
-
-
-				<div class="form-group">
-					<label> Description <span class="off"> * </span> </label>
-					<textarea class="form-control" name="content" rows="5">{{ Input::old('content') }}</textarea>
-					@if( $errors->has('content') )
+					@if( $errors->has('hexa') )
 						<p> </p>
 						<div class="alert alert-danger">
-							<p> {{ $errors->first('content') }} </p>
+							<p> {{ $errors->first('hexa') }} </p>
 						</div>
 					@endif
 				</div>
 
 
 				<div class="form-group">
+					<label> Description <span class="off"> * </span> </label>
+					<textarea class="form-control" name="description" rows="5">{{ Input::old('description') }}</textarea>
+				</div>
+
+
+				<div class="form-group">
 					<label> Icon <span class="off"> * </span> </label>
-					<input type="file" name="cover">
+					<input type="file" name="icon">
 
 					<p class="help-block">
 						Self-explanatory.
 					</p>
 
-					@if( $errors->has('cover') )
+					@if( $errors->has('icon') )
 						<div class="alert alert-danger">
 							<p> {{ $errors->first('icon') }} </p>
 						</div>
