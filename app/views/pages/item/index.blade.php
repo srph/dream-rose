@@ -32,7 +32,7 @@
 			</div>
 
 			<div class="form-group">
-				<a href="{{ URL::to('admin/slide/create') }}" class="btn btn-primary">
+				<a href="{{ URL::to('admin/item/create') }}" class="btn btn-primary">
 					<i class="glyphicon glyphicon-pushpin"></i>
 					Post New Item
 				</a>

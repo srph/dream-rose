@@ -36,7 +36,7 @@ class ItemController extends \BaseController {
 	{
 		if ( ! Input::has('category') ) {
 			$items = $this->item
-				->orderBy('name', 'as'c)
+				->orderBy('name', 'asc')
 				->paginate(10);
 		} else {
 			$category = Input::get('category');
@@ -50,7 +50,7 @@ class ItemController extends \BaseController {
 				return Redirect::route('admin.item.index');
 				
 			$items = $items->items()
-				->orderBy('name', 'as'c)
+				->orderBy('name', 'asc')
 				->paginate(10);
 		}
 
@@ -69,7 +69,9 @@ class ItemController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pages/item.create');
+		$categories = $this->category->all();
+		return View::make('pages/item.create')
+			->with('categories', $categories);
 	}
 
 
@@ -88,7 +90,14 @@ class ItemController extends \BaseController {
 
 		if ( $validation->passes() ) {
 			$item = $this->item;
-			$item->fill($input);
+			$icon = Input::file('icon');
+
+			$item->name 		= Input::get('name');
+			$item->vp_price 	= Input::get('vp');
+			$item->dp_price 	= Input::get('dp');
+			$item->description 	= Input::get('description');
+			$item->icon 		= $this->item->upload($icon);
+			$item->hexa 		= Input::get('hexa');
 
 			if  ( $item->save() ) {
 				return Redirect::to('item.index')
