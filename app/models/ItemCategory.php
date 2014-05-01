@@ -46,7 +46,7 @@ class ItemCategory extends Eloquent {
 	 */
 	public function items()
 	{
-		return $this->hasMany('Item', 'id', 'category_id');
+		return $this->hasMany('Item', 'category_id', 'id');
 	}
 	
 }

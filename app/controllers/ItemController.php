@@ -10,12 +10,19 @@ class ItemController extends \BaseController {
 
 	/**
 	 *
+	 * @var ItemCategory
+	 */
+	protected $category;
+
+	/**
+	 *
 	 * @param 	Item 	$item
 	 * @return 	bool
 	 */
-	public function __construct(Item $item)
+	public function __construct(Item $item, ItemCategory $category)
 	{
 		$this->item = $item;
+		$this->category = $category;
 		$this->beforeFilter('csrf', array('on' => array('post', 'put', 'delete')));
 		$this->beforeFilter('gm', array('except' => array('show')));
 	}
@@ -27,10 +34,31 @@ class ItemController extends \BaseController {
 	 */
 	public function index()
 	{
-		$items = $this->item->all();
+		if ( ! Input::has('category') ) {
+			$items = $this->item
+				->orderBy('name', 'as'c)
+				->paginate(10);
+		} else {
+			$category = Input::get('category');
+
+			$items = $this->category
+				->with('items')
+				->where('name', $category)
+				->first();
+
+			if( is_null($items) )
+				return Redirect::route('admin.item.index');
+				
+			$items = $items->items()
+				->orderBy('name', 'as'c)
+				->paginate(10);
+		}
+
+		$categories = $this->category->all();
 
 		return View::make('pages/item.index')
-			->with('items', $items);
+			->with('items', $items)
+			->with('categories', $categories);
 	}
 
 

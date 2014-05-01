@@ -14,51 +14,51 @@ class FillItemCategoryTable extends Migration {
 	{
 		$data = array(
 			array(
-				'name'	=> 'Face'
+				'name'	=> 'face'
 			),
 
 			array(
-				'name'	=> 'Arms'
+				'name'	=> 'arms'
 			),
 
 			array(
-				'name'	=> 'Body'
+				'name'	=> 'body'
 			),
 
 			array(
-				'name'	=> 'Foot'
+				'name'	=> 'foot'
 			),
 
 			array(
-				'name'	=> 'Cap'
+				'name'	=> 'cap'
 			),
 
 			array(
-				'name'	=> 'Wings'
+				'name'	=> 'wings'
 			),
 
 			array(
-				'name'	=> 'Accessories'
+				'name'	=> 'accessories'
 			),
 
 			array(
-				'name'	=> 'Weapon'
+				'name'	=> 'weapon'
 			),
 
 			array(
-				'name'	=> 'Gem'
+				'name'	=> 'gem'
 			),
 
 			array(
-				'name'	=> 'Sub Weapon'
+				'name'	=> 'sub Weapon'
 			),
 
 			array(
-				'name'	=> 'Pat'
+				'name'	=> 'pat'
 			),
 
 			array(
-				'name'	=> 'Use Items'
+				'name'	=> 'use items'
 			),
 		);
 

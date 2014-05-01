@@ -19,11 +19,24 @@
 	@endif
 
 	@if( $items->count() )
-		<div class="form-group">
-			<a href="{{ URL::to('admin/slide/create') }}" class="btn btn-primary">
-				<i class="glyphicon glyphicon-pushpin"></i>
-				Post New Slide
-			</a>
+		<div class="clearfix">
+			<div class="pull-right">
+				<div style="width: 300px;">
+					<select class="form-control" name="category">
+						<option value=""> Select Category </option>
+						@foreach($categories as $category)
+							<option value="{{ $category->name }}"> {{ ucfirst($category->name) }} </option>
+						@endforeach
+						</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<a href="{{ URL::to('admin/slide/create') }}" class="btn btn-primary">
+					<i class="glyphicon glyphicon-pushpin"></i>
+					Post New Item
+				</a>
+			</div>
 		</div>
 		
 		<table class="table table-hover">
@@ -31,7 +44,6 @@
 				<tr>
 					<td> # </td>
 					<td> Item Name </td>
-					<td> Link </td>
 					<td> Action </td>
 				</tr>
 			</thead>
@@ -40,14 +52,7 @@
 				@foreach($items as $item)
 					<tr>
 						<td> {{ $item->id }} </td>
-						<td> {{ $item->summary }} </td>
-						<td>
-							@if( $item->link )
-								<a href="{{ $item->link }}">
-									<i class="glyphicon glyphicon-share-alt"></i>
-								</a>
-							@endif
-						</td>
+						<td> {{ $item->name }} </td>
 						<td>
 							<a href="{{ URL::to('admin/slide/' . $item->id . '/edit') }}">
 								<i class="glyphicon glyphicon-pencil"></i>
@@ -64,11 +69,31 @@
 			</tbody>
 		</table>
 
-		{{ $items->links() }}
+		{{ $items->links('pages/item/partials.pagination') }}
 	@else
+		<div class="clearfix">
+			<div class="pull-right">
+				<div style="width: 300px;">
+					<select class="form-control" name="category">
+						<option value=""> Select Category </option>
+						@foreach($categories as $category)
+							<option value="{{ $category->name }}"> {{ ucfirst($category->name) }} </option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<p> </p>
+
 		<div class="alert alert-info">
-			You have not yet posted a slide. Why don't we
-			<a href="{{ URL::to('admin/slide/create') }}" class="alert-link">create one</a>?
+			@if( ! Input::has('category') )
+				You have not yet posted an item. Why don't we
+				<a href="{{ URL::to('admin/item/create') }}" class="alert-link">create one</a>?
+			@else
+				You have not yet posted an item for the {{ Input::get('category') }} category. Why don't we
+				<a href="{{ URL::to('admin/item/create') }}" class="alert-link">create one</a>?
+			@endif
 		</div>
 	@endif
 @stop
@@ -77,6 +102,7 @@
 	<script>
 		(function($) {
 			var dlt 	= $('.delete'),
+				cat 	= $('select[name=category]'),
 				_token 	= $('[name=_token]'),
 				prompt	= "Are you sure to delete this? This action cannot be undone";
 
@@ -103,6 +129,17 @@
 						}
 					})
 				}
+			});
+
+			@if( Input::has('category') )
+				cat.val('{{ Input::get('category') }}')
+			@endif
+
+			cat.on('change', function() {
+				var id = $(this).val();
+				var url = '{{ url('admin/item') }}?category=' + id;
+
+				window.location.href = (url);
 			});
 		})(jQuery);
 	</script>

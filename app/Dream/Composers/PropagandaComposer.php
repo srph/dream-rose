@@ -38,7 +38,6 @@ class PropagandaComposer {
 	 * @param 	Slide 							$slide
 	 * @param 	News 						 	$news
 	 * @param 	Illuminate\Cache\Repository 	$cache
-	 * @param 	Illuminate\View\Environment 	$view
 	 * @param 	Illuminate\Config\Repository 	$config
 	 */
 	public function __construct(Slide $slide, News $news, Cache $cache, Config $config)
