@@ -97,7 +97,7 @@ return array(
 			'width' => '387',
 			'height' => '162'
 
-		),
+		)
 
 	),
 

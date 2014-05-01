@@ -14,10 +14,53 @@ class FillItemCategoryTable extends Migration {
 	{
 		$data = array(
 			array(
-				'id'	=>	1,
-				'name'	=> 'Head'
-			)
-		)
+				'name'	=> 'Face'
+			),
+
+			array(
+				'name'	=> 'Arms'
+			),
+
+			array(
+				'name'	=> 'Body'
+			),
+
+			array(
+				'name'	=> 'Foot'
+			),
+
+			array(
+				'name'	=> 'Cap'
+			),
+
+			array(
+				'name'	=> 'Wings'
+			),
+
+			array(
+				'name'	=> 'Accessories'
+			),
+
+			array(
+				'name'	=> 'Weapon'
+			),
+
+			array(
+				'name'	=> 'Gem'
+			),
+
+			array(
+				'name'	=> 'Sub Weapon'
+			),
+
+			array(
+				'name'	=> 'Pat'
+			),
+
+			array(
+				'name'	=> 'Use Items'
+			),
+		);
 
 		DB::table('item_categories')->insert($data);
 	}

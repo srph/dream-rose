@@ -1,8 +1,10 @@
 <?php namespace Dream\Events;
 
+use Carbon\Carbon;
 use Illuminate\Auth\AuthManager as Auth;
 use Illuminate\Cache\Repository as Cache;
 use Illuminate\View\Environment as View;
+use Illuminate\Config\Repository as Config;
 
 class ViewEventHandler {
 
@@ -26,14 +28,22 @@ class ViewEventHandler {
 
 	/**
 	 *
+	 * @var Illuminate\View\Environment
+	 */
+	protected $config;
+
+	/**
+	 *
 	 *
 	 * @param 	Illuminate\Auth\AuthManager 	$auth
 	 * @param 	Illuminate\Cache\Repository 	$cache
 	 * @param 	Illuminate\View\Environment 	$view
+	 * @param 	Illuminate\Config\Repository 	$config
 	 */
-	public function __construct(Auth $auth, Cache $cache, View $view)
+	public function __construct(Auth $auth, Cache $cache, View $view, Config $config)
 	{
 		$this->auth = $auth;
+		$this->config = $config;
 		$this->cache = $cache;
 		$this->view = $view;
 	}
@@ -49,6 +59,24 @@ class ViewEventHandler {
 		$this->view->share('server', $this->cache->get('server.ports') );
 
 		if ( $this->auth->check() ) $this->view->share( 'auth', $this->auth->user() );
+	}
+
+	public function showPropaganda()
+	{
+		$this->cachePropaganda();
+
+		$this->view->composer('pages/home.index', function($view)
+		{
+			$events 	= $this->cache->get('news.events');
+			$updates 	= $this->cache->get('news.updates');
+			$news 		= $this->cache->get('news.articles');
+			$slides 	= $this->cache->get('slides');
+
+			$view->with('news', $news)
+				->with('updates', $updates)
+				->with('events', $events)
+				->with('slides', $slides);
+		});
 	}
 
 	/**

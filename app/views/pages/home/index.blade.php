@@ -8,16 +8,16 @@
 	<div class="row">
 		@foreach($news as $article)
 			<div class="col-md-4">
-				<div class="thumbnail" style="height: 275px;">
+				<div class="thumbnail" style="height: 290px;">
 					<img src="{{ $article->getImageURL() }}" width="238" height="162">
 
 					<div class="caption">
 						<h5> <strong> {{ $article->title }} </strong> </h5>
 
 						<p> {{ $article->summary }} </p>
-					</div>
 
-					<small> by {{ $article->user->username }} </small>
+						<small> by {{ $article->user->username }} </small>
+					</div>
 				</div>
 			</div>
 		@endforeach

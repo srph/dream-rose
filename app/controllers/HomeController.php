@@ -6,15 +6,21 @@ class HomeController extends BaseController {
 
 	/**
 	 *
-	 * @var Slide
-	 */
-	protected $slide;
-
-	/**
-	 *
 	 * @var News
 	 */
 	protected $news;
+
+	/**
+	 *
+	 * @var Clan
+	 */
+	protected $clan;
+
+	/**
+	 *
+	 * @var Character
+	 */
+	protected $character;
 
 	/**
 	 * Apply filter and inject dependencies
@@ -22,13 +28,8 @@ class HomeController extends BaseController {
 	 * @param 	Slide 	$slide
 	 * @param 	News 	$news
 	 */
-	public function __construct(Slide $slide,
-		News $news,
-		Character $character,
-		Clan $clan
-	)
+	public function __construct(News $news, Character $character, Clan $clan)
 	{
-		$this->slide = $slide;
 		$this->news = $news;
 		$this->character = $character;
 		$this->clan = $clan;
@@ -41,65 +42,7 @@ class HomeController extends BaseController {
 	 */
 	public function getIndex()
 	{
-		$offset = Config::get('dream.slide.offset');		
-
-		if( !Cache::has('slides')) {
-			$slides = $this->slide
-				->orderBy('id', 'desc')
-				->take($offset)
-				->get();
-
-			$minutes = Config::get('dream.caching.slides');
-			$expiration = Carbon::now()->addMinutes($minutes);
-			Cache::add('slides', $slides, $expiration);
-		}
-
-		$minutes = Config::get('dream.caching.slides');
-		$expiration = Carbon::now()->addMinutes($minutes);
-
-		if( !Cache::has('news.articles') ) {
-			$news = $this->news
-				->getByType('news')
-				->orderBy('id', 'desc')
-				->take(3)
-				->get()
-				->load('user');
-
-			Cache::add('news.articles', $news, $expiration);
-		}
-
-		if( !Cache::has('news.updates') )  {
-			$updates = $this->news
-				->getByType('updates')
-				->orderBy('id', 'desc')
-				->take(5)
-				->get()
-				->load('user');
-
-			Cache::add('news.updates', $updates, $expiration);
-		}
-
-		if( !Cache::has('news.events') ) {
-			$events = $this->news
-				->getByType('events')
-				->orderBy('id', 'desc')
-				->take(5)
-				->get()
-				->load('user');
-
-			Cache::add('news.events', $events, $expiration);
-		}
-
-		$slides 	= Cache::get('slides');
-		$news 		= Cache::get('news.articles');
-		$updates 	= Cache::get('news.updates');
-		$events 	= Cache::get('news.events');
-
-		return View::make('pages/home.index')
-			->with('slides', $slides)
-			->with('news', $news)
-			->with('updates', $updates)
-			->with('events', $events, $expiration);
+		return View::make('pages/home.index');
 	}
 
 
