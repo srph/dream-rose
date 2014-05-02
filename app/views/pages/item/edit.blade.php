@@ -39,7 +39,7 @@
 					<label> Category <span class="off"> * </span> </label>
 					<select name="category" class="form-control">
 						@foreach($categories as $category)
-							<option value="{{ $category->id }}"> {{ $category->name }} </option>
+							<option value="{{ $category->id }}"> {{ ucfirst($category->name) }} </option>
 						@endforeach
 					</select>
 

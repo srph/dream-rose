@@ -94,8 +94,8 @@ return array(
 
 		'sizes' => array(
 
-			'width' => '387',
-			'height' => '162'
+			'width' => '801',
+			'height' => '250'
 
 		)
 
@@ -105,7 +105,9 @@ return array(
 
 		'interval' => 12,
 
-		'restriction' => true
+		'restriction' => true,
+
+		'points' => 4,
 
 	),
 

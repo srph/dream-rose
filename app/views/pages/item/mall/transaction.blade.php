@@ -28,7 +28,6 @@
 	<script>
 		(function($) {
 			$('#trs').on('click', function(e) {
-				alert('oy');
 				$('#trs-frm').submit();
 			});
 		})(jQuery);

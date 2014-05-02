@@ -18,7 +18,7 @@
 
 	@if( Session::has('item-transaction-success') )
 		<div class="alert alert-success">
-			<p> You have successfully purchased <strong>{{ Session::get('item-transaction-success') }}</strong> </p>
+			<p> You have successfully purchased <strong>{{ Session::get('item-transaction-success') }}</strong>  </p>
 		</div>
 	@endif
 

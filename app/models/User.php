@@ -180,6 +180,14 @@ class User extends Base implements UserInterface, RemindableInterface {
 			: false;
 	}
 
+	public function addVP($points)
+	{
+		$vp = $this->votePoint;
+		$count = $vp->count;
+		$vp->count = $count + $points;
+		$vp->save();
+	}
+
 	/**
 	 * Since our server files does not use the typical
 	 * field names, this sets our username to whatever is being used

@@ -41,12 +41,15 @@ class VoteAPIController extends BaseController {
 	public function getResponse($id)
 	{
 		$link = $this->vote->find($id);
+		$user = Auth::user();
 		if ( empty($link) ) return Redirect::to('admin/vote-links');
 
 		$user 		= Auth::user();
 		$ip 		= Request::getClientIp();
 		$interval 	= Config::get('dream.links.interval');
+		$points 	= Config::Get('dream.links.points');
 
+		$user->addVP($points);
 		$response = ( $this->log->mark($user, $link, $ip) );
 
 		return View::make('pages/vote/api.response')

@@ -159,11 +159,11 @@ class Item extends Eloquent {
 	{
 		switch($payment) {
 			case 'vp':
-				if($this->vp_price <= 0)
+				if($this->vp_price > 0)
 					return true;
 
 			case 'dp':
-				if($this->dp_price <= 0)
+				if($this->dp_price > 0)
 					return true;
 		}
 

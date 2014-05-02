@@ -8,8 +8,8 @@
 
 	<div class="alert alert-info">
 		<p>
-			You have <strong>{{ $auth->vp }}</strong> <em>vote points</em>, and
-			<strong>{{ count($auth->characters) }}</strong> <em>character(s)</em>.
+			You have <strong>{{ $auth->vp }}</strong> <em>vote points</em>, <strong>{{ $auth->dp }}</strong>
+			<em>donation points</em>, and <strong>{{ count($auth->characters) }}</strong> <em>character(s)</em>.
 		</p>
 	</div>
 
