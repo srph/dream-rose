@@ -7,15 +7,29 @@ class UserAPIController extends BaseController {
 	 * @var User
 	 */
 	protected $user;
+	
+	/**
+	 *
+	 * @var VotePoint
+	 */
+	protected $vp;
+	
+	/**
+	 *
+	 * @var DonationPoint
+	 */
+	protected $dp;
 
 	/**
 	 * Apply filter and inject dependencies
 	 *
 	 * @param 	User 	$user
 	 */
-	public function __construct(User $user)
+	public function __construct(User $user, VotePoint $vp, DonationPoint $dp)
 	{
 		$this->user = $user;
+		$this->vp = $vp;
+		$this->dp = $dp;
 		$this->beforeFilter('csrf', array('on' => array('post')));
 		$this->beforeFilter('guest');
 	}
@@ -44,12 +58,12 @@ class UserAPIController extends BaseController {
 		// Fetch all input
 		$input = Input::all();
 
-		$user = $this->user;
-		$username = Input::get('username');
 
 		// Validate
-		$validation = $user->validate($input);
+		$validation = $this->user->validate($input);
 		if($validation->passes()) {
+			$user = $this->user;
+			$username = Input::get('username');
 			$user->id 			= $user->incrementID();
 			$user->Account 		= $username;
 			$user->Email 		= Input::get('email');
@@ -63,11 +77,11 @@ class UserAPIController extends BaseController {
 				$user 	= User::where('Account', $username)->first();
 
 				// Create his vote point and donation point table
-				$vp = new VotePoint(array('user_id' => $user->id));
-				$dp = new DonationPoint(array('user_id' => $user->id));
+				$vp = $this->vp;
+				$dp = $this->dp;
 
-				if( $vp->save() &&
-					$dp->save() ) {
+				if( $user->votePoint()->save($vp) &&
+					$user->donationPoint()->save($dp) ) {
 					return View::make('pages/user.create-success');
 				}
 			}
