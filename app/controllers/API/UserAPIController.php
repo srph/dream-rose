@@ -63,11 +63,11 @@ class UserAPIController extends BaseController {
 				$user 	= User::where('Account', $username)->first();
 
 				// Create his vote point and donation point table
-				$vp 	= new VotePoint;
-				$dp  	= new DonationPoint;
+				$vp = new VotePoint(array('user_id' => $user->id));
+				$dp = new DonationPoint(array('user_id' => $user->id));
 
-				if( $user->votePoint()->save($vp) &&
-					$user->donationPoint()->save($dp) ) {
+				if( $vp->save() &&
+					$dp->save() ) {
 					return View::make('pages/user.create-success');
 				}
 			}
