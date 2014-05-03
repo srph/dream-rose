@@ -15,8 +15,6 @@
 						<h5> <strong> {{ $article->title }} </strong> </h5>
 
 						<p> {{ $article->summary }} </p>
-
-						<small> by {{ $article->user->username }} </small>
 					</div>
 				</div>
 			</div>
