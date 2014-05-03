@@ -14,17 +14,14 @@ class CreateNewsTypes extends Migration {
 	{
 		$data = array(
 			array(
-				'id'	=>	1,
 				'name'	=>	'News'
 			),
 
 			array(
-				'id'	=>	2,
 				'name'	=>	'Updates'
 			),
 
 			array(
-				'id'	=>	3,
 				'name'	=>	'Events'
 			),
 		);
