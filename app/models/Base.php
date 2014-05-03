@@ -18,7 +18,9 @@ class Base extends Eloquent {
 	public static function incrementID()
 	{
 		$last = self::orderBy('id', 'desc')->first();
-		return $last->id + 1;
+		return ( !is_null($last) )
+			? $last->id + 1;
+			: 1;
 	}
 
 }
