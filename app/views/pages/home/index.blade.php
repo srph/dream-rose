@@ -5,34 +5,34 @@
 @section('content')
 	<h4> News </h4>
 	<hr>
-	<div class="row">
-		@if( $news->count() )
-			@foreach($news as $article)
-				<div class="col-md-4">
-					<div class="thumbnail" style="height: 290px;">
-						<img src="{{ $article->getImageURL() }}" width="238" height="162">
-
-						<div class="caption">
-							<h5> <strong> {{ $article->title }} </strong> </h5>
-
-							<p> {{ $article->summary }} </p>
+	@if( $news->count() )
+		<div class="row">
+				@foreach($news as $article)
+					<div class="col-md-4">
+						<div class="thumbnail" style="height: 290px;">
+							<img src="{{ $article->getImageURL() }}" width="238" height="162">
+	
+							<div class="caption">
+								<h5> <strong> {{ $article->title }} </strong> </h5>
+	
+								<p> {{ $article->summary }} </p>
+							</div>
 						</div>
 					</div>
-				</div>
-			@endforeach
-		@else
-			<div class="alert alert-info">
-				<p> No <strong>news</strong> has been posted yet. Come back again for announcements! </p>
-			</div>
-		@endif
-	</div>
+				@endforeach
+		</div>
+	@else
+		<div class="alert alert-info">
+			<p> No <strong>news</strong> has been posted yet. Come back again for announcements! </p>
+		</div>
+	@endif
 
 	<div class="row">
 		<div class="col-md-6">
 			<h4> Updates </h4>
 			<hr>
-			<div class="thumbnail">
-				@if( $updates->count() )
+			@if( $updates->count() )
+				<div class="thumbnail">
 					@foreach($updates as $index => $update)
 						@if($index == 0)
 							<img src="{{ $updates[0]->getImageURL() }}" width="387" height="162">
@@ -47,19 +47,19 @@
 							</ul>
 						@endif
 					@endforeach
-				@else
-					<div class="alert alert-info">
-						<p> No <strong>updates</strong> has been posted yet. Come back again for announcements! </p>
-					</div>
-				@endif
-			</div>
+				</div>
+			@else
+				<div class="alert alert-info">
+					<p> No <strong>updates</strong> has been posted yet. Come back again for announcements! </p>
+				</div>
+			@endif
 		</div>
 
 		<div class="col-md-6">
 			<h4> Events </h4>
 			<hr>
-			<div class="thumbnail">
-				@if( $events->count() )
+			@if( $events->count() )
+				<div class="thumbnail">
 					@foreach($events as $index => $event)
 						@if($index == 0)
 							<img src="{{ $updates[0]->getImageURL() }}" width="387" height="162">
@@ -74,12 +74,12 @@
 							</ul>
 						@endif
 					@endforeach
-				@else
-					<div class="alert alert-info">
-						<p> No <strong>updates</strong> has been posted yet. Come back again for announcements! </p>
-					</div>
-				@endif
-			</div>
+				</div>
+			@else
+				<div class="alert alert-info">
+					<p> No <strong>updates</strong> has been posted yet. Come back again for announcements! </p>
+				</div>
+			@endif
 		</div>
 	</div>
 @stop
