@@ -20,7 +20,6 @@ class SlideSeeder extends Seeder {
 
 		$data = array(
 			array(
-				'id'		=> 1,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> 'http://facebook.com',
@@ -30,7 +29,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 2,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -40,7 +38,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 3,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -50,7 +47,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 4,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -60,7 +56,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 5,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -70,7 +65,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 6,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -80,7 +74,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 7,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -90,7 +83,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 8,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -100,7 +92,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 9,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -110,7 +101,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 10,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',
@@ -120,7 +110,6 @@ class SlideSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 11,
 				'user_id'	=> 1,
 				'image'		=> $image,
 				'link'		=> '',

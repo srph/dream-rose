@@ -20,7 +20,6 @@ class NewsSeeder extends Seeder {
 
 		$data = array(
 			array(
-				'id'		=> 1,
 				'user_id'	=> 1,
 				'type_id'	=> 1,
 				'cover'		=> $image,
@@ -31,7 +30,6 @@ class NewsSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 2,
 				'user_id'	=> 1,
 				'type_id'	=> 2,
 				'cover'		=> $image,
@@ -42,7 +40,6 @@ class NewsSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 3,
 				'user_id'	=> 1,
 				'type_id'	=> 3,
 				'cover'		=> $image,
@@ -53,7 +50,6 @@ class NewsSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 4,
 				'user_id'	=> 1,
 				'type_id'	=> 1,
 				'cover'		=> $image,
@@ -64,7 +60,6 @@ class NewsSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 5,
 				'user_id'	=> 1,
 				'type_id'	=> 3,
 				'cover'		=> $image,
@@ -75,7 +70,6 @@ class NewsSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 6,
 				'user_id'	=> 1,
 				'type_id'	=> 2,
 				'cover'		=> $image,
@@ -86,7 +80,6 @@ class NewsSeeder extends Seeder {
 			),
 
 			array(
-				'id'		=> 7,
 				'user_id'	=> 1,
 				'type_id'	=> 2,
 				'cover'		=> $image,

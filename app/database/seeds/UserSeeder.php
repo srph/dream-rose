@@ -16,7 +16,6 @@ class UserSeeder extends Seeder {
 
 		$data = array(
 			array(
-				'id'			=>	1,
 				'Account'		=>	'test',
 				'Email'			=>	'test@test.com',
 				'MotherLName'	=>	'test',

@@ -19,7 +19,6 @@ class ItemSeeder extends Seeder {
 
 		$data = array(
 			array(
-				'id'			=> 1,
 				'category_id'	=> 1,
 				'name'			=> $faker->sentence(3),
 				'description'	=> $faker->paragraph(2),
@@ -30,7 +29,6 @@ class ItemSeeder extends Seeder {
 			),
 
 			array(
-				'id'			=> 2,
 				'category_id'	=> 1,
 				'name'			=> $faker->sentence(3),
 				'description'	=> $faker->paragraph(2),
@@ -41,7 +39,6 @@ class ItemSeeder extends Seeder {
 			),
 
 			array(
-				'id'			=> 3,
 				'category_id'	=> 2,
 				'name'			=> $faker->sentence(3),
 				'description'	=> $faker->paragraph(2),
@@ -52,7 +49,6 @@ class ItemSeeder extends Seeder {
 			),
 
 			array(
-				'id'			=> 4,
 				'category_id'	=> 2,
 				'name'			=> $faker->sentence(3),
 				'description'	=> $faker->paragraph(2),
