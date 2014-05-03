@@ -143,41 +143,41 @@ return array(
 		 * MSSQL V
 		 */
 
-		// 'dream' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'dream',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'dream' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'dream',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
-		// 'seven_ora' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'seven_ora',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'seven_ora' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'seven_ora',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
-		// 'sho' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'sho',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'sho' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'sho',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
-		// 'sho_log' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'sho_log',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'sho_log' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'sho_log',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
 	),
 
