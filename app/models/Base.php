@@ -19,7 +19,7 @@ class Base extends Eloquent {
 	{
 		$last = self::orderBy('id', 'desc')->first();
 		return ( !is_null($last) )
-			? $last->id + 1;
+			? $last->id + 1
 			: 1;
 	}
 
