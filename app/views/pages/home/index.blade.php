@@ -33,7 +33,7 @@
 			<hr>
 			<div class="thumbnail">
 				@if( $updates->count() )
-					@foreach($updates as $update)
+					@foreach($updates as $index => $update)
 						@if($index == 0)
 							<img src="{{ $updates[0]->getImageURL() }}" width="387" height="162">
 
