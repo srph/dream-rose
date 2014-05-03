@@ -3,6 +3,12 @@
 class VotePoint extends Eloquent {
 
 	/**
+	 *
+	 *
+	 */
+	protected $connection = 'dream';
+
+	/**
 	 * Table used by the model
 	 *
 	 * @var string
