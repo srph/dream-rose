@@ -194,6 +194,13 @@ class Item extends Eloquent {
 	 */
 	public function sendToStorage(User $user)
 	{
+		$db = DB::connection('pogi')->table('WarehouseSweep');
+		$db->insert(array(
+			'AccountName' 	=> $user->username,
+			'ItemID' 		=> $this->hexa,
+			'ItemCount' 	=> 1
+		));
+		
 		return true;
 	}
 
