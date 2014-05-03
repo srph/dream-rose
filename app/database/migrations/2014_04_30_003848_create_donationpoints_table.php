@@ -16,7 +16,7 @@ class CreateDonationpointsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->integer('count');
+			$table->integer('count')->default(0);
 		});
 	}
 
