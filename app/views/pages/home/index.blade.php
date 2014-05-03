@@ -46,7 +46,7 @@
 								<li class="active"><a href="{{ URL::to('news/' . $article->id) }}"> {{ $update->title }} </a></li>
 							</ul>
 						@endif
-					@endforach
+					@endforeach
 				@else
 					<div class="alert alert-info">
 						<p> No <strong>updates</strong> has been posted yet. Come back again for announcements! </p>
