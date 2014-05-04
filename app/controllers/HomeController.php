@@ -111,10 +111,6 @@ class HomeController extends BaseController {
 	{
 		if( !Cache::has('characters.ranking') ) {
 			$characters = $this->character
-				->whereHas('User', function($query)
-				{
-					$query->connection('seven_ora')->where('Right', 1);
-				})
 				->orderBy('btLEVEL', 'desc')
 				->get();
 			$expiration = Carbon::now()->addMinutes(10);
