@@ -92,10 +92,10 @@ class Character extends Base {
 	 * @param 	string 		$field
 	 * @return 	Character
 	 */
-	public function byTop($offset = 10, $field = null)
+	public static function byTop($offset = 10, $field = null)
 	{
 		$characters = new static();
-
+		
 		if ( !is_null($field) ) $characters->orderBy($field, 'desc');
 
 		return $characters->take($offset);
