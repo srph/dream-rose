@@ -50,19 +50,23 @@ class Port {
 	 */
 	protected function attempt()
 	{
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $this->address);
-		curl_setopt($curl, CURLOPT_PORT, $this->port);
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 1);
+		//$curl = curl_init();
+		//curl_setopt($curl, CURLOPT_URL, $this->address);
+		//curl_setopt($curl, CURLOPT_PORT, $this->port);
+		//curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 1);
 	    // curl_setopt($curl, CURLOPT_HEADER, true);
 	    // curl_setopt($curl, CURLOPT_NOBODY, true);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		$response = curl_exec($curl);
-		curl_close($curl);
+		//curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		//$response = curl_exec($curl);
+		//curl_close($curl);
 
-		if( $response ) return true;
+		//if( $response ) return true;
 
-		return false;
+		//return false;
+		
+		return ( @fsockopen($this->address, $this->port) ) 
+			? true
+			: false;
 	}
 
 }
