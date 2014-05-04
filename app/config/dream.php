@@ -32,7 +32,7 @@ return array(
 
 		),
 
-		'address' => 'dream-rose.com',
+		'address' => '198.100.154.162',
 
 		'ports'	=> array(
 
