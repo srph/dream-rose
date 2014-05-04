@@ -20,7 +20,7 @@
 
 	@if( $links->count() )
 		<div class="form-group">
-			<a href="{{ URL::to('admin/news/create') }}" class="btn btn-primary">
+			<a href="{{ URL::to('admin/vote-points/create') }}" class="btn btn-primary">
 				<i class="glyphicon glyphicon-star"></i>
 				Create New Link
 			</a>
