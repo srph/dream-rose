@@ -49,8 +49,9 @@ class VoteAPIController extends BaseController {
 		$interval 	= Config::get('dream.links.interval');
 		$points 	= Config::Get('dream.links.points');
 
-		$user->addVP($points);
 		$response = ( $this->log->mark($user, $link, $ip) );
+		
+		if ( $response ) $user->addVP($points);
 
 		return View::make('pages/vote/api.response')
 			->with('response', $response)
