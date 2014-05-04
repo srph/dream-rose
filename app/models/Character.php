@@ -96,7 +96,7 @@ class Character extends Base {
 	{
 		$characters = new static();
 
-		if ( !is_null($field) ) $characters->orderBy($field, 'desc');
+		if ( !is_null($field) ) $characters->orderBy($field, 'asc');
 
 		return $characters->take($offset);
 	}
