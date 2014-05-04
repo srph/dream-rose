@@ -123,7 +123,7 @@ return array(
 
 	'caching' => array(
 
-		'ports'  => 10,
+		'ports'  => 1,
 		'slides' => 5,
 		'news'   => 5,
 		'links'	 => 5,
