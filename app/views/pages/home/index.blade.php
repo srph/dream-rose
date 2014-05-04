@@ -35,7 +35,7 @@
 				<div class="thumbnail">
 					@foreach($updates as $index => $update)
 						@if($index == 0)
-							<img src="{{ $updates[0]->getImageURL() }}" width="387" height="162">
+							<img src="{{ $update->getImageURL() }}" width="387" height="162">
 
 							<div class="caption">
 								<h5> <strong> {{ $update->title }} </strong> </h5>
@@ -62,7 +62,7 @@
 				<div class="thumbnail">
 					@foreach($events as $index => $event)
 						@if($index == 0)
-							<img src="{{ $updates[0]->getImageURL() }}" width="387" height="162">
+							<img src="{{ $event->getImageURL() }}" width="387" height="162">
 
 							<div class="caption">
 								<h5> <strong> {{ $event->title }} </strong> </h5>
