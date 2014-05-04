@@ -90,7 +90,7 @@ class HomeController extends BaseController {
 	public function getClanRanking()
 	{
 		if( !Cache::has('clan.ranking') ) {
-			$clan 		= $this->clan->byTop(10, 'intLEVEL')->get();
+			$clan 		= $this->clan->byTop(10, 'btLEVEL')->get();
 			$expiration = Carbon::now()->addMinutes(10);
 			Cache::add('clan.ranking', $clan, $expiration);
 		}
