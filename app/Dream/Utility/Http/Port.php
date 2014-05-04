@@ -64,7 +64,7 @@ class Port {
 
 		//return false;
 		
-		return ( @fsockopen($this->address, $this->port) ) 
+		return ( @fsockopen($this->address, $this->port, $errno, $err, 5) ) 
 			? true
 			: false;
 	}
