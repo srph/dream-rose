@@ -140,7 +140,7 @@ return array(
 	
 	'downloads' => array(
 	
-		'client' => 'public/downloads/client.rar',
+		'client' => 'downloads/client.rar',
 		'patch' => null,
 		
 	)
