@@ -18,7 +18,7 @@
 					<td> Name </td>
 					<td> Level </td>
 					<td> Job </td>
-					{{-- <td> {{ Clan </td> --}}
+					<!-- <td> {{ Clan </td> -->
 				</tr>
 			</thead>
 	
@@ -29,7 +29,7 @@
 						<td> {{ $character->name }} </td>
 						<td> {{ $character->level }} </td>
 						<td> {{ $character->getJobName() }} </td>
-						{{-- <td> {{ $character->clan }} </td> --}}
+						<!-- <td> {{ $character->clan }} </td> -->
 					</tr>
 				@endforeach
 			</tbody>
