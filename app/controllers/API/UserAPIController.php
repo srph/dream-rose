@@ -71,6 +71,7 @@ class UserAPIController extends BaseController {
 			$user->FirstName 	= Input::get('fname');
 			$user->LastName 	= Input::get('lname');
 			$user->MotherLName 	= Input::get('mname');
+			$user->MailIsConfirm = 1;
 			$user->Right 		= 1;
 
 			if( $user->save() ) {
