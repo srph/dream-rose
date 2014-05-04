@@ -110,7 +110,7 @@ class HomeController extends BaseController {
 	public function getPlayerRanking()
 	{
 		if( !Cache::has('characters.ranking') ) {
-			$characters = $this->character->where('Right', 1)->orderBy('btLEVEL', 'desc')->get();
+			$characters = $this->character->orderBy('btLEVEL', 'desc')->get();
 			$expiration = Carbon::now()->addMinutes(10);
 			Cache::add('characters.ranking', $characters, $expiration);
 		}
