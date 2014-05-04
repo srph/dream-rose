@@ -111,7 +111,8 @@ class HomeController extends BaseController {
 	{
 		if( !Cache::has('characters.ranking') ) {
 			$characters = $this->character
-				->whereHas(function($query) {
+				->whereHas('User', function($query)
+				{
 					$query->where('Right', 1);
 				})
 				->orderBy('btLEVEL', 'desc')
