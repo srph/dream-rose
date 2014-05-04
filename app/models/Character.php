@@ -39,7 +39,7 @@ class Character extends Base {
 	{
 		switch( $this->job ) {
 			case 0:
-				$job = 'Vagrant';
+				$job = 'Visitor';
 				break;
 			case 111:
 				$job = 'Solider';
