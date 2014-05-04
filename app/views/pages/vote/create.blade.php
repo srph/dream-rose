@@ -60,7 +60,7 @@
 						Create Link
 					</button>
 
-					<a href="{{ URL::to('admin/news') }}" class="btn btn-warning pull-right">
+					<a href="{{ URL::to('admin/vote-links') }}" class="btn btn-warning pull-right">
 						<i class="glyphicon glyphicon-remove"></i>
 						Cancel
 					</a>
