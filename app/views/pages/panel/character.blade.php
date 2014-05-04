@@ -6,7 +6,7 @@
 	<h1> Your Characters </h1>
 	<hr>
 
-	@if(  $auth->characters->count() )
+	@if(  !$auth->characters->count() )
 		<div class="alert alert-info">
 			<p> You have not yet created a character! </p>
 		</div>
