@@ -18,7 +18,7 @@
 					<td> Name </td>
 					<td> Level </td>
 					<td> Job </td>
-					<!-- <td> {{ Clan }} </td> -->
+					<!-- <td> Clan </td> -->
 				</tr>
 			</thead>
 	
