@@ -113,7 +113,7 @@ class HomeController extends BaseController {
 			$characters = $this->character
 				->whereHas('User', function($query)
 				{
-					$query->on('seven_ora')->where('Right', 1);
+					$query->connection('seven_ora')->where('Right', 1);
 				})
 				->orderBy('btLEVEL', 'desc')
 				->get();
