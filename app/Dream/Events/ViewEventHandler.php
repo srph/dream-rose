@@ -61,24 +61,6 @@ class ViewEventHandler {
 		if ( $this->auth->check() ) $this->view->share( 'auth', $this->auth->user() );
 	}
 
-	public function showPropaganda()
-	{
-		$this->cachePropaganda();
-
-		$this->view->composer('pages/home.index', function($view)
-		{
-			$events 	= $this->cache->get('news.events');
-			$updates 	= $this->cache->get('news.updates');
-			$news 		= $this->cache->get('news.articles');
-			$slides 	= $this->cache->get('slides');
-
-			$view->with('news', $news)
-				->with('updates', $updates)
-				->with('events', $events)
-				->with('slides', $slides);
-		});
-	}
-
 	/**
 	 * Subscribe to events
 	 *
