@@ -124,9 +124,9 @@ return array(
 	'caching' => array(
 
 		'ports'  => 10,
-		'slides' => 10,
-		'news'   => 10,
-		'links'	 => 10
+		'slides' => 5,
+		'news'   => 5,
+		'links'	 => 5,
 
 	),
 	
@@ -140,9 +140,9 @@ return array(
 	
 	'downloads' => array(
 	
-		'client' => 'downloads/client.rar',
-		'patch' => null,
+		'client' => 'https://mega.co.nz/#!WkYE0S5I!yg1Vq3NzMdKKMa4FCOtxtUubTChNumA9lkdlrWIg97U',
+		'patch'  => null,
 		
-	)
+	),
 
 );
