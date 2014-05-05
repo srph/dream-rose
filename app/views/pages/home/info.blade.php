@@ -30,11 +30,11 @@
 					<li> Daily Events </li>
 					<li> Weekly Events </li>
 					<li> Monthly Events </li>
-					<li> Max Level: 250 </li>
+					<li> Max Level: 255 </li>
 			</div>
 
 			<div class="col-md-3">
-					<li> Max Stats: 450 </li>
+					<li> Max Stats: 400 </li>
 					<li> No Reborn </li>
 					<li> Balanced Classes </li>
 			</div>
