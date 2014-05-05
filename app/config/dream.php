@@ -26,9 +26,9 @@ return array(
 
 		'rates'	=>	array(
 
-			'drop'	=> 30,
+			'drop'	=> 15,
 			'exp'	=> 30,
-			'item' 	=> 30,
+			'zulie'	=> 10,
 
 		),
 
@@ -71,9 +71,11 @@ return array(
 	|
 	*/
 
+	// Footer Message
+
 	'footer' => array(
 
-		'message' => '&copy; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget elit porttitor'
+		'message' => '&copy; 2014 Dream ROSE Online.'
 
 	),
 
@@ -94,8 +96,8 @@ return array(
 
 		'sizes' => array(
 
-			'width' => '801',
-			'height' => '250'
+			'width' => 801,
+			'height' => 250
 
 		)
 
@@ -127,6 +129,7 @@ return array(
 		'slides' => 5,
 		'news'   => 5,
 		'links'	 => 5,
+		'online' => 5,
 
 	),
 	
@@ -135,6 +138,7 @@ return array(
 	| Download links
 	|--------------------------------------------------------------------------
 	|
+	| Links will be used by the downloads section
 	|
 	*/
 	
@@ -143,6 +147,25 @@ return array(
 		'client' => 'https://mega.co.nz/#!WkYE0S5I!yg1Vq3NzMdKKMa4FCOtxtUubTChNumA9lkdlrWIg97U',
 		'patch'  => null,
 		
+	),
+
+	/*
+	|--------------------------------------------------------------------------
+	| APIs
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+
+	'api' => array(
+
+		'facebook' => array(
+
+			// Link to the fan page
+			// Used by all facebook apis / widgets
+			'url' => 'https://www.facebook.com/dreamroseevo',
+
+		),
 	),
 
 );

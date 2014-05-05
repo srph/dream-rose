@@ -104,10 +104,8 @@ class News extends Eloquent {
 		$limit 		= 162;
 
 		if( strlen($content) > $limit ) {
-			$content 	= substr($content, 0, 162);
-			$link 		= URL::to('news/' . $this->id);
-			$markup 	= sprintf("<a href='%s'><strong>Read More</strong></a>", $link);
-			$summary 	= sprintf("%s... %s", $content, $markup);
+			$content = substr($content, 0, 162);
+			$summary = sprintf("%s...", $content);
 
 			return $summary;
 		}

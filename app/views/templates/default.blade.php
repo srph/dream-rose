@@ -12,6 +12,7 @@
 </head>
 
 <body>
+	@include('templates/modules/scripts.facebook')
 	<div class="container">
 		@include('templates/modules.navigation')
 

@@ -14,3 +14,5 @@
 	!( Request::is('panel/vote') || Request::is('panel/vote/*') ) )
 	@include('templates/modules/side.vote')
 @endif
+
+@include('templates/modules/side.facebook')

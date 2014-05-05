@@ -16,6 +16,8 @@
     "bootstrap-dist": "*",
     "jquery": "~2.1.0",
     "leptureeditor": "*",
-    "ckeditor": "~4.4.0"
+    "ckeditor": "~4.4.0",
+    "summernote": "~0.5.1",
+    "font-awesome": "~4.0.3"
   }
 }

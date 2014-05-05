@@ -4,6 +4,12 @@
 	- Edit News ({{ $news->title }})
 @stop
 
+@section('styles')
+	{{ HTML::style('vendor/font-awesome/css/font-awesome.min.css') }}
+	{{ HTML::style('vendor/summernote/dist/summernote.css') }}
+	{{ HTML::style('vendor/summernote/dist/summernote-bs2.css') }}
+@stop
+
 @section('content')
 	<h4> Edit News ({{ $news->title }}) </h4>
 	<hr>
@@ -21,7 +27,7 @@
 				<p> Fields with the red asterisk (<span class="off">*</span>) are required </p>
 			</div>
 
-			{{ Form::open(array('id' => 'vote-form', 'files' => true, 'url' => 'admin/news/' . $news->id, 'method' => 'PUT')) }}
+			{{ Form::open(array('id' => 'news-form', 'files' => true, 'url' => 'admin/news/' . $news->id, 'method' => 'PUT')) }}
 
 				<div class="form-group">
 					<label> Title <span class="off"> * </span> </label>
@@ -53,7 +59,7 @@
 
 				<div class="form-group">
 					<label> Content <span class="off"> * </span> </label>
-					<textarea class="form-control" name="content" rows="15">{{ $news->content }}</textarea>
+					<textarea class="form-control" name="content" rows="15" id="summernote">{{ $news->content }}</textarea>
 					@if( $errors->has('content') )
 						<p> </p>
 						<div class="alert alert-danger">
@@ -85,7 +91,7 @@
 				</div>
 
 				<div class="clearfix">
-					<button type="submit" class="btn btn-success" id="vote-btn">
+					<button type="submit" class="btn btn-success" id="news-btn">
 						<i class="glyphicon glyphicon-ok"></i>
 						Edit News
 					</button>
@@ -100,4 +106,19 @@
 
 		</div>
 	</div>
+@stop
+
+@section('scripts')
+	{{ HTML::script('vendor/summernote/dist/summernote.min.js') }}
+	<script>
+		var summernote = $('#summernote');
+
+		summernote.summernote({
+			height: "250px"
+		});
+
+		$('news-form').on('submit', function() {
+			var content = $('textarea[name=content]').html( summernote.code() );
+		});
+	</script>
 @stop

@@ -50,9 +50,11 @@
 	/* Tooltips */
 	var loginSrv = $('#login-srv'),
 		charSrv  = $('#char-srv'),
-		worldSrv = $('#world-srv');
+		worldSrv = $('#world-srv'),
+		usrOn 	 = $('#usr-on');
 
 	loginSrv.tooltip();
 	charSrv.tooltip();
 	worldSrv.tooltip();
+	usrOn.tooltip();
 })(jQuery);

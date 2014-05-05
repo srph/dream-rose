@@ -7,6 +7,11 @@
 	text-transform: uppercase;
 }
 
+.navbar > .navbar-header > .navbar-brand:hover {
+	font-weight: bold;
+	color: #F44040;
+}
+
 .navbar > .navbar-header {
 	font-size: 12px;
 }
@@ -38,19 +43,25 @@
 	color: #F44040;
 }
 
-.fileUpload {
-	position: relative;
-	overflow: hidden;
-	margin: 10px;
+.on {
+	color: #33CC33;
 }
-.fileUpload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity=0);
+
+.badge.on {
+	background-color: #33CC33;
+	color: white;
+}
+
+.badge.off {
+	background-color: #F44040;
+	color: white;
+}
+
+ul.game-info-custom {
+	list-style-type: none;
+}
+
+ul.game-info-custom li:before {
+	content: "○";
+	font-weight: bold;
 }

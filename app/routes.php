@@ -88,7 +88,8 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	//
+	$c = Config::get('dream.caching.ports');
+	return Carbon\Carbon::now()->addMinutes(10);
 });
 
 /**
