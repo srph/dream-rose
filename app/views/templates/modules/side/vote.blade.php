@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default panel-lara">
 	<div class="panel-heading">
 		Vote 4 Us!
 	</div>

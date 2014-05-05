@@ -1,6 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
+/* Base font */
+html,
+body {
+	font-family: 'Open Sans', 'Helvetica', 'Helvetica Neue', serif, sans-serif;
+}
+
+/* Navigation */
+
 .navbar > .navbar-header > .navbar-brand,
 .navbar li {
 	font-family: 'Montserrat', 'Open Sans', serif, sans-serif;
@@ -10,6 +18,10 @@
 .navbar > .navbar-header > .navbar-brand:hover {
 	font-weight: bold;
 	color: #F44040;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
 }
 
 .navbar > .navbar-header {
@@ -63,5 +75,19 @@ ul.game-info-custom {
 
 ul.game-info-custom li:before {
 	content: "○";
+	font-weight: bold;
+}
+
+/* Sidebar */
+.panel-default.panel-lara .panel-heading {
+	font-family: 'Montserrat', 'Open Sans', serif, sans-serif;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #F44040;
+	border-bottom: none;
+}
+
+
+.list-group-item {
 	font-weight: bold;
 }

@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default panel-lara">
 	<div class="panel-heading"> Facebook </div>
 
 	<div class="panel-body">
