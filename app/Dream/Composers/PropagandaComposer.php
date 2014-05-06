@@ -107,7 +107,7 @@ class PropagandaComposer {
 	 * @param 	integer 	$offset
 	 * @return 	void
 	 */
-	protected function cacheNews($expiration, $offset = 3)
+	protected function cacheNews($expiration = null, $offset = 3)
 	{
 		$news = $this->news
 			->getByType('news')
@@ -127,7 +127,7 @@ class PropagandaComposer {
 	 * @param 	integer 	$offset
 	 * @return 	void
 	 */
-	protected function cacheUpdates($expiration, $offset = 5)
+	protected function cacheUpdates($expiration = null, $offset = 5)
 	{
 		$updates = $this->news
 			->getByType('updates')
@@ -147,7 +147,7 @@ class PropagandaComposer {
 	 * @param 	integer 	$offset
 	 * @return 	void
 	 */
-	protected function cacheEvents($expiration, $offset = 5)
+	protected function cacheEvents($expiration = null, $offset = 5)
 	{
 		$events = $this->news
 			->getByType('events')
@@ -167,7 +167,7 @@ class PropagandaComposer {
 	 * @param 	integer 	$offset
 	 * @return 	void
 	 */
-	protected function cacheSlides($expiration, $offset = 5)
+	protected function cacheSlides($expiration = null, $offset = 5)
 	{
 		$slides = $this->slide
 			->orderBy('id', 'desc')
