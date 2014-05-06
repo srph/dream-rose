@@ -56,12 +56,16 @@ class PropagandaComposer {
 	 */
 	public function compose($view)
 	{
-		$this->cachePropaganda();
+		// $this->cachePropaganda();
 
-		$events 	= $this->cache->get('news.events');
-		$updates 	= $this->cache->get('news.updates');
-		$news 		= $this->cache->get('news.articles');
-		$slides 	= $this->cache->get('slides');
+		// $events 	= $this->cache->get('news.events');
+		// $updates 	= $this->cache->get('news.updates');
+		// $news 		= $this->cache->get('news.articles');
+		// $slides 	= $this->cache->get('slides');
+		$events 	= $this->cacheEvents();
+		$updates 	= $this->cacheUpdates();
+		$news 		= $this->cacheNews();
+		$slides 	= $this->cacheSlides();
 
 		$view->with('news', $news)
 			->with('updates', $updates)
@@ -112,7 +116,8 @@ class PropagandaComposer {
 			->get()
 			->load('user');
 
-		$this->cache->add('news.articles', $news, $expiration);
+		// $this->cache->add('news.articles', $news, $expiration);
+		return $news;
 	}
 
 	/**
@@ -131,7 +136,8 @@ class PropagandaComposer {
 			->get()
 			->load('user');
 
-		$this->cache->add('news.updates', $updates, $expiration);
+		// $this->cache->add('news.updates', $updates, $expiration);
+		return $updates;
 	}
 
 	/**
@@ -150,7 +156,8 @@ class PropagandaComposer {
 			->get()
 			->load('user');
 
-		$this->cache->add('news.events', $events, $expiration);
+		// $this->cache->add('news.events', $events, $expiration);
+		return $events;
 	}
 
 	/**
@@ -168,7 +175,8 @@ class PropagandaComposer {
 			->get()
 			->load('user');
 
-		$this->cache->add('slides', $slides, $expiration);
+		// $this->cache->add('slides', $slides, $expiration);
+		return $slides;
 	}
 
 }
