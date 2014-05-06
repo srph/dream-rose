@@ -89,13 +89,9 @@ class HomeController extends BaseController {
 	 */
 	public function getClanRanking()
 	{
-		if( !Cache::has('clan.ranking') ) {
-			$clan 		= $this->clan->byTop(10, 'intLEVEL')->get();
-			$expiration = Carbon::now()->addMinutes(10);
-			Cache::add('clan.ranking', $clan, $expiration);
-		}
-
-		$clan = Cache::get('clan.ranking');
+		$clan = $this->clan
+			->byTop(10, 'intLEVEL')
+			->get();
 
 		return View::make('pages/home/ranking.clan')
 			->with('clan', $clan);
@@ -109,15 +105,9 @@ class HomeController extends BaseController {
 	 */
 	public function getPlayerRanking()
 	{
-		if( !Cache::has('characters.ranking') ) {
-			$characters = $this->character
-				->orderBy('btLEVEL', 'desc')
-				->get();
-			$expiration = Carbon::now()->addMinutes(10);
-			Cache::add('characters.ranking', $characters, $expiration);
-		}
-
-		$characters = Cache::get('characters.ranking');
+		$characters = $this->character
+			->orderBy('btLEVEL', 'desc')
+			->get();
 
 		return View::make('pages/home/ranking.character')
 			->with('characters', $characters);
