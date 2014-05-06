@@ -6,7 +6,7 @@
 
 				<div class="caption" style="oheight: 240px; overflow: hidden;">
 					<h5> <strong> {{ $article->title }} </strong> </h5>
-					<p> {{ $article->summary }} </p>
+					<h5> <small> {{ Carbon\Carbon::createFromTimeStamp(strtotime($article->created_at))->diffForHumans() }} </small> </h5>
 
 					<a href="{{ URL::to('news/' . $article->id) }}" class="btn btn-default">
 						Read More

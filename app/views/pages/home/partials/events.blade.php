@@ -4,7 +4,7 @@
 			<img src="{{ $event->getImageURL() }}" width="387" height="162">
 			<div class="caption">
 				<h5> <strong> {{ $event->title }} </strong> </h5>
-				<p> {{ $event->summary }} </p>
+				<h5> <small> {{ Carbon\Carbon::createFromTimeStamp(strtotime($event->created_at))->diffForHumans() }} </small> </h5>
 
 				<a href="{{ URL::to('news/' . $event->id) }}" class="btn btn-default">
 					Read More

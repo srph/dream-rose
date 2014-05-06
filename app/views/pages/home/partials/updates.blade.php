@@ -5,7 +5,7 @@
 
 			<div class="caption">
 				<h5> <strong> {{ $update->title }} </strong> </h5>
-				<p> {{ $update->summary }} </p>
+				<h5> <small> {{ Carbon\Carbon::createFromTimeStamp(strtotime($update->created_at))->diffForHumans() }} </small> </h5>
 
 				<a href="{{ URL::to('news/' . $update->id) }}" class="btn btn-default">
 					Read More
