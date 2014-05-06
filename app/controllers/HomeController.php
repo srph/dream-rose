@@ -90,7 +90,8 @@ class HomeController extends BaseController {
 	public function getClanRanking()
 	{
 		$clan = $this->clan
-			->byTop(10, 'intLEVEL')
+			->orderBy('intLEVEL', 'desc')
+			->take(10)
 			->get();
 
 		return View::make('pages/home/ranking.clan')
@@ -107,6 +108,7 @@ class HomeController extends BaseController {
 	{
 		$characters = $this->character
 			->orderBy('btLEVEL', 'desc')
+			->take(10)
 			->get();
 
 		return View::make('pages/home/ranking.character')
