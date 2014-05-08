@@ -44,7 +44,7 @@
 	<hr>
 
 	<!-- Server Rates -->
-	<h4 class="text-center"> ServerR ates </h4>
+	<h4 class="text-center"> Server Rates </h4>
 	<div class="row">
 		<div class="col-md-1"></div>
 

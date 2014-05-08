@@ -69,6 +69,12 @@ Route::group(array(
 	 * @link admin/item/*
 	 */
 	Route::resource('item', 'ItemController');
+
+	/**
+	 * Dashboard Controller 
+	 * @link admin/dashboard/*
+	 */
+	Route::controller('dashboard', 'AdminController');
 });
 
 /**

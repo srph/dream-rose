@@ -13,7 +13,9 @@
 	<div class="collapse navbar-collapse" id="navigation">
 		<ul class="nav navbar-nav">
 			<li @if(Request::is('/')) class="active" @endif> <a href="{{ URL::to('/') }}"> Home </a> </li>
-			@if(Auth::guest()) <li> <a href="{{ URL::to('register') }}"> Register </a> </li> @endif
+			@if(Auth::guest())
+				<li @if(Request::is('register')) class="active" @endif> <a href="{{ URL::to('register') }}"> Register </a> </li>
+			@endif
 			<li @if(Request::is('downloads')) class="active" @endif> <a href="{{ URL::to('downloads') }}"> Downloads </a> </li>
 			<li @if(Request::is('info')) class="active" @endif> <a href="{{ URL::to('info') }}"> Game Info </a> </li>
 			<li @if(Request::is('/support')) class="active" @endif> <a href="{{ URL::to('/') }}"> Support </a> </li>
