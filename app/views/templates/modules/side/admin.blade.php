@@ -2,10 +2,10 @@
 	<div class="panel-heading"> Management </div>
 
 	<div class="list-group">
-		<a href="{{ URL::to('admin/dashboard') }}"
-			class="list-group-item @if( Request::is('admin/dashboard/*') || Request::is('admin/dashboard') ) active @endif">
+		<a href="{{ URL::to('admin/user') }}"
+			class="list-group-item @if( Request::is('admin/user') || Request::is('admin/dashboard') ) active @endif">
 			<small> <i class="glyphicon glyphicon-lock"></i> </small>
-			Dashboard
+			Manage Users
 		</a>
 		
 		<a href="{{ URL::to('admin/news') }}"

@@ -26,7 +26,7 @@
 						<td> {{ $user->email }} </td>
 						<td> {{ $user->characters->count() }} </td>
 						<td>
-							<a href="#">
+							<a href="{{ URL::route('admin.user.edit', $user->id) }}">
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
 						</td>

@@ -23,12 +23,6 @@ Route::group(array('prefix'	=> 'panel'), function()
 
 	/**
 	 *
-	 * @link panel/user/*
-	 */
-	Route::controller('user', 'UserController');
-
-	/**
-	 *
 	 * @link panel/*
 	 */
 	Route::controller('/', 'PanelController');
@@ -74,7 +68,7 @@ Route::group(array(
 	 * Dashboard Controller 
 	 * @link admin/dashboard/*
 	 */
-	Route::controller('dashboard', 'AdminController');
+	Route::resource('user', 'UserController');
 });
 
 /**
