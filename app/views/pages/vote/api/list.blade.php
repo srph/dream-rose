@@ -7,6 +7,9 @@
 	<hr>
 
 	@if( $links->count() )
+		<div class="alert alert-info">
+			<p> By voting us in one of the links below, we grant you <strong>{{ Config::get('dream.links.points') }}</strong> points in exchange. Thank you for the support! </p>
+		</div>
 		@foreach($links as $index => $link)
 			@if( $index % 2 == 0 || $index == 0 )
 				<div class="row text-center">
