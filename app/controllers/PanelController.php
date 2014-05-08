@@ -56,7 +56,7 @@ class PanelController extends BaseController {
 		if(empty($error)) $error = null;
 
 		return Redirect::to('panel/account-overview')
-			->with('user-update-error', $error)
+			->with('user-updated-error', $error)
 			->withErrors($validation);
 	}
 

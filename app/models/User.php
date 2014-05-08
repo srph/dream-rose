@@ -129,19 +129,26 @@ class User extends Base implements UserInterface, RemindableInterface {
 		$password 	= 'required|between:4,48';
 		$email		= 'required|email|unique:userinfo,Email';
 		$mname 		= 'required';
+		$activated	= 'in:0,1';
+		$vp = $dp = $gm = 'integer';
 
 		// Unique rules
 		if(!is_null($id)) {
 			$unique  	 = ',' . $id;
 			$username 	.= $unique;
 			$email		.= $unique;
+			$password 	 = '';
 		}
 
 		$rules = array(
-			'username'	=>	$username,
-			'password'	=>	$password,
-			'email'		=>	$email,
-			'mname'		=>	$mname
+			'username'	=> $username,
+			'password'	=> $password,
+			'email'		=> $email,
+			'mname'		=> $mname,
+			'activated' => $activated,
+			'vp'	 	=> $vp,
+			'dp' 		=> $dp,
+			'gm_lv' 	=> $gm
 		);
 
 		$messages = array('mname.required' => "The security question field is required");

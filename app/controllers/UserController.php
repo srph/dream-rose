@@ -26,7 +26,11 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = $this->user
+		$query = Input::has('query')
+			? $this->user->where('Account', 'like', '%' . Input::get('query') . '%')
+			: $this->user;
+
+		$users = $query
 			->orderBy('Account', 'asc')
 			->paginate(10);
 
@@ -68,7 +72,7 @@ class UserController extends \BaseController {
 		$user = $this->user->find($id);
 
 		if( is_null($user) )
-			return Redirect::to('admin/dashboard');
+			return Redirect::route('admin.user.index');
 
 		return View::make('pages/user.show')
 			->with('user', $user);
@@ -107,20 +111,30 @@ class UserController extends \BaseController {
 		// Grab user with the id of $id
 		$user = $this->user->find($id);
 
-		if( !is_null($user) ) return Redirect::to('admin/dashboard');
+		if( is_null($user) )
+			return Redirect::route('admin.user.index');
 
-		$validation = $this->user->validForUpdate($input);
+		$validation = $this->user->validate($input, $user->id);
+
+		// return Input::get('activated');
 
 		if( $validation->passes() ) {
+			
+			if( Input::has('password') ) {
+				$old = Input::get('old_password');
+				$new = Input::get('password');
+				$user->changePassword($old, $new);
+			}
+
 			$user->Email 				= Input::get('email');
-			$user->MD5PassWord 			= Hash::make(Input::get('password'));
+			// $user->MD5PassWord 			= Hash::make(Input::get('password'));
 			$user->FirstName 			= Input::get('fname');
 			$user->LastName 			= Input::get('lname');
-			$user->MotherLName 			= Input::get('mname');
-			$user->MailIsConfirm 		= 1;
-			$user->Right 				= 1;
-			$user->votePoints->count	= Input::get('vote_points');
-			$user->donationPoints->count = Input::get('donation_points');
+			// $user->MotherLName 			= Input::get('mname');
+			$user->MailIsConfirm 		= Input::get('activated');
+			$user->Right 				= Input::get('gm_lv');
+			$user->votePoint->count		= Input::get('vp');
+			$user->donationPoint->count = Input::get('dp');
 
 			if( $user->push() ) {
 				return Redirect::back()
@@ -129,7 +143,7 @@ class UserController extends \BaseController {
 		}
 
 		return Redirect::back()
-			->withErrors()
+			->withErrors($validation)
 			->withInput();
 	}
 

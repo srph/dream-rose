@@ -6,6 +6,12 @@
 	<h4> User List </h4>
 	<hr>
 
+	<div class="row">
+		<div class="col-md-6">
+			@include('pages/user/partials.search-query')
+		</div>
+	</div>
+
 	@if( $users->count() )
 		<table class="table table-hover">
 			<thead>
@@ -23,7 +29,7 @@
 					<tr>
 						<td> {{ $user->id }} </td>
 						<td> {{ $user->username }} </td>
-						<td> {{ $user->email }} </td>
+						<td> {{ $user->Email }} </td>
 						<td> {{ $user->characters->count() }} </td>
 						<td>
 							<a href="{{ URL::route('admin.user.edit', $user->id) }}">
@@ -34,9 +40,27 @@
 				@endforeach
 			</tbody>
 		</table>
+
+
+		<div class="clearfix">
+			{{ $users->links() }}
+
+			<div class="pull-right">
+				@if( Input::has('query') )
+					<a href="{{ URL::route('admin.user.index') }}" class="btn btn-default">
+						Go back
+					</a>
+				@endif
+			</div>
+		</div>
 	@else
 		<div class="alert alert-info">
-			<p> No users exist. </p>
+			<p>
+				No users exist.
+				@if( Input::has('query') )
+					<a href="{{ URL::route('admin.user.index') }}" class="alert-link"> Go back to the full list. </a>
+				@endif
+			</p>
 		</div>
 	@endif
 @stop

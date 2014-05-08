@@ -49,10 +49,10 @@
 				<div class="form-group">
 					<label> Old Password </label>
 					<input class="form-control" name="old_password" type="password">
-					@if(Session::has('user-update-error'))
+					@if(Session::has('user-updated-error'))
 						<p></p>
 						<div class="alert alert-danger">
-							<p> {{ Session::get('user-update-error') }} </p>
+							<p> {{ Session::get('user-updated-error') }} </p>
 						</div>
 					@endif
 				</div>
