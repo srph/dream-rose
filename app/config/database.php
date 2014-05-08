@@ -26,8 +26,8 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
-	// 'default' => 'dream',
+	// 'default' => 'mysql',
+	'default' => 'dream',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -104,6 +104,17 @@ return array(
 		| by the game server files are inserted.
 		|
 		*/
+
+		'dream' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'dream',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
 
 		'seven_ora' => array(
 			'driver'    => 'mysql',
