@@ -108,8 +108,8 @@ Route::get('logout', 'AuthController@getLogout');
  * Fancy register link
  * @link register/
  */
-Route::get('register', 'UserAPIController@getRegister');
-Route::post('register', 'UserAPIController@postRegister');
+Route::get('register', 'RegistrationController@getRegister');
+Route::post('register', 'RegistrationController@postRegister');
 
 /**
  * Handles all pages

@@ -1,6 +1,6 @@
 <?php
 
-class UserAPIController extends BaseController {
+class RegistrationController extends BaseController {
 
 	/**
 	 *
