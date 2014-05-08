@@ -10,7 +10,7 @@
 
 	<div class="alert alert-info">
 		<p>
-			You have <strong>{{ $user->vp }}</strong> <em>vote points</em>, <strong>{{ $user->dp }}</strong>
+			This user has <strong>{{ $user->vp }}</strong> <em>vote points</em>, <strong>{{ $user->dp }}</strong>
 			<em>donation points</em>, and <strong>{{ count($user->characters) }}</strong> <em>character(s)</em>.
 		</p>
 	</div>
