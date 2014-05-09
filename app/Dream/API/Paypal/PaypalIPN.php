@@ -35,6 +35,7 @@ class PaypalIPN {
 	/**
 	 *
 	 * @param Illuminate\Http\Request $request
+	 * @param Illuminate\Log\Writer $log
 	 */
 	public function __construct(Request $request, Log $log)
 	{
