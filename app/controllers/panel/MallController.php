@@ -16,14 +16,21 @@ class MallController extends BaseController {
 
 	/**
 	 *
+	 * @var Order
+	 */
+	protected $order;
+
+	/**
+	 *
 	 * @param 	Item 	$item
 	 * @param 	ItemCategory 	$category
 	 * @return 	void
 	 */
-	public function __construct(Item $item, ItemCategory $category)
+	public function __construct(Item $item, ItemCategory $category, Order $order)
 	{
 		$this->item = $item;
 		$this->category = $category;
+		$this->order = $order;
 		$this->beforeFilter('csrf', array('on' => array('put, post')));
 		$this->beforeFilter('auth');
 	}
@@ -71,7 +78,11 @@ class MallController extends BaseController {
 		try {
 			if ( $item->transactionPossible($payment) ) {
 				if ( $item->transact($payment, $user) ) {
-					if( $item->sendToStorage($user) ) {
+
+					$order 			= $this->order;
+					$order->item_id = $item->id;
+
+					if( $user->orders()->save($order) ) {
 						return Redirect::to('panel/mall')
 							->with('item-transaction-success', $item->name);
 					}
