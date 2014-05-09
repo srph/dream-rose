@@ -3,7 +3,7 @@
 
 	<div class="list-group">
 		<a href="{{ URL::to('admin/user') }}"
-			class="list-group-item @if( Request::is('admin/user') || Request::is('admin/dashboard') ) active @endif">
+			class="list-group-item @if( Request::is('admin/user') || Request::is('admin/user/*') ) active @endif">
 			<small> <i class="glyphicon glyphicon-lock"></i> </small>
 			Manage Users
 		</a>

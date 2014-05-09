@@ -9,13 +9,20 @@ class PanelController extends BaseController {
 	protected $user;
 
 	/**
+	 *
+	 * @var Order
+	 */
+	protected $order;
+
+	/**
 	 * Apply filter and inject dependencies
 	 *
 	 *
 	 */
-	public function __construct(User $user)
+	public function __construct(User $user, Order $order)
 	{
 		$this->user = $user;
+		$this->order = $order;
 		$this->beforeFilter('csrf', array('on' => array('put, post')));
 	}
 
@@ -46,7 +53,10 @@ class PanelController extends BaseController {
 		$validation = $user->validate($input, $user->id);
 
 		if($validation->passes()) {
-			if($user->changePassword($old, $new)) return Redirect::to('panel/account-overview')->with('user-update-success', 'placeholder');
+			if( $user->changePassword($old, $new) ) {
+				return Redirect::to('panel/account-overview')
+					->with('user-update-success', 'placeholder');
+			}
 
 			$error = 'Old password was incorrect';
 		}
@@ -68,6 +78,11 @@ class PanelController extends BaseController {
 	public function getYourCharacters()
 	{
 		return View::make('pages/panel.character');
+	}
+
+	public function getYourOrders()
+	{
+		// $orders = 
 	}
 	
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQueuesTable extends Migration {
+class CreateOrdersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,13 @@ class CreateQueuesTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('orders', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('item_id');
+			$table->softDeletes();
+			$table->timestamps();
+		})
 	}
 
 	/**
@@ -22,7 +28,7 @@ class CreateQueuesTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::dropIfExists('orders');
 	}
 
 }
