@@ -25,6 +25,12 @@
 			<small> <i class="glyphicon glyphicon-star"></i> </small>
 			Manage Vote Links
 		</a>
+
+		<a href="{{ URL::to('admin/order') }}"
+			class="list-group-item @if( Request::is('admin/order') || Request::is('admin/order/*') ) active @endif">
+			<small> <i class="glyphicon glyphicon-shopping-cart"></i> </small>
+			Manage Item Orders
+		</a>
 		
 		<a href="{{ URL::to('admin/item') }}"
 			class="list-group-item @if( Request::is('admin/item') || Request::is('admin/item/*') ) active @endif">

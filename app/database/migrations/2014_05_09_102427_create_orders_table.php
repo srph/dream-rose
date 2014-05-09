@@ -16,9 +16,10 @@ class CreateOrdersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('item_id');
+			$table->integer('user_id');
 			$table->softDeletes();
 			$table->timestamps();
-		})
+		});
 	}
 
 	/**

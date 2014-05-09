@@ -66,7 +66,13 @@ Route::group(array(
 
 	/**
 	 * Dashboard Controller 
-	 * @link admin/dashboard/*
+	 * @link admin/order/*
+	 */
+	Route::controller('order', 'OrderController');
+
+	/**
+	 * Dashboard Controller 
+	 * @link admin/user/*
 	 */
 	Route::resource('user', 'UserController');
 });

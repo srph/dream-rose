@@ -7,7 +7,7 @@ class Order extends Eloquent {
 	 *
 	 * @var boolean
 	 */
-	protected $softDeletes = true;
+	protected $softDelete = true;
 
 	/**
 	 * Default connection used by the model
@@ -28,17 +28,20 @@ class Order extends Eloquent {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array();
+	protected $fillable = array('user_id', 'item_id');
 
 	/**
-	 * Return all "processed" rows
+	 * Checks if the date has already been transacted
 	 *
-	 * @param 	Order 	$query
-	 * @return 	Order
+	 * @return 	timestamp|string
 	 */
-	public function scopeProcessed($query)
+	public function getTransactedAttribute()
 	{
-		return $query->where('processed', true);
+		$dateDeleted = $this->deleted_at;
+
+		return ( is_null($dateDeleted) )
+			? 'Untransacted'
+			: $dateDeleted;
 	}
 
 	/*
@@ -62,7 +65,7 @@ class Order extends Eloquent {
 	 *
 	 * @return 	Item
 	 */
-	public function items()
+	public function item()
 	{
 		return $this->belongsTo('Item');
 	}

@@ -27,8 +27,14 @@ class OrderController extends BaseController {
 	 */
 	public function getIndex()
 	{
-		$orders = $this->orders
-			->processed()
+		$orders = Input::has('t')
+			? $this->order->withTrashed()
+			: $this->order;
+
+		if( Input::has('query') )
+			$orders = $orders->where('id', Input::get('query') );
+
+		$orders = $orders
 			->orderBy('id', 'desc')
 			->paginate(10);
 
@@ -44,16 +50,16 @@ class OrderController extends BaseController {
 	 */
 	public function postTransact($id)
 	{
-		// Fetch the order
-		$order = $this->order->findOrFail($id);
-
 		try {
-			// Set the order as processed
-			$order->delete();
+			// Fetch the order
+			$order = $this->order->findOrFail($id);
 		} catch(ModelNotFoundException $e) {
 			// If the model was not found, simply redirect
 			return Redirect::to('/');
 		}
+
+		// Set the order as processed
+		$order->delete();
 
 		// Return with a success session
 		return Redirect::back()
