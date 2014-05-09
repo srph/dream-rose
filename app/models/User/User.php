@@ -187,12 +187,31 @@ class User extends Base implements UserInterface, RemindableInterface {
 			: false;
 	}
 
+	/**
+	 * Add vote points to the user
+	 *
+	 * @return 	boolean
+	 */
 	public function addVP($points)
 	{
 		$vp = $this->votePoint;
 		$count = $vp->count;
 		$vp->count = $count + $points;
-		$vp->save();
+		return $vp->save();
+	}
+
+	/**
+	 * Add donation points to the user
+	 *
+	 * @return 	boolean
+	 */
+	public function addDP($points)
+	{
+		$dp = $this->donationPoint;
+		$count = $dp->count;
+
+		$dp->count = $count + $points;
+		return $dp->save();
 	}
 
 	/**
