@@ -6,22 +6,29 @@
 	<h4> Manage Item Orders </h4>
 	<hr>
 
-	{{ Form::open() }}
+	{{ Form::open(array('method' => 'GET')) }}
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="form-group">
 					<label> Search (ID) </label>
 					<input type="text" class="form-control" name="query" value="{{ Input::get('query') }}">
 				</div>
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="form-group">
 					<label> Filter </label>
 					<select class="form-control" name="t">
 						<option value="" @if(!Input::has('t')) selected @endif>(Select)</option>
-						<option value="" @if(Input::has('t')) selected @endif>Transacted</option>
+						<option value="1" @if(Input::has('t')) selected @endif>Transacted</option>
 					</select>
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<label style="color: white;"> .. </label>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block"> Query </button>
 				</div>
 			</div>
 		</div>
@@ -64,7 +71,7 @@
 
 
 		<div class="clearfix">
-			{{ $orders->links() }}
+			{{ $orders->links('pages/order/partials.paginator') }}
 
 			<div class="pull-right">
 				@if( Input::has('query') )

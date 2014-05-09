@@ -82,7 +82,15 @@ class PanelController extends BaseController {
 
 	public function getYourOrders()
 	{
-		// $orders = 
+		$user = Auth::user();
+		$orders = $user
+			->orders()
+			->withTrashed()
+			->orderBy('id', 'desc')
+			->paginate(10);
+
+		return View::make('pages/panel.orders')
+			->with('orders', $orders);
 	}
 	
 }

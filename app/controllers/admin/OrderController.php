@@ -32,13 +32,13 @@ class OrderController extends BaseController {
 			: $this->order;
 
 		if( Input::has('query') )
-			$orders = $orders->where('id', Input::get('query') );
+			$orders = $orders->where('id', 'like', '%' . Input::get('query') . '%');
 
 		$orders = $orders
 			->orderBy('id', 'desc')
 			->paginate(10);
 
-		return View::make('pages/orders.index')
+		return View::make('pages/order.index')
 			->With('orders', $orders);
 	}
 

@@ -302,4 +302,14 @@ class User extends Base implements UserInterface, RemindableInterface {
 		return $this->hasMany('VoteLog');
 	}
 
+	/**
+	 * ORM with the Order model
+	 *
+	 * @return 	Order
+	 */
+	public function orders()
+	{
+		return $this->hasMany('Order');
+	}
+
 }

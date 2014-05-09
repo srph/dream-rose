@@ -9,8 +9,13 @@
 		
 		<a href="{{ URL::to('panel/your-characters') }}" class="list-group-item @if( Request::is('panel/your-characters') ) active @endif">
 			<small> <i class="glyphicon glyphicon-list"></i> </small>
-			Characters
-		</a>			
+			Your Characters
+		</a>
+		
+		<a href="{{ URL::to('panel/your-orders') }}" class="list-group-item @if( Request::is('panel/your-orders') ) active @endif">
+			<small> <i class="glyphicon glyphicon-gift"></i> </small>
+			Your Item Orders
+		</a>
 		
 		<a href="{{ URL::to('panel/mall') }}" class="list-group-item @if( Request::is('panel/mall') ) active @endif">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>

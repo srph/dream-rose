@@ -232,4 +232,14 @@ class Item extends Eloquent {
 		return $this->belongsTo('ItemCategory', 'category_id', 'id');
 	}
 
+	/**
+	 * ORM with the Order model
+	 *
+	 * @return 	Order
+	 */
+	public function orders()
+	{
+		return $this->hasMany('order');
+	}
+
 }
