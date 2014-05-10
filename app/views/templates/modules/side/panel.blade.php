@@ -19,7 +19,7 @@
 		
 		<a href="{{ URL::to('panel/mall') }}" class="list-group-item @if( Request::is('panel/mall') ) active @endif">
 			<small> <i class="glyphicon glyphicon-gift"></i> </small>
-			Mall
+			Item Mall
 		</a>
 		
 		<a href="{{ URL::to('panel/vote') }}" class="list-group-item @if( Request::is('panel/vote') ) active @endif">
