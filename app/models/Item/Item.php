@@ -239,7 +239,7 @@ class Item extends Eloquent {
 	 */
 	public function orders()
 	{
-		return $this->hasMany('order');
+		return $this->hasMany('Order');
 	}
 
 }

@@ -57,8 +57,21 @@ class ViewEventHandler {
 	{
 		$this->view->share('v4us', $this->cache->get('vote.links') );
 		$this->view->share('server', $this->cache->get('server.ports') );
+		$this->view->share('dateNow', $this->getDate() );
 
 		if ( $this->auth->check() ) $this->view->share( 'auth', $this->auth->user() );
+	}
+
+	/**
+	 * Share date across the views
+	 *
+	 * @return 	Carbon\Carbon
+	 */
+	protected function getDate()
+	{
+		$now = Carbon::now();
+
+		return $now;
 	}
 
 	/**
