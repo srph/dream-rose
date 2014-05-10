@@ -30,8 +30,10 @@ class RegistrationController extends BaseController {
 		$this->user = $user;
 		$this->vp = $vp;
 		$this->dp = $dp;
-		$this->beforeFilter('csrf', array('on' => array('post')));
+
+		// Filters
 		$this->beforeFilter('guest');
+		$this->beforeFilter('csrf', array('on' => array('post')));
 	}
 
 	/**

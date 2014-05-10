@@ -16,6 +16,9 @@ class OrderController extends BaseController {
 	public function __construct(Order $order)
 	{
 		$this->order = $order;
+
+		// Filters
+		$this->beforeFilter('auth');
 		$this->beforeFilter('gm');
 		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
 	}

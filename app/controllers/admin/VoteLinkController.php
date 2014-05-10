@@ -16,8 +16,11 @@ class VoteLinkController extends \BaseController {
 	public function __construct(VoteLink $vote)
 	{
 		$this->vote = $vote;
-		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
+
+		// Filters
+		$this->beforeFilter('auth');
 		$this->beforeFilter('gm');
+		$this->beforeFilter('csrf', array('on' => 'post', 'put', 'delete'));
 	}
 
 	/**

@@ -23,6 +23,8 @@ class PanelController extends BaseController {
 	{
 		$this->user = $user;
 		$this->order = $order;
+
+		// Filters
 		$this->beforeFilter('csrf', array('on' => array('put, post')));
 	}
 

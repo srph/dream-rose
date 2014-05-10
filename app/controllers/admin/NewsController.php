@@ -17,8 +17,11 @@ class NewsController extends \BaseController {
 	public function __construct(News $news)
 	{
 		$this->news = $news;
+
+		// Filters
+		$this->beforeFilter('auth');
+		$this->beforeFilter('gm');
 		$this->beforeFilter('csrf', array('on' => array('post', 'put', 'delete')));
-		$this->beforeFilter('gm', array('except' => array('show')));
 	}
 
 	/**

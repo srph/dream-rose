@@ -31,6 +31,8 @@ class MallController extends BaseController {
 		$this->item = $item;
 		$this->category = $category;
 		$this->order = $order;
+
+		// Filters
 		$this->beforeFilter('csrf', array('on' => array('put, post')));
 		$this->beforeFilter('auth');
 	}

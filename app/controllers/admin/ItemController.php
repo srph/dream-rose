@@ -23,9 +23,12 @@ class ItemController extends \BaseController {
 	{
 		$this->item = $item;
 		$this->category = $category;
+
+		// Filters
+		$this->beforeFilter('auth');
+		$this->beforeFilter('gm');
 		$this->beforeFilter('csrf', array('on' => array('post', 'put', 'delete')));
-		$this->beforeFilter('gm', array('except' => array('show')));
-		Event::fire('item.categories.cache');
+		// Event::fire('item.categories.cache');
 	}
 
 	/**

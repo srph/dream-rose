@@ -16,8 +16,11 @@ class SlideController extends \BaseController {
 	public function __construct(Slide $slide)
 	{
 		$this->slide = $slide;
-		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
+
+		// Filters
+		$this->beforeFilter('auth');
 		$this->beforeFilter('gm');
+		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
 	}
 
 	/**

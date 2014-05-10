@@ -1,4 +1,4 @@
-<?php
+<?php namespace Dream\Filters;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector as Redirect;

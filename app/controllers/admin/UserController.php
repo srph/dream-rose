@@ -16,6 +16,10 @@ class UserController extends \BaseController {
 	public function __construct(User $user)
 	{
 		$this->user = $user;
+
+		// Filters
+		$this->beforeFilter('auth');
+		$this->beforeFilter('gm');
 		$this->beforeFilter('csrf', array('on' => array('put, post')));
 	}
 
