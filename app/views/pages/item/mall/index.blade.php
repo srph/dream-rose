@@ -3,7 +3,7 @@
 @section('title') - Item Mall @stop
 
 @section('content')
-	<h4> Item Mall </h4>
+	<h2> Item Mall </h2>
 	<hr>
 
 	@if( Session::has('item-transaction-error') )
