@@ -106,10 +106,19 @@ class HomeController extends BaseController {
 	 */
 	public function getPlayerRanking()
 	{
-		$characters = $this->character
+		$collection = $this->character
+			->with('user')
 			->orderBy('btLEVEL', 'desc')
 			->take(10)
 			->get();
+
+		$characters = $collection->filter(function($character)
+		{
+			if( $character->user->isGM() )
+			{
+				return false;
+			}
+		});
 
 		return View::make('pages/home/ranking.character')
 			->with('characters', $characters);
