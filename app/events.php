@@ -17,3 +17,8 @@ Event::subscribe('Dream\Events\VoteEventHandler');
  */
 
 Event::subscribe('Dream\Events\ViewEventHandler');
+
+/**
+ *
+ */
+Event::subscribe('Dream\Events\UserCreationHandler');
