@@ -24,11 +24,13 @@ class SSLFilter {
 	 */
 	public function filter()
 	{
-		if( ! $this->request->secure() )
-		{
-			$uri = $this->request->getRequestUri();
+		$request = $this->request;
 
-			return $redirect->secure( $uri );
+		if( ! $request->secure() )
+		{
+			$uri = $request->getRequestUri();
+
+			return $this->redirect->secure( $uri );
 		}
 	}
 }
