@@ -40,7 +40,7 @@ class DonationController extends BaseController {
 	 */
 	public function getIndex()
 	{
-		//
+		return View::make('pages/donation.index');
 	}
 
 	/**

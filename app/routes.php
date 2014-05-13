@@ -23,6 +23,12 @@ Route::group(array('prefix'	=> 'panel'), function()
 
 	/**
 	 *
+	 * @link panel/donate
+	 */
+	Route::controller('donate', 'DonationController');
+
+	/**
+	 *
 	 * @link panel/*
 	 */
 	Route::controller('/', 'PanelController');

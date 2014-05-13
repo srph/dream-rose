@@ -27,7 +27,7 @@
 			Vote 4 Points
 		</a>
 
-		<a href="{{ URL::to('panel/vote') }}" class="list-group-item @if( Request::is('panel/vote') ) active @endif">
+		<a href="{{ URL::to('panel/donate') }}" class="list-group-item @if( Request::is('panel/donate') ) active @endif">
 			<small> <i class="glyphicon glyphicon-star"></i> </small>
 			Donate 4 Points
 		</a>
