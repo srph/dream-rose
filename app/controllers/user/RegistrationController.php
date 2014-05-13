@@ -43,11 +43,7 @@ class RegistrationController extends BaseController {
 	 */
 	public function getRegister()
 	{
-		$view = View::make('pages/user.create');
-
-		return (Auth::guest())
-			? $view
-			: $view->with('user', Auth::user());
+		return View::make('pages/user.create');
 	}
 
 	/**
@@ -63,9 +59,9 @@ class RegistrationController extends BaseController {
 
 		// Validate
 		$validation = $this->user->validate($input);
-		if($validation->passes()) {
-			$user = $this->user;
-			$username = Input::get('username');
+		if ( $validation->passes() ) {
+			$user 				= $this->user;
+			$username 			= Input::get('username');
 			$user->id 			= $user->incrementID();
 			$user->Account 		= $username;
 			$user->Email 		= Input::get('email');
@@ -73,20 +69,16 @@ class RegistrationController extends BaseController {
 			$user->FirstName 	= Input::get('fname');
 			$user->LastName 	= Input::get('lname');
 			$user->MotherLName 	= Input::get('mname');
-			$user->MailIsConfirm = 1;
 			$user->Right 		= 1;
+			$user->MailIsConfirm = 1;
 
 			if( $user->save() ) {
 				$user 	= User::where('Account', $username)->first();
 
 				// Create his vote point and donation point table
-				$vp = $this->vp;
-				$dp = $this->dp;
+				Event::fire('user.creation', $user);
 
-				if( $user->votePoint()->save($vp) &&
-					$user->donationPoint()->save($dp) ) {
-					return View::make('pages/user.create-success');
-				}
+				return View::make('pages/user.create-success');
 			}
 		}
 
