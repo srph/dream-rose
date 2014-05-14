@@ -114,10 +114,7 @@ class HomeController extends BaseController {
 
 		$characters = $collection->filter(function($character)
 		{
-			if( $character->user->isGM() )
-			{
-				return false;
-			}
+			return ! $character->user->isGM();
 		});
 
 		return View::make('pages/home/ranking.character')
