@@ -144,7 +144,7 @@ class Character extends Base {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('User', 'Account', 'txtACCOUNT');
+		return $this->belongsTo('User', 'txtACCOUNT', 'Account');
 		//$user = User::where('Account', $this->txtACCOUNT)->first();
 		
 		//return $user;
