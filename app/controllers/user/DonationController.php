@@ -29,8 +29,9 @@ class DonationController extends BaseController {
 
 		// Filters
 		$this->beforeFilter('auth');
-		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
+		$this->beforeFilter('gm');
 		$this->beforeFilter('force.ssl');
+		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
 	}
 
 	/**
