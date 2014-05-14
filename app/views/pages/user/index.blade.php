@@ -43,8 +43,6 @@
 
 
 		<div class="clearfix">
-			{{ $users->links() }}
-
 			<div class="pull-right">
 				@if( Input::has('query') )
 					<a href="{{ URL::route('admin.user.index') }}" class="btn btn-default">
@@ -52,6 +50,7 @@
 					</a>
 				@endif
 			</div>
+			{{ $users->links('pages/user/partials.search-query') }}
 		</div>
 	@else
 		<div class="alert alert-info">
