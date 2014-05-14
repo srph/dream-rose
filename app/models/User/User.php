@@ -265,7 +265,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	 */
 	public function characters()
 	{
-		return $this->hasMany('Character', 'txtACCOUNT', 'Account');
+		return $this->hasMany('Character', 'Account', 'txtACCOUNT');
 		//$characters = Character::where('txtACCOUNT', $this->username)->get();
 		
 		//return $characters;
