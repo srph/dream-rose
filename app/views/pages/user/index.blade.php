@@ -50,14 +50,15 @@
 					</a>
 				@endif
 			</div>
-			{{ $users->links('pages/user/partials.search-query') }}
+			{{ $users->links('pages/user/partials.paginator') }}
 		</div>
 	@else
 		<div class="alert alert-info">
 			<p>
-				No users exist.
 				@if( Input::has('query') )
-					<a href="{{ URL::route('admin.user.index') }}" class="alert-link"> Go back to the full list. </a>
+					No such user exists. <a href="{{ URL::route('admin.user.index') }}" class="alert-link"> Go back to the full list. </a>
+				@else
+					No user has been registered yet.
 				@endif
 			</p>
 		</div>

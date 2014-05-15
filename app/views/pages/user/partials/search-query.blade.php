@@ -4,7 +4,7 @@
 
 		<div class="input-group">
 
-			<input type="text" class="form-control" name="query">
+			<input type="text" class="form-control" name="query" value="{{ Input::get('query') }}">
 
 			<div class="input-group-btn">
 				<button type="submit" class="btn btn-default">
