@@ -12,7 +12,7 @@ class UserPresenter extends \Illuminate\Pagination\Presenter {
 	public function getPageLinkWrapper($url, $page)
 	{
 		$query	= \Input::get('query');
-		return "<li><a href=\"{$url}?&query={$query}\">{$page}</a></li>";
+		return "<li><a href=\"{$url}?query={$query}\">{$page}</a></li>";
 	}
 
 	/**
