@@ -91,3 +91,15 @@ ul.game-info-custom li:before {
 .list-group-item {
 	font-weight: bold;
 }
+
+/* Typography */
+h1, h2, h3, h4, h5, h6, small {
+	font-family: 'Open Sans', 'Helvetica', 'Helvetica Neue', serif, sans-serif;
+	font-weight: 700;
+}
+
+a.item-mall-head {
+	font-family: 'Montserrat';
+	text-transform: uppercase;
+	/*color: #F44040;*/
+}

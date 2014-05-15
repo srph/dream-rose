@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class MallController extends BaseController {
 
 	/**
@@ -37,6 +39,11 @@ class MallController extends BaseController {
 		$this->beforeFilter('auth');
 	}
 
+	/**
+	 * Show a listing of the resourc3
+	 *
+	 * @return 	Response
+	 */
 	public function getIndex()
 	{
 		$categories = $this->category->all();
@@ -44,6 +51,33 @@ class MallController extends BaseController {
 
 		return View::make('pages/item/mall.index')
 			->with('categories', $categories);
+	}
+
+	/**
+	 * Show items under requested category
+	 *
+	 * @param 	integer 	$id
+	 * @return 	Response
+	 */
+	public function getCategory($id)
+	{
+		// Get the category
+		try {
+			$category = $this->category
+				->with('items')
+				->find($id);
+		} catch(ModelNotFoundException $e) {
+			//
+		}
+
+		// Paginate the items
+		$items = $category->items()
+			->orderBy('name', 'asc')
+			->paginate(10);
+
+		return View::make('pages/item/mall.category')
+			->with('category', $category)
+			->with('items', $items);
 	}
 
 	/**
