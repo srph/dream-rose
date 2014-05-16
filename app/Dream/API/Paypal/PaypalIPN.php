@@ -125,7 +125,7 @@ class PaypalIPN {
 	 *
 	 * @return 	void
 	 */
-	protected function decodeRawData($raw)
+	protected function decode($raw)
 	{
 		foreach($raw as $key => $value) {
 			$this->data[$key] = urldecode($value);
