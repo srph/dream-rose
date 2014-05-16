@@ -28,9 +28,9 @@ class DonationController extends BaseController {
 		$this->paypal = $paypal;
 
 		// Filters
-		$this->beforeFilter('auth');
+		$this->beforeFilter('auth', array('except' => array('postListen')));
 		$this->beforeFilter('gm');
-		$this->beforeFilter('force.ssl');
+		// $this->beforeFilter('force.ssl');
 		$this->beforeFilter('csrf', array('on' => array('put', 'post', 'delete')));
 	}
 
