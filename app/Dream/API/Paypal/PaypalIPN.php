@@ -112,7 +112,7 @@ class PaypalIPN {
 		// 	if(count($key) == 2)
 		// 		$this->data[$key[0]] = urldecode($key[0]);
 		// }
-		$this->decodeRawData();
+		$this->decode($this->raw);
 
 		// Read the IPN message sent from PayPal and prepend string
 		$fields = $this->getFields('cmd=notify-validate');
@@ -125,9 +125,9 @@ class PaypalIPN {
 	 *
 	 * @return 	void
 	 */
-	protected function decodeRawData()
+	protected function decodeRawData($raw)
 	{
-		foreach($this->$raw as $key => $value) {
+		foreach($raw as $key => $value) {
 			$this->data[$key] = urldecode($value);
 		}
 	}
