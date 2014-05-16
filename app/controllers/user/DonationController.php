@@ -62,16 +62,19 @@ class DonationController extends BaseController {
 			return Redirect::to('/');
 		}
 
-		// Fetch the authenticated user
-		$user = Auth::user();
-
-		// Fetch the amount donated and compute total points to add
-		$amount = Input::get('payment_status');
-		$total 	= $amount * 4;
-
-		// Add DP
-		$user->addDP($total);
-		return 'Success!';
+		if( Auth::check() ) {
+			// Fetch the authenticated user
+			$user = Auth::user();
+	
+			// Fetch the amount donated and compute total points to add
+			$amount = Input::get('payment_status');
+			$total 	= $amount * 4;
+	
+			// Add DP
+			$user->addDP($total);
+		}
+		
+		return 'Success!';	
 	}
 
 }
