@@ -93,6 +93,11 @@ Route::get('test', function()
 	return Carbon\Carbon::now()->addMinutes(10);
 });
 
+Route::post('test', function()
+{
+	return View::make('pages.test');
+});
+
 /**
  * Fancy auth link
  * @link login/
