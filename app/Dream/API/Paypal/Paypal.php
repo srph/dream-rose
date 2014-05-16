@@ -6,7 +6,7 @@ class Paypal {
 	 *
 	 * @var PaypalIPN\Notifier
 	 */
-	protected $notifier;
+	public $notifier;
 
 	/**
 	 *
