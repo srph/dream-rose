@@ -12,6 +12,12 @@
 	<p> We hope you enjoy, thank you. </p>
 
 	@include('pages/donation/partials.paypal-button')
+	
+	<div class="alert alert-warning">
+		<p> 
+			Make sure that you are logged in this application! Failing to do so may result to unexpected results such as not receiving points
+		</p>
+	</div>
 
 	<div class="alert alert-info">
 		<p> 
