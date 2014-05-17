@@ -7,20 +7,6 @@ use Illuminate\Log\Writer as Log;
 class PaypalIPN {
 
 	/**
-	 * Used to hold POST data
-	 *
-	 * @var array
-	 */
-	protected $data = array();
-
-	/**
-	 * Used to hold POST raw data
-	 *
-	 * @var array
-	 */
-	protected $raw;
-
-	/**
 	 *
 	 * @var Illuminate\Http\Request
 	 */
@@ -54,7 +40,8 @@ class PaypalIPN {
 		$response = $this->listen();
 
 		// Inspect IPN validation result and act accordingly
-		if( strcmp($response, "VERIFIED") !== 0 || strcmp($response, "INVALID") == 0 ) {
+		if( /*! (strcmp($response, "VERIFIED") == 0) ||*/ strcmp($response, "INVALID") == 0 )
+		{
 			// Error message
 			$error = 'Invalid paypal response! Throwing InvalidResponseException';
 
@@ -73,7 +60,7 @@ class PaypalIPN {
 	 */
 	protected function listen()
 	{
-		$fields = $this->getPOSTData();
+		$fields = $this->getFields();
 
 		$ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');
 		curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
@@ -92,43 +79,50 @@ class PaypalIPN {
 	}
 
 	/**
-	 * Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
-	 * Instead, read raw POST data from the input stream. 
+	 * Get fields from the input stream to be passed to
+	 * the IPN
 	 *
 	 * @return 	string
 	 */
-	protected function getPOSTData()
+	protected function getFields()
 	{
 		// Get request instance
 		$request = $this->request->instance();
 
-		// Separate all elements with ampersand in between
-		$this->raw = explode('&', $request);
-
-		// foreach($raw as $key) {
-		// 	// Separate all elements with an '=' sign in between
-		// 	$key = explode('=', $key);
-
-		// 	if(count($key) == 2)
-		// 		$this->data[$key[0]] = urldecode($key[0]);
-		// }
-		$this->decode($this->raw);
+		// Reading POSTed data directly from $_POST causes serialization
+		// issues with array data in the POST. Decode the raw post data
+		// from the input stream
+		$data = $this->decode($request);
 
 		// Read the IPN message sent from PayPal and prepend string
-		$fields = $this->getFields('cmd=notify-validate');
+		$fields = $this->getFields('cmd=_notify-validate');
 
 		return $fields;
 	}
 
 	/**
-	 * Self-explanatory
+	 * Decode the raw post data from the input stream
 	 *
 	 * @return 	void
 	 */
-	protected function decode($raw)
+	protected function decode($request)
 	{
-		foreach($raw as $key => $value) {
-			$this->data[$key] = urldecode($value);
+		// Separate all elements with ampersand in between
+		$raw = explode('&', $request);
+
+		// Initialize an array to hold all decoded raw data
+		$decoded = array();
+
+		// Seperate raw data value from its key
+		// e.g. foo=bar -> data[foo] = bar
+		foreach($raw as $data)
+		{
+			$key = explode('=', $key);
+
+			if(count($key) == 2)
+			{
+				$data = [$data[0]] = urldecode($data[1]);
+			}
 		}
 	}
 

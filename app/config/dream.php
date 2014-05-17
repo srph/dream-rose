@@ -144,7 +144,7 @@ return array(
 	
 	'downloads' => array(
 	
-		'client' => 'https://mega.co.nz/#!TooEVbgT!RGRcWQruC2VVTIjJTsUKyfAQAa-duJy64hm_qn82IOg',
+		'client' => 'https://mega.co.nz/#!q5QR3RDY!8g3i13XnoXyBYRkfVYDt0FYznyByNzpKUQ3UiIZqAEE',
 		'patch'  => null,
 		
 	),

@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 class HomeController extends BaseController {
 
@@ -28,11 +29,15 @@ class HomeController extends BaseController {
 	 * @param 	Slide 	$slide
 	 * @param 	News 	$news
 	 */
-	public function __construct(News $news, Character $character, Clan $clan)
+	public function __construct(News $news,
+		Character $character,
+		Clan $clan,
+		Collection $collection)
 	{
 		$this->news = $news;
 		$this->character = $character;
 		$this->clan = $clan;
+		$this->collection = $collection;
 	}
 
 	/**
@@ -106,10 +111,17 @@ class HomeController extends BaseController {
 	 */
 	public function getPlayerRanking()
 	{
+		$gm = $this->user->GM()->get();
+
+		foreach($gm as $user)
+		{
+			$count += $user->characters->count();
+		}
+
 		$collection = $this->character
 			->with('user')
 			->orderBy('btLEVEL', 'desc')
-			->take(10)
+			->take($count)
 			->get();
 
 		$characters = $collection->filter(function($character)
@@ -117,8 +129,15 @@ class HomeController extends BaseController {
 			return ! $character->user->isGM();
 		});
 
+		$newCollection = $this->collection->make();
+
+		foreach($characters as $key => $value)
+		{
+			$newCollection->add($value);
+		}
+
 		return View::make('pages/home/ranking.character')
-			->with('characters', $characters);
+			->with('characters', $newCollection);
 	}
 
 }

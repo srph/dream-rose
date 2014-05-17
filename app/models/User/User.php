@@ -168,8 +168,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	{
 		if(Hash::check($old, $this->MD5PassWord)) {
 			$this->MD5PassWord = Hash::make($new);
-
-			if($this->save()) return true;
+			return $this->save();
 		}
 
 		return false;
@@ -194,10 +193,7 @@ class User extends Base implements UserInterface, RemindableInterface {
 	 */
 	public function addVP($points)
 	{
-		$vp = $this->votePoint;
-		$count = $vp->count;
-		$vp->count = $count + $points;
-		return $vp->save();
+		return $this->votePoint->increment('count', $points);
 	}
 
 	/**
@@ -207,11 +203,17 @@ class User extends Base implements UserInterface, RemindableInterface {
 	 */
 	public function addDP($points)
 	{
-		$dp = $this->donationPoint;
-		$count = $dp->count;
+		return $this->donationPoint->increment('count', $points);
+	}
 
-		$dp->count = $count + $points;
-		return $dp->save();
+	/**
+	 * The number of GMs in the game
+	 *
+	 * @return 	int
+	 */
+	public function scopeGM($query)
+	{
+		return $query->where('Right', '>', 1);
 	}
 
 	/**
@@ -239,18 +241,22 @@ class User extends Base implements UserInterface, RemindableInterface {
 	/**
 	 * A shortcut to the user's vote point count
 	 *
-	 * @return 	void
+	 * @return 	int
 	 */
 	public function getVpAttribute()
 	{
 		return $this->votePoint->count;
 	}
 
+	/**
+	 * A shortcut to the user's donation point count
+	 *
+	 * @return 	int
+	 */
 	public function getDpAttribute()
 	{
 		return $this->donationPoint->count;
 	}
-
 
 	/*
 	|--------------------------------------------------------------------------
@@ -266,9 +272,6 @@ class User extends Base implements UserInterface, RemindableInterface {
 	public function characters()
 	{
 		return $this->hasMany('Character', 'txtACCOUNT', 'Account');
-		//$characters = Character::where('txtACCOUNT', $this->username)->get();
-		
-		//return $characters;
 	}
 
 	/**

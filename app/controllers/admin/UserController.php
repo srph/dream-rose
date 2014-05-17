@@ -125,9 +125,8 @@ class UserController extends \BaseController {
 		if( $validation->passes() ) {
 			
 			if( Input::has('password') ) {
-				$old = Input::get('old_password');
 				$new = Input::get('password');
-				$user->changePassword($old, $new);
+				$user->changePassword( $user->MD5PassWord, $new);
 			}
 
 			$user->Email 				= Input::get('email');

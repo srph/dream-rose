@@ -58,36 +58,21 @@
 			</div>
 
 		</div>
-
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label> Old Password </label>
-					<input class="form-control" name="old_password" type="password" value="{{ $user->MD5PassWord }}">
-					<p class="help-block"> Do not change this. </p>
-					@if(Session::has('user-updated-error'))
-						<p></p>
-						<div class="alert alert-danger">
-							<p> {{ Session::get('user-updated-error') }} </p>
-						</div>
-					@endif
+			
+		<div class="form-group">
+			<label> New Password </label>
+			<input class="form-control" name="password" type="password">
+			<p class="help-block">
+				The user's new password. Will update the user's password upon fill and save.
+			</p>
+			@if($errors->has('password'))
+				<p></p>
+				<div class="alert alert-danger">
+					<p> {{ $errors->first('password') }} </p>
 				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label> New Password </label>
-					<input class="form-control" name="password" type="password">
-					<p class="help-block"> The user's new password. Will update the user's password upon fill and save. </p>
-					@if($errors->has('password'))
-						<p></p>
-						<div class="alert alert-danger">
-							<p> {{ $errors->first('password') }} </p>
-						</div>
-					@endif
-				</div>
-			</div>
-		</div>
+			@endif
+		</div>		
+		
 
 		<div class="row">
 
