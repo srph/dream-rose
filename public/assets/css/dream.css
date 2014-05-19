@@ -160,6 +160,11 @@ ul.game-info-custom li:before {
 	transition: all .75s;
 }
 
+/* Nav Pills */
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+	background-color: #F44040;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6, small {
 	font-family: 'Open Sans', 'Helvetica', 'Helvetica Neue', serif, sans-serif;
