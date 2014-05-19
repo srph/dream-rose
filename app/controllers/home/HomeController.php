@@ -135,7 +135,10 @@ class HomeController extends BaseController {
 
 		foreach($gm as $user)
 		{
-			$count += $user->characters->count();
+			$count += $user->characters()
+				->where('btLEVEL', 255)
+				->get()
+				->count();
 		}
 
 		$collection = $this->character
@@ -154,8 +157,6 @@ class HomeController extends BaseController {
 		{
 			$newCollection->add($value);
 		}
-
-		$newCollection->slice(0, 10);
 
 		return View::make('pages/home/ranking.character')
 			->with('characters', $newCollection);
