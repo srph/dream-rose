@@ -3,7 +3,7 @@
 @section('title') - Account Overview @stop
 
 @section('content')
-	<h1> Account Overview </h1>
+	<h2> Account Overview </h2>
 	<hr>
 
 	<div class="alert alert-info">

@@ -89,7 +89,8 @@ Route::group(array(
  */
 Route::get('test', function()
 {
-	return View::make('pages.test');
+	// return View::make('pages.test');
+	return strtolower(Str::random(12));
 });
 
 Route::post('test', function()

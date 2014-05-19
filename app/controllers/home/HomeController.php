@@ -24,6 +24,18 @@ class HomeController extends BaseController {
 	protected $character;
 
 	/**
+	 *
+	 * @var User
+	 */
+	protected $user;
+
+	/**
+	 *
+	 * @var Illuminate\Database\Eloquent\Collection
+	 */
+	protected $collection;
+
+	/**
 	 * Apply filter and inject dependencies
 	 *
 	 * @param 	Slide 	$slide
@@ -32,11 +44,13 @@ class HomeController extends BaseController {
 	public function __construct(News $news,
 		Character $character,
 		Clan $clan,
+		User $user,
 		Collection $collection)
 	{
 		$this->news = $news;
 		$this->character = $character;
 		$this->clan = $clan;
+		$this->user = $user;
 		$this->collection = $collection;
 	}
 
@@ -112,6 +126,7 @@ class HomeController extends BaseController {
 	public function getPlayerRanking()
 	{
 		$gm = $this->user->GM()->get();
+		$count = 0;
 
 		foreach($gm as $user)
 		{
@@ -121,7 +136,7 @@ class HomeController extends BaseController {
 		$collection = $this->character
 			->with('user')
 			->orderBy('btLEVEL', 'desc')
-			->take($count)
+			->take($count + 10)
 			->get();
 
 		$characters = $collection->filter(function($character)
@@ -129,7 +144,7 @@ class HomeController extends BaseController {
 			return ! $character->user->isGM();
 		});
 
-		$newCollection = $this->collection->make();
+		$newCollection = $this->collection;
 
 		foreach($characters as $key => $value)
 		{

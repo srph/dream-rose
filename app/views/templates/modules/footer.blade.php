@@ -1,4 +1,4 @@
-<div class="clearfix text-muted">
+<div class="clearfix">
 	<p class="pull-right"> {{ $dateNow }} </p>
-	<p> {{ Config::get('dream.footer.message') }} </p>
+	<p> <strong> {{ Config::get('dream.footer.message') }} </strong> </p>
 </div>

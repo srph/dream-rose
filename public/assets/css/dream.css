@@ -19,6 +19,14 @@ body {
 	text-transform: uppercase;
 }
 
+.container >  {
+	margin-left: -15px !important;
+}
+
+/*.navbar-collapse {
+	padding-left: -15px !important;
+}*/
+
 .navbar > .navbar-header > .navbar-brand:hover {
 	font-weight: bold;
 	color: #F44040;
@@ -36,23 +44,55 @@ body {
 	font-size: 12px;
 }
 
-.navbar-inverse {
-	border-radius: 4px 4px 0 0;
+.navbar-inverse,
+.footer {
+	background-color: rgb(255, 255, 255); /* Fallback */
+	background-color: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 1px 2px rgb(0, 0, 0); /* Fallback */
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	border-radius: 0;
 	border: 0;
+	height: 55px;
+	color: #fff;
 	/*height: 60px;*/
 }
 
-.navbar-nav ul {
-	height: 60px;
+.navbar-nav .navbar.nav,
+.navbar-nav .navbar.nav li {
+	height: 55px;
+}
+
+.navbar-inverse .navbar-nav> li > a {
+	color: #fff;
 }
 
 .navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > li:hover > a[href] {
-	background-color: #F44040;
+.navbar-inverse .navbar-nav > li:hover > a[href],
+.navbar-inverse .navbar-nav > li:hover > a[href],
+.navbar-inverse .navbar-nav > .open > a[href],
+.navbar-inverse .navbar-nav > .open > a[href]:hover {
+	height: 55px;
+	box-sizing: border-box !important;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	color: #fff;
+	font-weight: 900;
+	background-color: inherit;
+	border-bottom: 5px solid #F44040;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
+}
+
+/* Dropdown */
+.dropdown-menu>.active> a, .dropdown-menu >.active > a:hover, .dropdown-menu > .active > a:focus,
+.dropdown-menu>li > a:hover, .dropdown-menu > li > a:focus {
+	background-color: #F44040;
+}
+
+.navbar-nav > li > .dropdown-menu {
+	border-radius: 0;
 }
 
 .off {
@@ -60,11 +100,11 @@ body {
 }
 
 .on {
-	color: #33CC33;
+	color: #41E081;
 }
 
 .badge.on {
-	background-color: #33CC33;
+	background-color: #41E081;
 	color: white;
 }
 
@@ -83,6 +123,11 @@ ul.game-info-custom li:before {
 }
 
 /* Sidebar */
+.panel-default.panel-lara {
+	border-radius: 0;
+	border: 0;
+}
+
 .panel-default.panel-lara .panel-heading {
 	font-family: 'Montserrat', 'Open Sans', serif, sans-serif;
 	text-transform: uppercase;
@@ -91,9 +136,28 @@ ul.game-info-custom li:before {
 	border-bottom: none;
 }
 
+.panel-default,
+.panel-default * {
+	border-radius: 0;
+}
+
 
 .list-group-item {
 	font-weight: bold;
+}
+
+.list-group-item:hover,
+.list-group-item.active,
+.list-group-item.active:hover,
+.table-hover>tbody>tr:hover>td,
+.table-hover>tbody>tr:hover>th {
+	background-color: #F5F5F5;
+	color: #555;
+	border-color: #edece4;
+			-webkit-transition: all .75s;
+		-o-transition: all .75s;
+		-moz-transition: all .75s;
+	transition: all .75s;
 }
 
 /* Typography */
@@ -105,5 +169,42 @@ h1, h2, h3, h4, h5, h6, small {
 a.item-mall-head {
 	font-family: 'Montserrat';
 	text-transform: uppercase;
+	color: black;
 	/*color: #F44040;*/
+}
+
+a.item-mall-head:hover {
+	text-decoration: none;
+}
+
+/* Buttons */
+.btn-success {
+	background-color: #41E081;
+	border: 1px solid #28D574;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.open .dropdown-toggle.btn-success {
+	background-color: #31D386;
+	border: 1px solid #28D574;
+}
+
+.btn-primary {
+	background-color: #01a6ed;
+	border: 1px solid #009de0;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.open .dropdown-toggle.btn-primary {
+	background-color: #428bca;
+	border: 1px solid #397ab3;
+}
+
+/* Footer */
+.footer .text-muted {
+	color: white;
 }

@@ -57,4 +57,36 @@
 	charSrv.tooltip();
 	worldSrv.tooltip();
 	usrOn.tooltip();
+
+	/* Navigation */
+	var navbar 	= $('.navbar-inverse'),
+		navY 	= navbar.offset().top,
+		navW 	= navbar.width();
+
+	console.log(navY);
+
+	$(window).scroll(function() {
+		var winY = $(this).scrollTop();
+
+		if( winY > navY ) {
+			console.log('Yay');
+			navbar.css({
+				'position': 'fixed',
+				'top': 0,
+				'background-color': 'rgba(0, 0, 0, 0.5)',
+				'width': navW
+			});
+
+			console.log(navbar.width());
+		} else if( winY < navY ) {
+			navbar.css({
+				'position': 'initial',
+				'top': 'initial',
+				'background-color': 'initial',
+				'width': navW
+			});
+
+			console.log(navbar.width());
+		}
+	});
 })(jQuery);

@@ -39,7 +39,7 @@ class UserCreationHandler {
 	 * Handle the event
 	 *
 	 */
-	public function handle(User $user)
+	public function handle(\User $user)
 	{
 		$this->user = $user;
 
@@ -56,7 +56,9 @@ class UserCreationHandler {
 	{
 		$vp = $this->vp;
 
-		return $this->user->vp()->save($p);
+		return $this->user
+			->votePoint()
+			->save($vp);
 	}
 
 	/**
@@ -66,9 +68,11 @@ class UserCreationHandler {
 	 */
 	protected function createDP()
 	{
-		$vp = $this->dp;
+		$dp = $this->dp;
 
-		return $this->user->dp()->save($dp);
+		return $this->user
+			->donationPoint()
+			->save($dp);
 	}
 
 	/**

@@ -13,9 +13,10 @@
 
 <body>
 	@include('templates/modules/scripts.facebook')
-	<div class="container">
-		@include('templates/modules.navigation')
 
+	<div class="container">
+		<div align="center"> <img src="{{ asset('assets/img/logo.png') }}" height="175px"> </div>
+		@include('templates/modules.navigation')
 		{{-- Homepage Slideshow --}}
 		@if(Request::is('/'))
 			@include('templates/modules.slideshow') <br />

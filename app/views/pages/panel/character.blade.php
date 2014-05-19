@@ -3,7 +3,7 @@
 @section('title') - Your characters @stop
 
 @section('content')
-	<h1> Your Characters </h1>
+	<h2> Your Characters </h2>
 	<hr>
 
 	@if(  !$auth->characters->count() )
