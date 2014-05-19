@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class HomeController extends BaseController {
 
@@ -95,7 +96,11 @@ class HomeController extends BaseController {
 	 */
 	public function getNews($id)
 	{
-		$news = $this->news->find($id);
+		try {
+			$news = $this->news->findOrFail($id);
+		} catch(ModelNotFoundException $e) {
+			return Redirect::to('/');
+		}
 
 		return View::make('pages/news.show')->with('news', $news);
 	}
