@@ -139,9 +139,8 @@ class HomeController extends BaseController {
 		}
 
 		$collection = $this->character
-			->with('user')
 			->orderBy('btLEVEL', 'desc')
-			->take($count)
+			->take($count + 10)
 			->get();
 
 		$characters = $collection->filter(function($character)
