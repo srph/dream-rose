@@ -141,7 +141,7 @@ class HomeController extends BaseController {
 		$collection = $this->character
 			->with('user')
 			->orderBy('btLEVEL', 'desc')
-			->take($count + 10)
+			->take($count)
 			->get();
 
 		$characters = $collection->filter(function($character)
