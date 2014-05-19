@@ -155,10 +155,7 @@ class HomeController extends BaseController {
 			$newCollection->add($value);
 		}
 
-		$newCollection->reduce(function()
-		{
-			return 10;
-		});
+		$newCollection->slice(0, 10);
 
 		return View::make('pages/home/ranking.character')
 			->with('characters', $newCollection);
