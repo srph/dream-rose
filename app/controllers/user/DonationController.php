@@ -63,18 +63,20 @@ class DonationController extends BaseController {
 		}
 
 		if( Auth::check() ) {
-			// Fetch the authenticated user
-			$user = Auth::user();
+			// Fetch the user returned by PayPal
+			$user = $this->user
+				->where('Account', Input::get('custom') )
+				->first();
 	
 			// Fetch the amount donated and compute total points to add
-			$amount = Input::get('payment_status');
+			// $amount = Input::get('payment_status');
 			$total 	= $amount * 4;
 	
 			// Add DP
 			$user->addDP($total);
 		}
 		
-		return 'Success!';	
+		return 'Success!';
 	}
 
 }

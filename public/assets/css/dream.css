@@ -5,6 +5,10 @@
 html,
 body {
 	font-family: 'Open Sans', 'Helvetica', 'Helvetica Neue', serif, sans-serif;
+	background-image: url('../img/background.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-attachment: fixed;
 }
 
 /* Navigation */
