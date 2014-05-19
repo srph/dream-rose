@@ -156,7 +156,7 @@ class HomeController extends BaseController {
 		}
 
 		return View::make('pages/home/ranking.character')
-			->with('characters', $newCollection->slice(0, 9));
+			->with('characters', $newCollection->slice(0, 10));
 	}
 
 }
