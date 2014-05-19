@@ -105,90 +105,90 @@ return array(
 		|
 		*/
 
-		'dream' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'dream',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
+		// 'dream' => array(
+		// 	'driver'    => 'mysql',
+		// 	'host'      => 'localhost',
+		// 	'database'  => 'dream',
+		// 	'username'  => 'root',
+		// 	'password'  => '',
+		// 	'charset'   => 'utf8',
+		// 	'collation' => 'utf8_unicode_ci',
+		// 	'prefix'    => '',
+		// ),
 
-		'seven_ora' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'seven_ora',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
+		// 'seven_ora' => array(
+		// 	'driver'    => 'mysql',
+		// 	'host'      => 'localhost',
+		// 	'database'  => 'seven_ora',
+		// 	'username'  => 'root',
+		// 	'password'  => '',
+		// 	'charset'   => 'utf8',
+		// 	'collation' => 'utf8_unicode_ci',
+		// 	'prefix'    => '',
+		// ),
 
-		'sho' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'sho',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
+		// 'sho' => array(
+		// 	'driver'    => 'mysql',
+		// 	'host'      => 'localhost',
+		// 	'database'  => 'sho',
+		// 	'username'  => 'root',
+		// 	'password'  => '',
+		// 	'charset'   => 'utf8',
+		// 	'collation' => 'utf8_unicode_ci',
+		// 	'prefix'    => '',
+		// ),
 
-		'sho_log' => array(
-			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'sho_log',
-			'username'  => 'root',
-			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
+		// 'sho_log' => array(
+		// 	'driver'    => 'mysql',
+		// 	'host'      => 'localhost',
+		// 	'database'  => 'sho_log',
+		// 	'username'  => 'root',
+		// 	'password'  => '',
+		// 	'charset'   => 'utf8',
+		// 	'collation' => 'utf8_unicode_ci',
+		// 	'prefix'    => '',
+		// ),
 
 		/**
 		 *
 		 * MSSQL V
 		 */
 
-		// 'dream' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'dream',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'dream' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'dream',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
-		// 'seven_ora' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'seven_ora',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'seven_ora' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'seven_ora',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
-		// 'sho' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'sho',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'sho' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'sho',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
-		// 'sho_log' => array(
-		// 	'driver'   => 'sqlsrv',
-		// 	'host'     => 'VPS21437\SQLEXPRESS',
-		// 	'database' => 'sho_log',
-		// 	'username' => 'sa',
-		// 	'password' => 'PahAKaw36Epr',
-		// 	'prefix'   => '',
-		// ),
+		'sho_log' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'VPS21437\SQLEXPRESS',
+			'database' => 'sho_log',
+			'username' => 'sa',
+			'password' => 'PahAKaw36Epr',
+			'prefix'   => '',
+		),
 
 	),
 
