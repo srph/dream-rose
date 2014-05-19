@@ -153,12 +153,10 @@ class HomeController extends BaseController {
 		foreach($characters as $key => $value)
 		{
 			$newCollection->add($value);
-
-			if($key >= 9) break;
 		}
 
 		return View::make('pages/home/ranking.character')
-			->with('characters', $newCollection);
+			->with('characters', $newCollection->slice(0, 9));
 	}
 
 }
