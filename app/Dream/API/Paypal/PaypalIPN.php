@@ -125,7 +125,7 @@ class PaypalIPN {
 			}
 		}
 		
-		return $data;
+		return $decoded;
 	}
 
 	/**
