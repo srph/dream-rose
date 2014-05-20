@@ -17,6 +17,12 @@ class PaypalIPN {
 	 * @var Illuminate\Log\Writer
 	 */
 	protected $log;
+	
+	/**
+	 * Holds all decoded data
+	 * @var array
+	 */
+	protected $decoded;
 
 	/**
 	 *
@@ -92,10 +98,10 @@ class PaypalIPN {
 		// Reading POSTed data directly from $_POST causes serialization
 		// issues with array data in the POST. Decode the raw post data
 		// from the input stream
-		$data = $this->decode($request);
+		$this->decode($request);
 
 		// Read the IPN message sent from PayPal and prepend string
-		$fields = $this->getFields('cmd=_notify-validate');
+		$fields = $this->stringify();
 
 		return $fields;
 	}
@@ -110,9 +116,6 @@ class PaypalIPN {
 		// Separate all elements with ampersand in between
 		$raw = explode('&', $request);
 
-		// Initialize an array to hold all decoded raw data
-		$decoded = array();
-
 		// Seperate raw data value from its key
 		// e.g. foo=bar -> data[foo] = bar
 		foreach($raw as $data)
@@ -121,11 +124,9 @@ class PaypalIPN {
 
 			if(count($data) == 2)
 			{
-				$decoded[$data[0]] = urldecode($data[1]);
+				$this->decoded[$data[0]] = urldecode($data[1]);
 			}
 		}
-		
-		return $decoded;
 	}
 
 	/**
@@ -135,11 +136,11 @@ class PaypalIPN {
 	 * @param 	string 	$prepend
 	 * @return 	string
 	 */
-	protected function getFields($prepend)
+	protected function stringify($prepend = 'cmd=_notify-validate')
 	{
 		$fields = $prepend;
 
-		foreach($this->data as $key => $value) {
+		foreach($this->decoded as $key => $value) {
 			$value = ( $this->checkMagicQuotesGPC() )
 				? urlencode( stripslashes($value) )
 				: urlencode( $value );
