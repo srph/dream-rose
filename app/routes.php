@@ -6,6 +6,7 @@
 |--------------------------------------------------------------------------
 */
 
+/*
 $missing = User::has('VotePoint', '=', 0)->get();
 
 if( !$missing->empty() )
@@ -27,6 +28,7 @@ if( !$missing->empty() )
 		$user->donationPoint()->save($dp);
 	}
 }
+*/
 
 
 Route::group(array('prefix'	=> 'panel'), function()
