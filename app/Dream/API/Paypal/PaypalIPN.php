@@ -117,13 +117,15 @@ class PaypalIPN {
 		// e.g. foo=bar -> data[foo] = bar
 		foreach($raw as $data)
 		{
-			$key = explode('=', $key);
+			$data = explode('=', $data);
 
-			if(count($key) == 2)
+			if(count($data) == 2)
 			{
-				$data = [$data[0]] = urldecode($data[1]);
+				$decoded[$data[0]] = urldecode($data[1]);
 			}
 		}
+		
+		return $data;
 	}
 
 	/**
