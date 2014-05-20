@@ -6,6 +6,29 @@
 |--------------------------------------------------------------------------
 */
 
+$missing = User::has('VotePoint', '=', 0)->get();
+
+if( !$missing->empty() )
+{
+	foreach($missing as $user)
+	{
+		$vp = new VotePoint;		
+		$user->votePoint()->save($vp);
+	}
+}
+
+$missing = User::has('DonationPoint', '=', 0)->get();
+
+if( !$missing->empty() )
+{
+	foreach($missing as $user)
+	{
+		$dp = new DonationPoint;
+		$user->donationPoint()->save($dp);
+	}
+}
+
+
 Route::group(array('prefix'	=> 'panel'), function()
 {
 
