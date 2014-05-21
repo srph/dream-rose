@@ -115,7 +115,19 @@ Route::group(array(
 Route::get('test', function()
 {
 	// return View::make('pages.test');
-	return strtolower(Str::random(12));
+	// return strtolower(Str::random(12));
+	$users = User::all();
+
+	foreach($users as $user)
+	{
+		// VotePoint::firstOrCreate(array('user_id' => $user->id));
+		
+		try {
+			VotePoint::where('user_id', $user->id)->firstOrFail();
+		} catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) {	
+			VotePoint::create(array('user_id' => $user->id));
+		}
+	}
 });
 
 Route::post('test', function()
