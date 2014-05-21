@@ -6,29 +6,6 @@
 |--------------------------------------------------------------------------
 */
 
-/*
-$missing = User::has('VotePoint', '=', 0)->get();
-
-if( !$missing->empty() )
-{
-	foreach($missing as $user)
-	{
-		$vp = new VotePoint;		
-		$user->votePoint()->save($vp);
-	}
-}
-
-$missing = User::has('DonationPoint', '=', 0)->get();
-
-if( !$missing->empty() )
-{
-	foreach($missing as $user)
-	{
-		$dp = new DonationPoint;
-		$user->donationPoint()->save($dp);
-	}
-}
-*/
 
 
 Route::group(array('prefix'	=> 'panel'), function()
@@ -116,16 +93,22 @@ Route::get('test', function()
 {
 	// return View::make('pages.test');
 	// return strtolower(Str::random(12));
-	$users = User::all();
+	$missing = User::all();
 
-	foreach($users as $user)
+	foreach($missing as $user)
 	{
-		// VotePoint::firstOrCreate(array('user_id' => $user->id));
-		
 		try {
-			VotePoint::where('user_id', $user->id)->firstOrFail();
-		} catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) {	
-			VotePoint::create(array('user_id' => $user->id));
+			$model = VotePoint::where('user_id', $user->id)->firstOrFail();
+		} catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+			$vp = new VotePoint;
+			$user->votePoint()->save($vp);
+		}
+
+		try {
+			$model = DonationPoint::where('user_id', $user->id)->firstOrFail();
+		} catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+			$dp = new DonationPoint;
+			$user->donationPoint()->save($dp);
 		}
 	}
 });
