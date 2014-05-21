@@ -148,8 +148,11 @@ return array(
 
 			'link'   => 'https://mega.co.nz/#!q5QR3RDY!8g3i13XnoXyBYRkfVYDt0FYznyByNzpKUQ3UiIZqAEE',
 			'size'   => '569MB',
-			'update' => '11-23-2014'
+			'update' => '11-23-2014',
+
 		),
+
+		'guide'  => 'http://dream-rose.com/forum',
 
 		'patch'  => null,
 		

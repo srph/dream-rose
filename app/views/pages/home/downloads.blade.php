@@ -7,7 +7,7 @@
 	<hr>
 
 	<div class="alert alert-info">
-		Please make sure that you meet our <a href="#systemreq" class="alert-link">system requirements</a> before downloading the game client. Follow our easy <a href="#" class="alert-link">Installation</a> guide if you need a little help!
+		Please make sure that you meet our <a href="#systemreq" class="alert-link">system requirements</a> before downloading the game client. Follow our easy <a href="{{ url(Config::get('dream.downloads.guide')) }}" class="alert-link">Installation</a> guide if you need a little help!
 	</div>
 	
 	<div class="form-group"  id="systemreq">
