@@ -44,7 +44,7 @@ class Character extends Base {
 			case 111:
 				$job = 'Solider';
 				break;
-			case 221:
+			case 211:
 				$job = 'Muse';
 				break;
 			case 311:
