@@ -144,7 +144,13 @@ return array(
 	
 	'downloads' => array(
 	
-		'client' => 'https://mega.co.nz/#!q5QR3RDY!8g3i13XnoXyBYRkfVYDt0FYznyByNzpKUQ3UiIZqAEE',
+		'client' => array(
+
+			'link'   => 'https://mega.co.nz/#!q5QR3RDY!8g3i13XnoXyBYRkfVYDt0FYznyByNzpKUQ3UiIZqAEE',
+			'size'   => '569MB',
+			'update' => '11-23-2014'
+		),
+
 		'patch'  => null,
 		
 	),
