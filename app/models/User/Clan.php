@@ -46,6 +46,21 @@ class Clan extends Base {
 		return $characters->take($offset);
 	}
 
+	public function getNameAttribute()
+	{
+		return $this->txtNAME;
+	}
+
+	public function getLevelAttribute()
+	{
+		return $this->intLEVEL;
+	}
+
+	public function getPointsAttribute()
+	{
+		return $this->intPOINT;
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| ORM

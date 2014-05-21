@@ -113,13 +113,14 @@ class HomeController extends BaseController {
 	 */
 	public function getClanRanking()
 	{
-		$clan = $this->clan
+		$clans = $this->clan
 			->orderBy('intLEVEL', 'desc')
+			->orderBy('intPOINT', 'desc')
 			->take(10)
 			->get();
 
 		return View::make('pages/home/ranking.clan')
-			->with('clan', $clan);
+			->with('clans', $clans);
 	}
 
 
