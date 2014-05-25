@@ -32,7 +32,7 @@ class VoteLog extends Eloquent {
 	 * @param 	string 	 	$ip
 	 * @return 	boolean
 	 */
-	public static function validate(User $user, VoteLink $link, $ip)
+	protected function validate(User $user, VoteLink $link, $ip)
 	{
 		$user->load('logs');
 
@@ -42,20 +42,20 @@ class VoteLog extends Eloquent {
 		// Checks if the ip of the current request exists in the logs.
 		// Then validates if the rule exists.
 		// Otherwise, checks if the user has a log in the last 24 hours,
-		// and validates.
+		// and validate.
 
 		if ($restriction) {
-			if ( ( $log = self::checkLastIPLog($link, $ip) ) ) {
-				if ( ! self::intervalValid($log) ) {
+			if ( $log = $this->checkLastIPLog($link, $ip) ) {
+				if ( ! $this->intervalValid($log) ) {
 					return false;
 				}
 			}
 		}
 
 		// Check if the user has logs
-		if( $user->logs->count() ) {
-			if( ( $log = self::checkLastUserLog($user, $link) ) ) {
-				if ( ! self::intervalValid($log) ) {
+		if( !$user->logs->empty() ) {
+			if( $log = $this->checkLastUserLog($user, $link) ) {
+				if ( ! $this->intervalValid($log) ) {
 					return false;
 				}
 			}
@@ -69,7 +69,7 @@ class VoteLog extends Eloquent {
 	 *
 	 * @return 	boolean
 	 */
-	public static function intervalValid($log)
+	protected function intervalValid($log)
 	{
 		$interval 	= Config::get('dream.links.interval');
 		$log 		= strtotime( $log->created_at );
@@ -90,12 +90,11 @@ class VoteLog extends Eloquent {
 	 * @param 	string 		$ip
 	 * @return 	VoteLog|bool
 	 */
-	public static function checkLastIPLog(VoteLink $link, $ip)
+	protected function checkLastIPLog(VoteLink $link, $ip)
 	{
 		$log = $link->logs()
 			->where('ip', $ip)
-			->orderBy('created_at', 'desc')
-			->first();
+			->last();
 
 		if ( is_null($log) ) return false;
 
@@ -109,12 +108,11 @@ class VoteLog extends Eloquent {
 	 * @param 	VoteLink 	$link
 	 * @return 	VoteLog|bool
 	 */
-	public static function checkLastUserLog(User $user, VoteLink $link)
+	protected function checkLastUserLog(User $user, VoteLink $link)
 	{
 		$log = $user->logs()
 			->where('vote_link_id', $link->id)
-			->orderBy('created_at', 'desc')
-			->first();
+			->last();
 
 		if ( is_null($log) ) return false;
 
@@ -131,7 +129,7 @@ class VoteLog extends Eloquent {
 	 */
 	public static function mark(User $user, VoteLink $link, $ip)
 	{
-		if ( self::validate($user, $link, $ip) ) {
+		if ( $this->validate($user, $link, $ip) ) {
 			$log 				= new self;
 			$log->vote_link_id 	= $link->id;
 			$log->ip 			= $ip;
