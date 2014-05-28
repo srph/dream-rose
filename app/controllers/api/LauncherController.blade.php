@@ -40,12 +40,11 @@ class LauncherController extends BaseController {
 	public function getPatchNote()
 	{
 		$directory = public_path() . '/launcher';
-		$patchnote = "{$directory}/patchnote.txt";
-
-		$file = File::get($patchnote);
+		$patchnote = "{$directory}/patch.txt";
 
 		if( File::exists($patchnote) && File::isFile($exists) )
 		{
+			$file = File::get($patchnote);
 			return $file;
 		}
 	}
