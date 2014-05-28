@@ -6,6 +6,10 @@
 			.container {
 				width: 100%;
 			}
+
+			tr {
+				cursor: pointer;
+			}
 		</style>
 	</head>
 
@@ -23,7 +27,7 @@
 
 				<tbody>
 					@foreach($news as $article)
-						<tr>
+						<tr onclick="window.open('{{ URL::to('news/' . $article->id) }}'">
 							<td> {{ $article->id }} </td>
 							<td> {{ $article->title }} </td>
 							<td> {{ $article->type->name }} </td>
