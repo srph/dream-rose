@@ -24,7 +24,9 @@ class LauncherController extends BaseController {
 	 */
 	public function getNews()
 	{
-		$news = $this->news->paginate(10);
+		$news = $this->news
+			->orderBy('id', 'desc')
+			->paginate(10);
 
 		return View::make('pages/launcher.news')
 			->with('news', $news);
