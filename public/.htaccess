@@ -4,8 +4,9 @@
     </IfModule>
 
     RewriteEngine On
-    #Ignore Forum Folder
+    #Ignore custom folders
     RewriteRule ^forum(/|$) - [L,NC]
+    RewriteRule ^launcher(/|$) - [L,NC]
 
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
