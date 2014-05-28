@@ -86,6 +86,18 @@ Route::group(array(
 });
 
 /**
+ * Launcher API
+ *
+ * @link /n/
+ */
+Route::group(array('prefix' => 'n'), function()
+{
+	Route::get('/', 'LauncherController@getNews');
+	Route::get('/dream/', 'LauncherController@getPatchDir');
+	Route::get('/dream/patch.txt', 'LauncherController@getPatchNote');
+});
+
+/**
  * 
  * @link test
  */
@@ -136,12 +148,6 @@ Route::get('logout', 'AuthController@getLogout');
  */
 Route::get('register', 'RegistrationController@getRegister');
 Route::post('register', 'RegistrationController@postRegister');
-
-/**
- * News for the launcher
- * @link /n/
- */
-Route::get('n', 'LauncherController@getNews');
 
 /**
  * Handles all pages

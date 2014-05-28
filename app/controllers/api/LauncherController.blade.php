@@ -31,5 +31,38 @@ class LauncherController extends BaseController {
 		return View::make('pages/launcher.news')
 			->with('news', $news);
 	}
+
+	/**
+	 * Return patch note
+	 *
+	 * @return 	file
+	 */
+	public function getPatchNote()
+	{
+		$directory = public_path() . '/launcher';
+		$patchnote = "{$directory}/patchnote.txt";
+
+		$file = File::get($patchnote);
+
+		if( File::exists($patchnote) && File::isFile($exists) )
+		{
+			return $file;
+		}
+	}
+
+	/**
+	 * Return patch directory
+	 *
+	 * @return 	file
+	 */
+	public function getPatchDir()
+	{
+		$directory = public_path() . '/launcher';
+
+		if( File::isDirectory($directory) )
+		{
+			return File::allFiles($directory);
+		}
+	}
 	
 }
