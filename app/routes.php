@@ -138,6 +138,12 @@ Route::get('register', 'RegistrationController@getRegister');
 Route::post('register', 'RegistrationController@postRegister');
 
 /**
+ * News for the launcher
+ * @link /n/
+ */
+Route::get('n', 'LauncherController@getNews');
+
+/**
  * Handles all pages
  * @link /*
  */
