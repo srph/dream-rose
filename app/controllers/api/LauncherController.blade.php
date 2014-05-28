@@ -42,7 +42,7 @@ class LauncherController extends BaseController {
 		$directory = public_path() . '\\launcher';
 		$patchnote = "{$directory}\\patch.txt";
 
-		if( File::exists($patchnote) && File::isFile($exists) )
+		if( File::exists($patchnote) && File::isFile($patchnote) )
 		{
 			$file = File::get($patchnote);
 			return $file;
