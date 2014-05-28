@@ -26,7 +26,7 @@
 						<tr>
 							<td> {{ $article->id }} </td>
 							<td> {{ $article->title }} </td>
-							<td> {{ $article->category->name }} </td>
+							<td> {{ $article->type->name }} </td>
 							<td> {{ $article->created_at->diffForHumans() }} </td>
 						</tr>
 					@endforeach
