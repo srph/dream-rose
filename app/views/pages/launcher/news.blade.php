@@ -3,8 +3,15 @@
 	<head>
 		{{ HTML::style('vendor/bootstrap-dist/css/bootstrap.min.css') }}
 		<style>
+			html, body {
+				width: 100%;
+				padding: 0;
+				margin: 0;
+			}
 			.container {
 				width: 100%;
+				margin: 0;
+				padding: 0;
 			}
 
 			tr {
