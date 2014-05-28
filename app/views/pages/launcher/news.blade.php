@@ -27,7 +27,7 @@
 
 				<tbody>
 					@foreach($news as $article)
-						<tr onclick="window.open('{{ URL::to('news/' . $article->id) }}'">
+						<tr onclick="window.open('{{ URL::to('news/' . $article->id) }}')">
 							<td> {{ $article->id }} </td>
 							<td> {{ $article->title }} </td>
 							<td> {{ $article->type->name }} </td>
