@@ -94,7 +94,8 @@ class VoteLog extends Eloquent {
 	{
 		$log = $link->logs()
 			->where('ip', $ip)
-			->last();
+			->orderBy('created_at', 'desc')
+			->first();
 
 		if ( is_null($log) ) return false;
 
@@ -112,7 +113,8 @@ class VoteLog extends Eloquent {
 	{
 		$log = $user->logs()
 			->where('vote_link_id', $link->id)
-			->last();
+			->orderBy('created_at', 'desc')
+			->first();
 
 		if ( is_null($log) ) return false;
 
