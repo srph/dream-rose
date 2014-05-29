@@ -53,7 +53,7 @@ class VoteLog extends Eloquent {
 		}
 
 		// Check if the user has logs
-		if( !$user->logs->empty() ) {
+		if( $user->logs->count() ) {
 			if( $log = $this->checkLastUserLog($user, $link) ) {
 				if ( ! $this->intervalValid($log) ) {
 					return false;
