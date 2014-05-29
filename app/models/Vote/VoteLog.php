@@ -127,7 +127,7 @@ class VoteLog extends Eloquent {
 	 * @param 	integer 	$ip
 	 * @return 	boolean
 	 */
-	public static function mark(User $user, VoteLink $link, $ip)
+	public function mark(User $user, VoteLink $link, $ip)
 	{
 		if ( $this->validate($user, $link, $ip) ) {
 			$log 				= new self;
