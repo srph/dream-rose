@@ -1,21 +1,36 @@
-## Laravel PHP Framework
+# Dream ROSE Online - Web
+> The website for Dream ROSE ONLINE
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+This was written a year ago while it was a growing private server. The codebase is shit as this was one of my first few jobs.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+**During development, I used MySQL.** However, we used MSSQL 2005 (why 2005, you ask?) in production because of the server files being outdated. I was really lucky that PDO supported MSSQL, and that it easy to switch databases by just changing a few lines in the config. It could have been improved with environment-based configurations, but I didn't acknowledge any of those at the time this was being written.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+**Laravel's features shined in this project.** I had to deal with the server files' architecture and methodology being outdated; it was hard. Luckily, Laravel was able to provide most of the features I needed to just write the features.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+**I used TWBS3**. This gave me an opportunity to spend most of my time writing PHP code instead of wasting my time with the interfaces as I was given a short deadline (I was also handling another project at the time). I also had to design the site my self, so Bootstrap really saved my ass big time.
 
-## Official Documentation
+**Redis** because caching. I didn't notice any improvement at all, seriously. I just heard it was fast while being easy to setup, so.. hahaha.
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+## Building
 
-### Contributing To Laravel
+**Requirements**:
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+- Redis.
+- MySQL `>=v5.6` / MSSQL 2005.
+- PHP `>=5.3`.
+- Bower (which depends on **npm** and **nodejs**)
 
-### License
+\* There will be no instructions for setting it up with **MSSQL 2005**.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Create at least 3 databases, and make your way through [`/app/config/database.php`](https://github.com/srph/dream-rose/blob/master/app/config/database.php). Configure Redis afterwards.
+
+```bash
+php artisan migrate
+php artisan db:seed
+bower install
+```
+
+
+## Acknolwedgement
+
+Copyright 2014, Dream ROSE Team. All rights reserved.
