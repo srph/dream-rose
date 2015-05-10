@@ -18,6 +18,7 @@ This was written a year ago while it was a growing private server. The codebase 
 - Redis.
 - MySQL `>=v5.6` / MSSQL 2005.
 - PHP `>=5.3`.
+- Composer
 - Bower (which depends on **npm** and **nodejs**)
 
 \* There will be no instructions for setting it up with **MSSQL 2005**.
@@ -25,6 +26,7 @@ This was written a year ago while it was a growing private server. The codebase 
 Create at least 3 databases, and dump the sqldump in `app/database/dump`. Make your way through [`/app/config/database.php`](https://github.com/srph/dream-rose/blob/master/app/config/database.php). Configure Redis afterwards.
 
 ```bash
+composer install
 php artisan migrate
 php artisan db:seed
 bower install
