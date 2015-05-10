@@ -31,6 +31,6 @@ bower install
 ```
 
 
-## Acknolwedgement
+## Acknowledgement
 
 Copyright 2014, Dream ROSE Team. All rights reserved.
