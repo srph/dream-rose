@@ -1,5 +1,5 @@
 # Dream ROSE Online - Web
-> The website for Dream ROSE ONLINE
+> The website for Dream ROSE Online
 
 This was written a year ago while it was a growing private server. The codebase is shit as this was one of my first few jobs.
 
