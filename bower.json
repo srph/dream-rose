@@ -1,5 +1,5 @@
 {
-  "name": "htdocs",
+  "name": "dr",
   "version": "0.0.0",
   "authors": [
     "srph <seraphipod@gmail.com>"
@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-dist": "*",
+    "bootstrap": "*",
     "jquery": "~2.1.0",
     "leptureeditor": "*",
     "ckeditor": "~4.4.0",
