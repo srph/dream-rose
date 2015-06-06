@@ -3,11 +3,11 @@
 <head>
 	<title> {{ Config::get('dream.name') }} @yield('title') </title>
 	<meta charset="utf-8">
-	{{ HTML::style('vendor/bootstrap-dist/css/bootstrap.min.css') }}
+	{{ HTML::style('vendor/bootstrap/dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/style.css') }}
 	{{ HTML::style('assets/css/dream.css') }}
 	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
-	{{ HTML::script('vendor/bootstrap-dist/js/bootstrap.min.js') }}
+	{{ HTML::script('vendor/bootstrap/dist/js/bootstrap.min.js') }}
 	@yield('styles')
 </head>
 
